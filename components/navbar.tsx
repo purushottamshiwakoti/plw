@@ -1,9 +1,10 @@
+"use client";
 import { navBar } from "@/lib/nav";
 import Image from "next/image";
 import { Separator } from "@/components/ui/separator";
 import { Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Ref } from "react";
+import { Ref, useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 
 interface NavbarProps {

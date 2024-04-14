@@ -9,9 +9,10 @@ export default function Home() {
       <div>
         <Banner />
       </div>
-      <div className="-mt-28 z-50 relative">
+      <div className="-mt-28 z-40 relative">
         <ElectionTime />
       </div>
+      <div></div>
     </main>
   );
 }
