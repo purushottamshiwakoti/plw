@@ -3,10 +3,21 @@ import Image from "next/image";
 import { Separator } from "@/components/ui/separator";
 import { Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Ref } from "react";
+import { cn } from "@/lib/utils";
 
-export const Navbar = () => {
+interface NavbarProps {
+  className?: string;
+}
+
+export const Navbar: React.FC<NavbarProps> = ({ className }) => {
   return (
-    <nav className="bg-navBg text-white h-20 flex items-center justify-between px-[10rem]">
+    <nav
+      className={cn(
+        "bg-navBg text-white h-20 flex items-center justify-between px-[10rem]",
+        className
+      )}
+    >
       <div>
         <Image
           src={"/images/logo.svg"}
@@ -20,19 +31,24 @@ export const Navbar = () => {
         {navBar.map((item, index) => (
           <li key={index} className="relative group cursor-pointer">
             {/* Main content */}
-            <span className="font-semibold text-base">{item.name}</span>
+            <span className="font-semibold text-base" title={item.name}>
+              {item.name}
+            </span>
 
             {/* Underline with transition */}
             <span className="absolute inset-x-0 bottom-0 h-[1px] bg-white origin-right transition-transform duration-500 transform scale-x-0 group-hover:scale-x-100"></span>
 
             {item.children && (
-              <div className="opacity-0 absolute left-0 mt-[26px] bg-white w-[12rem] origin-left border-t-blue-700 border-t-[0.2rem]    shadow-md transition-opacity duration-300 group-hover:opacity-100">
+              <div className="opacity-0 absolute left-0 mt-[26px] z- bg-white w-[12rem] origin-left border-t-blue-700 border-t-[0.2rem]    shadow-md transition-opacity duration-300 group-hover:opacity-100">
                 {item.children.map((child, index) => (
                   <div
                     className="relative transition duration-300 hover:bg-red-700 "
                     key={index}
                   >
-                    <p className="p-3 text-gray-700 hover:text-white text-base">
+                    <p
+                      className="p-3 text-gray-700 hover:text-white text-base"
+                      title={child.name}
+                    >
                       {child.name}
                     </p>
                     <Separator className="absolute bottom-0" />
