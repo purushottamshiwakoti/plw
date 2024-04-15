@@ -1,10 +1,12 @@
 import { Banner } from "@/components/banner";
+import { ConfirmVotes } from "@/components/confirm-votes";
 import { Donation } from "@/components/donation";
 import { ElectionTime } from "@/components/election-time";
 import { FutureMovement } from "@/components/future-movement";
 import { LatestEvents } from "@/components/latest-events";
 import { Momvement } from "@/components/movement";
 import { Navbar } from "@/components/navbar";
+import { PoliciesAndProgress } from "@/components/policies-progress";
 import { Saying } from "@/components/saying";
 import { Services } from "@/components/services";
 import { SocialIcons } from "@/components/social-icons";
@@ -86,7 +88,12 @@ export default async function Home() {
       <div>
         <SocialIcons />
       </div>
-      <TopSctoll />
+      <div>
+        <ConfirmVotes />
+      </div>
+      <div>
+        <PoliciesAndProgress />
+      </div>
     </main>
   );
 }
