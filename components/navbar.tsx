@@ -15,7 +15,7 @@ export const Navbar: React.FC<NavbarProps> = ({ className }) => {
   return (
     <nav
       className={cn(
-        "bg-navBg text-white h-20 flex items-center justify-between px-[10rem]",
+        "bg-navBg text-white h-20 flex items-center justify-between px-[10rem] sticky w-full top-0 z-50",
         className
       )}
     >

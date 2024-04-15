@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { Separator } from "./ui/separator";
 
-export const ElectionTime = () => {
+export const ElectionTime = ({ date }: { date: Date }) => {
   const [timeRemaining, setTimeRemaining] = useState({
     days: 0,
     hours: 0,
@@ -12,7 +12,7 @@ export const ElectionTime = () => {
   });
 
   const calculateTimeRemaining = () => {
-    const electionStartTime: Date = new Date("2024-11-05T00:00:00Z");
+    const electionStartTime: Date = new Date(date);
     const currentTime: Date = new Date();
     const totalSeconds: number =
       (electionStartTime.getTime() - currentTime.getTime()) / 1000;
