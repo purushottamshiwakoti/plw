@@ -2,9 +2,9 @@
 import { navBar } from "@/lib/nav";
 import Image from "next/image";
 import { Separator } from "@/components/ui/separator";
-import { Search } from "lucide-react";
+import { ChevronDown, ChevronUp, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Ref, useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 
@@ -13,6 +13,26 @@ interface NavbarProps {
 }
 
 export const Navbar: React.FC<NavbarProps> = ({ className }) => {
+  const [drpdown, setDropdown] = useState<string | null>(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        setDropdown(null); // Close dropdown if clicked outside
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
     <nav
       className={cn(
@@ -33,23 +53,41 @@ export const Navbar: React.FC<NavbarProps> = ({ className }) => {
         {navBar.map((item, index) => (
           <li key={index} className="relative group cursor-pointer">
             {/* Main content */}
-            <Link href={`${item.href ?? "/"}`}>
-              <span className="font-semibold text-base" title={item.name}>
-                {item.name}
+            {!item.children ? (
+              <Link href={`${item.href ?? "/"}`}>
+                <span className="font-semibold text-base" title={item.name}>
+                  {item.name}
+                </span>
+              </Link>
+            ) : (
+              <span
+                className="font-semibold text-base flex items-center"
+                title={item.name}
+                onClick={() => setDropdown(item.name)}
+              >
+                {item.name}{" "}
+                {item.name === drpdown ? (
+                  <ChevronUp className="w-4 h-4 ml-2" />
+                ) : (
+                  <ChevronDown className="w-4 h-4  ml-2" />
+                )}
               </span>
-            </Link>
+            )}
 
             {/* Underline with transition */}
-            <span className="absolute inset-x-0 bottom-0 h-[1px] bg-white origin-right transition-transform duration-500 transform scale-x-0 group-hover:scale-x-100"></span>
+            <span className="absolute inset-x-0 -bottom-2 h-[1px] bg-white origin-right transition-transform duration-500 transform scale-x-0 group-hover:scale-x-100"></span>
 
-            {item.children && (
-              <div className="opacity-0 absolute left-0 mt-[26px] z- bg-white w-[12rem] origin-left border-t-blue-700 border-t-[0.2rem]    shadow-md transition-opacity duration-300 group-hover:opacity-100">
+            {drpdown === item.name && item.children && (
+              <div
+                ref={dropdownRef}
+                className="absolute left-0 mt-[26px] z-10 bg-white w-[12rem] origin-left border-t-blue-700 border-t-[0.2rem] shadow-md"
+              >
                 {item.children.map((child, index) => (
                   <div
-                    className="relative transition duration-300 hover:bg-red-700 "
+                    className="relative transition duration-300 hover:bg-red-700"
                     key={index}
                   >
-                    <Link href={child.href}>
+                    <Link href={child.href} onClick={() => setDropdown(null)}>
                       <p
                         className="p-3 text-gray-700 hover:text-white text-base"
                         title={child.name}
