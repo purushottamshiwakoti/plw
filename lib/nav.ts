@@ -4,10 +4,12 @@ export const navBar=[
     children:[
         {
             name:"Home1",
+            href:"/"
           
         },
         {
             name:"Home2",
+            href:"/"
           
         },
     ]
@@ -34,10 +36,12 @@ export const navBar=[
     children:[
         {
             name:"Pages 1",
+            href:"/"
           
         },
         {
             name:"Pages 2",
+            href:"/"
           
         },
     ]
@@ -47,14 +51,17 @@ export const navBar=[
     children:[
         {
             name:"Events 1",
+            href:"/"
           
         },
         {
             name:"Events 2",
+            href:"/"
           
         },
         {
             name:"Events Detail",
+            href:"/"
           
         },
     ]
@@ -64,15 +71,18 @@ export const navBar=[
     children:[
         {
             name:"Classic News",
+            href:"/"
           
         },
         {
             name:"NewsDetail",
+            href:"/"
           
         },
     ]
    },
    {
-    name:"Contact"
+    name:"Contact",
+    href:"/contact"
    },
 ]

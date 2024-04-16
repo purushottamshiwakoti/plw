@@ -46,7 +46,11 @@ export const AffiliateForm = () => {
               <FormItem>
                 <FormLabel>FIrstName</FormLabel>
                 <FormControl>
-                  <Input placeholder="Enter firstname here" {...field} />
+                  <Input
+                    placeholder="Enter firstname here"
+                    {...field}
+                    required
+                  />
                 </FormControl>
 
                 <FormMessage />
@@ -60,7 +64,11 @@ export const AffiliateForm = () => {
               <FormItem>
                 <FormLabel>LastName</FormLabel>
                 <FormControl>
-                  <Input placeholder="Enter lastname here" {...field} />
+                  <Input
+                    placeholder="Enter lastname here"
+                    {...field}
+                    required
+                  />
                 </FormControl>
 
                 <FormMessage />
@@ -76,7 +84,11 @@ export const AffiliateForm = () => {
               <FormItem>
                 <FormLabel>Email Address</FormLabel>
                 <FormControl>
-                  <Input placeholder="Enter your email here" {...field} />
+                  <Input
+                    placeholder="Enter your email here"
+                    {...field}
+                    required
+                  />
                 </FormControl>
 
                 <FormMessage />
@@ -93,6 +105,7 @@ export const AffiliateForm = () => {
                   <Textarea
                     placeholder="Enter message here"
                     {...field}
+                    required
                     rows={8}
                   />
                 </FormControl>

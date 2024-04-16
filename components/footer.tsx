@@ -1,6 +1,7 @@
 import { Locate, Mail, Phone } from "lucide-react";
 import Image from "next/image";
 import { SmallSocialIcon } from "./small-social-icon";
+import { ContactList } from "./contact-list";
 
 export const Footer = () => {
   return (
@@ -66,33 +67,14 @@ export const Footer = () => {
           </div>
           {/* useful links end */}
 
-          <div className="space-y-4">
-            <h2 className="font-semibold text-xl capitalize">Get in touch</h2>
-            <div>
-              <div className="space-y-4">
-                <div className="flex items-center gap-2">
-                  <Phone className="text-buttonBg" />
-                  <p className="font-semibold">+ 1 (345) 206 7849</p>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Mail className="text-buttonBg" />
-                  <p className="font-semibold">info@example.com</p>
-                </div>
-                <div className="flex  gap-2">
-                  <Locate className="text-buttonBg w-10 h-10" />
-                  <p className="font-normal">
-                    143 Ringer House, NY 58920 United Statescom
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
+          <ContactList title="Get in touch" />
         </div>
         <hr className="mt-16 border-[#2B3C51] " />
         <div className="mt-10 ">
           <p className="text-center">
-            © {new Date().getFullYear()} Politaro - Political Party. All rights
-            reserved.
+            © {new Date().getFullYear()}{" "}
+            <span className="text-buttonBg">Politaro</span> - Political Party.
+            All rights reserved.
           </p>
         </div>
       </div>

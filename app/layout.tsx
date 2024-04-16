@@ -5,6 +5,7 @@ import "./globals.css";
 import { Header } from "@/components/header";
 import { TopSctoll } from "@/components/top-scroll";
 import { Footer } from "@/components/footer";
+import NextTopLoader from "nextjs-toploader";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,6 +27,7 @@ export default function RootLayout({
         {children}
         <Footer />
         <TopSctoll />
+        <NextTopLoader color="#08182C" />
       </body>
     </html>
   );

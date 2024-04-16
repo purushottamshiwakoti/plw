@@ -5,19 +5,15 @@ import React from "react";
 const AboutPage = () => {
   return (
     <div className="px-[10rem] p-10">
-      <StarList />
-      <div className="mt-5 space-y-3  ">
-        <p className=" text-primary font-[600] text-[25px] text-center">
-          What is the Syrian Future Movement?
-        </p>
-        <p className="text-center text-[#666] mx-[3rem] mt-3">
-          A political organization born from the womb of the Syrian Revolution,
+      <StarList
+        title=" What is the Syrian Future Movement?"
+        description=" A political organization born from the womb of the Syrian Revolution,
           established in 2012 with the participation of free Syrians at home and
           abroad, to contribute to achieving the goals of the Syrian Revolution
           in overthrowing the Assad regime and rebuilding a free, united and
-          independent Syria.​
-        </p>
-      </div>
+          independent Syria.​"
+      />
+
       <div className="grid grid-cols-2 gap-10 mb-10 px-[10rem] mt-10">
         {Array.from({ length: 6 }, (_, index) => (
           <div

@@ -33,9 +33,11 @@ export const Navbar: React.FC<NavbarProps> = ({ className }) => {
         {navBar.map((item, index) => (
           <li key={index} className="relative group cursor-pointer">
             {/* Main content */}
-            <span className="font-semibold text-base" title={item.name}>
-              {item.name}
-            </span>
+            <Link href={`${item.href ?? "/"}`}>
+              <span className="font-semibold text-base" title={item.name}>
+                {item.name}
+              </span>
+            </Link>
 
             {/* Underline with transition */}
             <span className="absolute inset-x-0 bottom-0 h-[1px] bg-white origin-right transition-transform duration-500 transform scale-x-0 group-hover:scale-x-100"></span>
@@ -47,7 +49,7 @@ export const Navbar: React.FC<NavbarProps> = ({ className }) => {
                     className="relative transition duration-300 hover:bg-red-700 "
                     key={index}
                   >
-                    <Link href={child.href || "/"}>
+                    <Link href={child.href}>
                       <p
                         className="p-3 text-gray-700 hover:text-white text-base"
                         title={child.name}
