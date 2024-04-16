@@ -17,7 +17,8 @@ export const navBar=[
     name:"About",
     children:[
         {
-            name:"About1",
+            name:"About Us",
+            href:"/about-us"
           
         },
         {

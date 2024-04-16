@@ -6,6 +6,7 @@ import { Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Ref, useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
+import Link from "next/link";
 
 interface NavbarProps {
   className?: string;
@@ -46,12 +47,14 @@ export const Navbar: React.FC<NavbarProps> = ({ className }) => {
                     className="relative transition duration-300 hover:bg-red-700 "
                     key={index}
                   >
-                    <p
-                      className="p-3 text-gray-700 hover:text-white text-base"
-                      title={child.name}
-                    >
-                      {child.name}
-                    </p>
+                    <Link href={child.href || "/"}>
+                      <p
+                        className="p-3 text-gray-700 hover:text-white text-base"
+                        title={child.name}
+                      >
+                        {child.name}
+                      </p>
+                    </Link>
                     <Separator className="absolute bottom-0" />
                   </div>
                 ))}
