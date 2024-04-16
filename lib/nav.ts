@@ -22,7 +22,8 @@ export const navBar=[
           
         },
         {
-            name:"About2",
+            name:"Affiliate Form",
+            href:"/affiliate-form"
           
         },
     ]
