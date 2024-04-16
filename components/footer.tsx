@@ -1,5 +1,6 @@
 import { Locate, Mail, Phone } from "lucide-react";
 import Image from "next/image";
+import { SmallSocialIcon } from "./small-social-icon";
 
 export const Footer = () => {
   return (
@@ -36,7 +37,9 @@ export const Footer = () => {
               eiusmod tempor incididunt ut labore etsu dolore magna aliquatenim
               veniam quis.
             </p>
-            <div>icons here</div>
+            <div>
+              <SmallSocialIcon size="30px" />
+            </div>
           </div>
           {/* about us end */}
           {/* party start  */}

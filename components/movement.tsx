@@ -1,11 +1,12 @@
 import Image from "next/image";
+import { SmallSocialIcon } from "./small-social-icon";
 
 export const Momvement = () => {
   return (
     <div className="bg-[#09274C] ">
       <div className="flex ">
         <div className="p-10">
-            <Image
+          <Image
             src={"/images/man1.jpg"}
             alt="img"
             width={500}
@@ -33,7 +34,9 @@ export const Momvement = () => {
             peace and the revival of Syria after the devastating effects of war
             on both infrastructure and human beings alike.”
           </p>
-          <div>Facebook iCons here</div>
+          <div className="">
+            <SmallSocialIcon size="30px" />
+          </div>
         </div>
       </div>
     </div>

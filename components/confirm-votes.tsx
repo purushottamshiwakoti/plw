@@ -24,7 +24,7 @@ export const ConfirmVotes = () => {
             laborum. Sed ut perspiciatis unde omnis.
           </p>
           <div className="mt-10">
-            <Button className="bg-butto nBg  rounded-[5px] p-[25px] w-[9rem] hover:bg-white hover:text-black uppercase text-[15px] font-[700]">
+            <Button className="bg-buttonBg  rounded-[5px] p-[25px] w-[9rem] hover:bg-white hover:text-black uppercase text-[15px] font-[700]">
               Learn More
             </Button>
           </div>
