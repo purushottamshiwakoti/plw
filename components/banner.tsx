@@ -1,5 +1,8 @@
-import { url } from "inspector";
+"use client";
 import { SubscribeEmail } from "./subscribe-email";
+
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 
 interface BannerProps {
   title: string;
@@ -9,6 +12,19 @@ interface BannerProps {
 }
 
 export const Banner = ({ description, title, image, button }: BannerProps) => {
+  useGSAP(() => {
+    gsap.to(".title", {
+      opacity: 1,
+      duration: 3,
+    });
+
+    // Use gsap.from() to animate elements from left (-500px) to original position
+
+    gsap.to(".description", {
+      opacity: 1,
+      duration: 7,
+    });
+  }, []);
   return (
     <div>
       <div
@@ -21,8 +37,8 @@ export const Banner = ({ description, title, image, button }: BannerProps) => {
         {/* <Navbar className="bg-transparent z-20 mt-10" /> */}
 
         <div className="text-white font-[400] mt-[8rem] text-[18px] z-10 flex flex-col items-center justify-center">
-          <h3>{title}</h3>
-          <h2 className="mt-5 font-[700] text-[70px]  w-[74%] pl-40 leading-[6rem]">
+          <h3 className="title opacity-0">{title}</h3>
+          <h2 className="mt-5 font-[700] text-[70px]  w-[74%] pl-40 leading-[6rem] description opacity-0">
             {description}
           </h2>
           <div className="mt-[3rem]">
