@@ -82,7 +82,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               <Link href={item.Link}>
                 <span
                   className={cn(
-                    path == "/"
+                    path == item.Link
                       ? "text-buttonHoverBg font-semibold text-base"
                       : "font-semibold text-base hover:text-buttonHoverBg"
                   )}
