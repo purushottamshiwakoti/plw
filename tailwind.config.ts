@@ -21,6 +21,7 @@ const config = {
       colors: {
         navBg:"#302E2F",
         buttonBg:"#E23E4E",
+        buttonHoverBg:"#299726",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

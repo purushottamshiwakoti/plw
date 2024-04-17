@@ -56,7 +56,7 @@ export default async function Home() {
   } = data;
   return (
     <main className="relative">
-      <div>
+      {/* <div>
         <Banner
           description={bannerDescription}
           title={bannerTitle}
@@ -93,6 +93,10 @@ export default async function Home() {
       </div>
       <div>
         <PoliciesAndProgress />
+      </div> */}
+
+      <div className="mt-10 text-center text-2xl">
+        Other features coming soon.....
       </div>
     </main>
   );

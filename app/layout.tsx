@@ -6,6 +6,7 @@ import { Header } from "@/components/header";
 import { TopSctoll } from "@/components/top-scroll";
 import { Footer } from "@/components/footer";
 import NextTopLoader from "nextjs-toploader";
+import { HeaderNav } from "@/components/header-nav";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,11 +24,11 @@ export default function RootLayout({
     <html>
       <body className={inter.className}>
         <Header />
-        <Navbar />
+        <HeaderNav />
         {children}
-        <Footer />
+        {/* <Footer /> */}
         <TopSctoll />
-        <NextTopLoader color="#08182C" />
+        <NextTopLoader color="#299726" />
       </body>
     </html>
   );
