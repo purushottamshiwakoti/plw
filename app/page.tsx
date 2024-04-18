@@ -18,7 +18,7 @@ async function getData() {
   try {
     const res = await apiCall(
       "home-page",
-      "populate=Banner.BannerImage&populate=Election&populate=Services.IconImage.media"
+      "populate=Banner.BannerImage&populate=Election&populate=Services.Icon.Icon.media"
     );
     const { data } = res;
 
@@ -33,6 +33,10 @@ async function getData() {
     const electionDescription = data.attributes.Election.Description;
     const showElection = data.attributes.Election.ShowElection;
     const electionDate = data.attributes.Election.ElectionDate;
+    const serviceTitle = data.attributes.Services[0].Title;
+    const serviceSubTitle = data.attributes.Services[0].SubTitle;
+    const serviceDescription = data.attributes.Services[0].Description;
+    const serviceIcons = data.attributes.Services[0].Icon;
 
     const bannerImage =
       data.attributes.Banner.BannerImage.data.attributes.formats.thumbnail.url;
@@ -47,6 +51,10 @@ async function getData() {
       electionTitle,
       electionDescription,
       showElection,
+      serviceTitle,
+      serviceSubTitle,
+      serviceDescription,
+      serviceIcons,
     };
   } catch (error) {
     console.log("Error retrieving data:", error);
@@ -72,7 +80,12 @@ export default async function Home() {
             title={data?.electionTitle}
           />
         </div>
-        <Services />
+        <Services
+          serviceDescription={data?.serviceDescription}
+          serviceIcons={data?.serviceIcons}
+          serviceSubTitle={data?.serviceSubTitle}
+          serviceTitle={data?.serviceTitle}
+        />
         <div className="pb-10"></div>
       </div>
       {/* <div>
