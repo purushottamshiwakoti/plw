@@ -3,7 +3,15 @@
 import React, { useState, useEffect } from "react";
 import { Separator } from "./ui/separator";
 
-export const ElectionTime = ({ date }: { date: Date }) => {
+export const ElectionTime = ({
+  date,
+  title,
+  description,
+}: {
+  date: Date;
+  title: string;
+  description: string;
+}) => {
   const [timeRemaining, setTimeRemaining] = useState({
     days: 0,
     hours: 0,
@@ -37,16 +45,16 @@ export const ElectionTime = ({ date }: { date: Date }) => {
 
   return (
     <div className="mx-[10rem] mb-10 mt-10">
-      <div className="bg-[#1361A7] text-white flex items-center justify-around p-10 py-[4rem] rounded-2xl">
+      <div className="bg-buttonHoverBg text-white flex items-center justify-around p-10 py-[4rem] rounded-2xl">
         <div className=" ml-[2rem]">
-          <h2 className="font-bold text-[30px]">Election Campaign</h2>
-          <p className="text-center text-[24px]">Will start in ...</p>
+          <h2 className="font-bold text-[30px]">{title}</h2>
+          <p className="text-center text-[24px]">{description}</p>
         </div>
         <div className="flex flex-grow ml-[15rem] mr-[5rem] items-center justify-between ">
           {/* Days */}
           <div className="flex gap-10">
             <div className="flex flex-col items-center">
-              <h3 className="font-bold text-[40px]">{timeRemaining.days}</h3>
+              <h3 className="font-bold text-[40px] ">{timeRemaining.days}</h3>
               <p>Days</p>
             </div>
             <div>

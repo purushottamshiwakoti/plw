@@ -16,59 +16,69 @@ import Image from "next/image";
 
 async function getData() {
   try {
-    const res = await apiCall("home-page", "populate=BannerImage.media");
+    const res = await apiCall(
+      "home-page",
+      "populate=Banner.BannerImage&populate=Election&populate=Services.IconImage.media"
+    );
     const { data } = res;
 
+    console.log(data);
+
     // Extract banner attributes with proper null/undefined checks
-    const bannerTitle = data.attributes.BannerTitle;
-    const bannerDescription =
-      data.attributes.BannerDescription?.[0]?.children?.[0]?.text ?? "";
-    const bannerButtonName = data.attributes.BannerButtonName;
-    const electionDate = data.attributes.ElectionDate;
+    const bannerTitle = data.attributes.Banner.Title;
+    const bannerDescription = data.attributes.Banner.Description;
+    const showInput = data.attributes.Banner.ShowInput;
+    const bannerButtonName = data.attributes.Banner.ButtonName;
+    const electionTitle = data.attributes.Election.Title;
+    const electionDescription = data.attributes.Election.Description;
+    const showElection = data.attributes.Election.ShowElection;
+    const electionDate = data.attributes.Election.ElectionDate;
+
     const bannerImage =
-      data.attributes.BannerImage.media.data.attributes.formats.large.url ?? "";
-    const bannerImageAlt = data.attributes.BannerImage?.alt ?? "";
+      data.attributes.Banner.BannerImage.data.attributes.formats.thumbnail.url;
 
     return {
       bannerTitle,
       bannerDescription,
       bannerButtonName,
-      electionDate,
       bannerImage,
-      bannerImageAlt,
+      showInput,
+      electionDate,
+      electionTitle,
+      electionDescription,
+      showElection,
     };
   } catch (error) {
-    console.error("Error retrieving data:", error);
+    console.log("Error retrieving data:", error);
     return null;
   }
 }
 export default async function Home() {
   const data = await getData();
-  if (!data) {
-    return null;
-  }
-  const {
-    bannerButtonName,
-    bannerDescription,
-    bannerImage,
-    bannerTitle,
-    electionDate,
-  } = data;
   return (
     <main className="relative">
-      {/* <div>
+      <div>
         <Banner
-          description={bannerDescription}
-          title={bannerTitle}
-          image={bannerImage}
-          button={bannerButtonName}
+          description={data?.bannerDescription}
+          title={data?.bannerTitle}
+          image={data?.bannerImage}
+          button={data?.bannerButtonName}
+          showInput={data?.showInput}
         />
+        <div className="-mt-28 z-40 relative">
+          <ElectionTime
+            date={data?.electionDate}
+            description={data?.electionDescription}
+            title={data?.electionTitle}
+          />
+        </div>
+        <Services />
+        <div className="pb-10"></div>
       </div>
-      <div className="-mt-28 z-40 relative">
-        <ElectionTime date={electionDate} />
+      {/* <div>
+      </div>
       </div>
       <div>
-        <Services />
       </div>
       <div>
         <Momvement />
@@ -95,9 +105,10 @@ export default async function Home() {
         <PoliciesAndProgress />
       </div> */}
 
-      <div className="mt-10 text-center text-2xl">
-        Other features coming soon.....
+      <div className="-mt-28 z-40 relative">
+        {/* <ElectionTime date={electionDate} /> */}
       </div>
+      {/* <Services /> */}
     </main>
   );
 }

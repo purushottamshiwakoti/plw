@@ -1,53 +1,30 @@
 import { SocialIcon } from "react-social-icons";
 
-export const SmallSocialIcon = ({ size }: { size: string }) => {
+export const SmallSocialIcon = ({
+  size,
+  url,
+}: {
+  size: string;
+  url: {
+    id: string;
+    Link: string;
+    Name: string;
+  }[];
+}) => {
   return (
     <div className="flex items-center gap-2 ">
-      <SocialIcon
-        url="https://twitter.com/"
-        bgColor="#515F71"
-        style={{
-          width: size,
-          height: size,
-          borderRadius: "100%",
-        }}
-      />
-      <SocialIcon
-        url="https://facebook.com"
-        bgColor="#515F71"
-        style={{
-          width: size,
-          height: size,
-          borderRadius: "100%",
-        }}
-      />
-      <SocialIcon
-        url="https://instagram.com"
-        bgColor="#515F71"
-        style={{
-          width: size,
-          height: size,
-          borderRadius: "100%",
-        }}
-      />
-      <SocialIcon
-        url="https://www.linkedin.com/"
-        bgColor="#515F71"
-        style={{
-          width: size,
-          height: size,
-          borderRadius: "100%",
-        }}
-      />
-      <SocialIcon
-        url="https://www.pinterest.com/"
-        bgColor="#515F71"
-        style={{
-          width: size,
-          height: size,
-          borderRadius: "100%",
-        }}
-      />
+      {url.map((item: any) => (
+        <SocialIcon
+          url={item.Link}
+          bgColor="#515F71"
+          style={{
+            width: size,
+            height: size,
+            borderRadius: "100%",
+          }}
+          key={item.id}
+        />
+      ))}
     </div>
   );
 };

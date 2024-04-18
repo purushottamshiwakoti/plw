@@ -29,6 +29,7 @@ interface NavbarProps {
       | null;
   }[];
   logo: string;
+  backgroundColor: string;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -38,6 +39,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   logo,
   menu,
   showButton,
+  backgroundColor,
 }) => {
   const [dropdown, setDropdown] = useState<string | null>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -68,9 +70,12 @@ export const Navbar: React.FC<NavbarProps> = ({
   return (
     <nav
       className={cn(
-        "bg-white border-b text-white h-20 flex items-center justify-between px-[10rem] sticky w-full top-0 z-50",
+        " border-b text-white h-20 flex items-center justify-between px-[10rem] sticky w-full top-0 z-50",
         className
       )}
+      style={{
+        backgroundColor: backgroundColor ?? "#fff",
+      }}
     >
       <Link href="/">
         <Image src={logo} alt="logo" width={180} height={50} priority />
@@ -124,7 +129,10 @@ export const Navbar: React.FC<NavbarProps> = ({
                     className="relative transition duration-300 hover:bg-buttonHoverBg"
                     key={childIndex}
                   >
-                    <Link href={child.Link} onClick={() => setDropdown(null)}>
+                    <Link
+                      href={`${child.Link}`}
+                      onClick={() => setDropdown(null)}
+                    >
                       <p
                         className="p-3 text-gray-700 hover:text-white text-base"
                         title={child.Name}
