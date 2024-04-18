@@ -39,7 +39,7 @@ export const Footer = () => {
               veniam quis.
             </p>
             <div>
-              <SmallSocialIcon size="30px" />
+              <SmallSocialIcon size="30px" url={[]} />
             </div>
           </div>
           {/* about us end */}

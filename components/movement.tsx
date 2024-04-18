@@ -35,7 +35,7 @@ export const Momvement = () => {
             on both infrastructure and human beings alike.”
           </p>
           <div className="">
-            <SmallSocialIcon size="30px" />
+            <SmallSocialIcon size="30px" url={[]} />
           </div>
         </div>
       </div>

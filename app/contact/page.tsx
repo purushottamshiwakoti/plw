@@ -17,7 +17,7 @@ const ContactUsPage = () => {
           Contact us on Social Media
         </h2>
         <div className="mt-5">
-          <SmallSocialIcon size="40px" />
+          <SmallSocialIcon size="40px" url={[]}  />
         </div>
       </div>
       <div className="mt-14 ">
