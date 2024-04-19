@@ -45,7 +45,7 @@ export const ElectionTime = ({
 
   return (
     <div className="mx-[10rem] mb-10 mt-10">
-      <div className="bg-buttonHoverBg text-white flex items-center justify-around p-10 py-[4rem] rounded-2xl">
+      <div className="bg-[#06B37C] text-white flex items-center justify-around p-10 py-[4rem] rounded-2xl">
         <div className=" ml-[2rem]">
           <h2 className="font-bold text-[30px]">{title}</h2>
           <p className="text-center text-[24px]">{description}</p>

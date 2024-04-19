@@ -50,28 +50,29 @@ export const Services = ({
         </p>
       </div>
       <div className="flex items-center gap-10  justify-center mt-10">
-        {serviceIcons.map((item, index) => (
-          <div
-            className="cursor-pointer group  transition-all hover:-translate-y-5 duration-500"
-            key={index}
-          >
-            <div className="bg-[#F4F4F4] group-hover:bg-buttonHoverBg/40 border-1 w-[170px] h-[165px] ">
-              <div className="bg-transparent flex items-center justify-center h-full">
-                <Image
-                  src={item.Icon.media.data.attributes.formats.thumbnail.url}
-                  alt={item.Icon.alt}
-                  width={70}
-                  height={70}
-                />
+        {serviceIcons &&
+          serviceIcons.map((item, index) => (
+            <div
+              className="cursor-pointer group  transition-all hover:-translate-y-5 duration-500"
+              key={index}
+            >
+              <div className="bg-[#F4F4F4] group-hover:bg-buttonHoverBg/40 border-1 w-[170px] h-[165px] ">
+                <div className="bg-transparent flex items-center justify-center h-full">
+                  <Image
+                    src={item.Icon.media.data.attributes.formats.thumbnail.url}
+                    alt={item.Icon.alt}
+                    width={70}
+                    height={70}
+                  />
+                </div>
+              </div>
+              <div>
+                <Button className="w-full h-[3rem] rounded-none bg-buttonHoverBg group-hover:bg-buttonHoverBg/80 hover:bg-buttonHoverBg/80 ">
+                  {item.ButtonName}
+                </Button>
               </div>
             </div>
-            <div>
-              <Button className="w-full h-[3rem] rounded-none bg-buttonHoverBg group-hover:bg-buttonHoverBg/80 hover:bg-buttonHoverBg/80 ">
-                {item.ButtonName}
-              </Button>
-            </div>
-          </div>
-        ))}
+          ))}
       </div>
     </section>
   );

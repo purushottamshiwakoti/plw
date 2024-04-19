@@ -18,11 +18,9 @@ async function getData() {
   try {
     const res = await apiCall(
       "home-page",
-      "populate=Banner.BannerImage&populate=Election&populate=Services.Icon.Icon.media"
+      "populate=Banner.BannerImage&populate=Election&populate=Services.Icon.Icon.media&populate=AboutSFM.Image.media&populate=DonationIcons.Icon.media&populate=MovementIcon.Icon.media&populate=Reviews&populate=AboutSFM.SocialMedia&populate=DonationBanner&populate=SocialMedia"
     );
     const { data } = res;
-
-    console.log(data);
 
     // Extract banner attributes with proper null/undefined checks
     const bannerTitle = data.attributes.Banner.Title;
@@ -33,10 +31,29 @@ async function getData() {
     const electionDescription = data.attributes.Election.Description;
     const showElection = data.attributes.Election.ShowElection;
     const electionDate = data.attributes.Election.ElectionDate;
-    const serviceTitle = data.attributes.Services[0].Title;
-    const serviceSubTitle = data.attributes.Services[0].SubTitle;
-    const serviceDescription = data.attributes.Services[0].Description;
-    const serviceIcons = data.attributes.Services[0].Icon;
+    const serviceTitle = data.attributes.Services.Title;
+    const serviceSubTitle = data.attributes.Services.SubTitle;
+    const serviceDescription = data.attributes.Services.Description;
+    const serviceIcons = data.attributes.Services.Icon;
+    const socialIcons = data.attributes.SocialMedia;
+    const aboutSFMTitle = data.attributes.AboutSFM.Title;
+    const aboutSFMSocial = data.attributes.AboutSFM.SocialMedia;
+    const aboutSFMPosition = data.attributes.AboutSFM.Position;
+    const aboutSFMDescription = data.attributes.AboutSFM.Description;
+    const aboutSFMImage =
+      data.attributes.AboutSFM.Image.media.data.attributes.formats.large.url;
+    const aboutSFMImageAlt = data.attributes.AboutSFM.Image.alt;
+    const donationTitle = data.attributes.DonationText;
+    const donationDescription = data.attributes.DonationDescription;
+    const donationBanner =
+      data.attributes.DonationBanner.data.attributes.formats.thumbnail.url;
+    const donationIcons = data.attributes.DonationIcons;
+    const movementTitle = data.attributes.MovementTitle;
+    const movementDescription = data.attributes.MovementDescription;
+    const movementIcon = data.attributes.MovementIcon;
+    const reviewTitle = data.attributes.ReviewTitle;
+    const reviewDescription = data.attributes.ReviewDescription;
+    const reviews = data.attributes.Reviews;
 
     const bannerImage =
       data.attributes.Banner.BannerImage.data.attributes.formats.thumbnail.url;
@@ -55,6 +72,23 @@ async function getData() {
       serviceSubTitle,
       serviceDescription,
       serviceIcons,
+      aboutSFMTitle,
+      aboutSFMPosition,
+      aboutSFMDescription,
+      aboutSFMImage,
+      aboutSFMImageAlt,
+      donationTitle,
+      donationDescription,
+      donationIcons,
+      donationBanner,
+      movementTitle,
+      movementDescription,
+      movementIcon,
+      reviewTitle,
+      reviewDescription,
+      reviews,
+      aboutSFMSocial,
+      socialIcons,
     };
   } catch (error) {
     console.log("Error retrieving data:", error);
@@ -86,6 +120,36 @@ export default async function Home() {
           serviceSubTitle={data?.serviceSubTitle}
           serviceTitle={data?.serviceTitle}
         />
+        <Momvement
+          description={data?.aboutSFMDescription}
+          position={data?.aboutSFMPosition}
+          title={data?.aboutSFMTitle}
+          url={data?.aboutSFMSocial}
+          image={data?.aboutSFMImage}
+          imageAlt={data?.aboutSFMImageAlt}
+        />
+        <div className="mt-10">
+          <Donation
+            description={data?.donationDescription}
+            title={data?.donationTitle}
+            donations={data?.donationIcons}
+            banner={data?.donationBanner}
+          />
+        </div>
+        {/* <LatestEvents /> */}
+        <FutureMovement
+          description={data?.movementTitle}
+          title={data?.movementDescription}
+          icon={data?.movementIcon}
+        />
+        <Saying
+          description={data?.reviewDescription}
+          title={data?.reviewTitle}
+          review={data?.reviews}
+        />
+        <SocialIcons url={data?.socialIcons} />
+        {/* <ConfirmVotes />
+        <PoliciesAndProgress /> */}
         <div className="pb-10"></div>
       </div>
       {/* <div>
@@ -94,28 +158,20 @@ export default async function Home() {
       <div>
       </div>
       <div>
-        <Momvement />
       </div>
       <div>
-        <LatestEvents />
       </div>
       <div>
-        <Donation />
       </div>
       <div>
-        <FutureMovement />
       </div>
       <div>
-        <Saying />
       </div>
       <div>
-        <SocialIcons />
       </div>
       <div>
-        <ConfirmVotes />
       </div>
       <div>
-        <PoliciesAndProgress />
       </div> */}
 
       <div className="-mt-28 z-40 relative">

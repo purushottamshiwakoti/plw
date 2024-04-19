@@ -13,18 +13,19 @@ export const SmallSocialIcon = ({
 }) => {
   return (
     <div className="flex items-center gap-2 ">
-      {url.map((item: any) => (
-        <SocialIcon
-          url={item.Link}
-          bgColor="#515F71"
-          style={{
-            width: size,
-            height: size,
-            borderRadius: "100%",
-          }}
-          key={item.id}
-        />
-      ))}
+      {url &&
+        url.map((item: any) => (
+          <SocialIcon
+            url={item.Link}
+            bgColor="#515F71"
+            style={{
+              width: size,
+              height: size,
+              borderRadius: "100%",
+            }}
+            key={item.id}
+          />
+        ))}
     </div>
   );
 };

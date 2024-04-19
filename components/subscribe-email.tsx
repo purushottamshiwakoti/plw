@@ -17,7 +17,7 @@ export const SubscribeEmail = ({ button }: SubscribeEmailProps) => {
         <Mail className="absolute top-5 left-3 text-muted-foreground" />
       </div>
 
-      <Button className="bg-buttonBg rounded-sm px-5 h-[3.5rem]  hover:bg-white hover:text-black uppercase text-[15px] font-[700]">
+      <Button className="bg-[#06B37C] rounded-sm px-5 h-[3.5rem]  hover:bg-white hover:text-black uppercase text-[15px] font-[700]">
         {button}
       </Button>
     </div>
