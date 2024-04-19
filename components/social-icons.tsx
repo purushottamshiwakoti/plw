@@ -9,11 +9,13 @@ export const SocialIcons = ({
     Name: string;
   }[];
 }) => {
-  console.log(url);
   return (
     <>
       <div className="flex items-center justify-center gap-10 mb-10">
-        {url && url.map((item: any) => <SocialIcon url={item.Link} />)}
+        {url &&
+          url.map((item: any, index) => (
+            <SocialIcon url={item.Link} key={index} />
+          ))}
       </div>
     </>
   );
