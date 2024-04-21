@@ -30,6 +30,7 @@ interface NavbarProps {
   }[];
   logo: string;
   backgroundColor: string;
+  pages: any;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -40,6 +41,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   menu,
   showButton,
   backgroundColor,
+  pages,
 }) => {
   const [dropdown, setDropdown] = useState<string | null>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -147,6 +149,61 @@ export const Navbar: React.FC<NavbarProps> = ({
             )}
           </li>
         ))}
+
+        {/* pages  */}
+        {/* {pages.map((item: any, index: number) => (
+          <li key={index} className="relative group cursor-pointer">
+            {item.attributes.sub_pages.data.length === 0 ? (
+              <Link
+                href={`/${item.attributes.slug}`}
+                className={cn(
+                  path === `/${item.attributes.slug}`
+                    ? "text-buttonHoverBg font-semibold text-base"
+                    : "font-semibold text-base hover:text-buttonHoverBg"
+                )}
+              >
+                {item.attributes.Title}
+              </Link>
+            ) : (
+              <span
+                // className={cn(
+                //   item.attributes.sub_pages.data.some((subItem: Page) =>
+                //     subItem.attributes.slug.includes(
+                //       window.location.pathname.split("/")[1]
+                //     )
+                //   ) && window.location.pathname !== "/"
+                //     ? "text-buttonHoverBg font-semibold text-base flex items-center"
+                //     : "font-semibold text-base hover:text-buttonHoverBg flex items-center"
+                // )}
+                onClick={() => handleParentClick(item.attributes.Title)}
+              >
+                {item.attributes.Title}{" "}
+                {item.attributes.sub_pages &&
+                dropdown === item.attributes.Title ? (
+                  <ChevronUp className="w-4 h-4 ml-2" />
+                ) : (
+                  <ChevronDown className="w-4 h-4 ml-2" />
+                )}
+              </span>
+            )}
+            {dropdown === item.attributes.Title &&
+              item.attributes.sub_pages && (
+                <div className="absolute left-0 mt-3 z-10 bg-white w-48 border border-gray-200 rounded shadow-md">
+                  {item.attributes.sub_pages.data.map(
+                    (subItem: Page, subIndex: number) => (
+                      <Link
+                        key={subIndex}
+                        href={`/${subItem.attributes.slug}`}
+                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                      >
+                        {subItem.attributes.Title}
+                      </Link>
+                    )
+                  )}
+                </div>
+              )}
+          </li>
+        ))} */}
         <div>
           <SearchDialog />
         </div>

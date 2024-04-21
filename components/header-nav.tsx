@@ -5,7 +5,7 @@ async function getData() {
   try {
     const res = await apiCall(
       "header-menu",
-      "populate=Menu.SubMenu&populate=logo"
+      "populate=Menu.SubMenu&populate=logo&populate=pages.sub_pages.children"
     );
     const { data } = res;
 
@@ -15,8 +15,17 @@ async function getData() {
     const buttonLink = data.attributes.ButtonLink;
     const menu = data.attributes.Menu;
     const logo = data.attributes.logo.data.attributes.formats.large.url;
+    const pages = data.attributes.pages.data;
 
-    return { buttonName, showButton, buttonLink, menu, logo, backgroundColor };
+    return {
+      buttonName,
+      showButton,
+      buttonLink,
+      menu,
+      logo,
+      backgroundColor,
+      pages,
+    };
 
     // Extract banner attributes with proper null/undefined checks
   } catch (error) {
@@ -35,6 +44,7 @@ export const HeaderNav = async () => {
       menu={data?.menu}
       showButton={data?.showButton}
       backgroundColor={data?.backgroundColor}
+      pages={data?.pages}
     />
   );
 };

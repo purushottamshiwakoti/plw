@@ -18,7 +18,7 @@ async function getData() {
   try {
     const res = await apiCall(
       "home-page",
-      "populate=Banner.BannerImage&populate=Election&populate=Services.Icon.Icon.media&populate=AboutSFM.Image.media&populate=DonationIcons.Icon.media&populate=MovementIcon.Icon.media&populate=Reviews&populate=AboutSFM.SocialMedia&populate=DonationBanner&populate=SocialMedia"
+      "populate=Banner.BannerImage&populate=Election&populate=Services.Icon.Icon.media&populate=AboutSFM.Image.media&populate=DonationIcons.Icon.media&populate=MovementIcon.Icon.media&populate=Reviews.Image.media&populate=AboutSFM.SocialMedia&populate=DonationBanner&populate=SocialMedia&populate=ConfirmVotes.BackgroundImage"
     );
     const { data } = res;
 
@@ -54,6 +54,15 @@ async function getData() {
     const reviewTitle = data.attributes.ReviewTitle;
     const reviewDescription = data.attributes.ReviewDescription;
     const reviews = data.attributes.Reviews;
+    const confirmVoteTitle = data.attributes.ConfirmVotes.Title;
+    const confirmVoteSubtitle = data.attributes.ConfirmVotes.Subtitle;
+    const confirmVoteDescription = data.attributes.ConfirmVotes.Description;
+    const confirmVoteShowButton = data.attributes.ConfirmVotes.ShowButton;
+    const confirmVoteButtonName = data.attributes.ConfirmVotes.ButtonName;
+    const confirmVoteButtonLink = data.attributes.ConfirmVotes.ButtonLink;
+    const confirmVoteBackgroundImage =
+      data.attributes.ConfirmVotes.BackgroundImage.data.attributes.formats
+        .thumbnail.url;
 
     const bannerImage =
       data.attributes.Banner.BannerImage.data.attributes.formats.thumbnail.url;
@@ -89,6 +98,13 @@ async function getData() {
       reviews,
       aboutSFMSocial,
       socialIcons,
+      confirmVoteTitle,
+      confirmVoteSubtitle,
+      confirmVoteDescription,
+      confirmVoteShowButton,
+      confirmVoteButtonName,
+      confirmVoteButtonLink,
+      confirmVoteBackgroundImage,
     };
   } catch (error) {
     console.log("Error retrieving data:", error);
@@ -148,8 +164,16 @@ export default async function Home() {
           review={data?.reviews}
         />
         <SocialIcons url={data?.socialIcons} />
-        <ConfirmVotes />
-        <PoliciesAndProgress />
+        <ConfirmVotes
+          buttonLink={data?.confirmVoteButtonLink}
+          buttonName={data?.confirmVoteButtonName}
+          description={data?.confirmVoteDescription}
+          showButton={data?.confirmVoteShowButton}
+          subtitle={data?.confirmVoteSubtitle}
+          title={data?.confirmVoteTitle}
+          bgImage={data?.confirmVoteBackgroundImage}
+        />
+        {/* <PoliciesAndProgress /> */}
         <div className="pb-10"></div>
       </div>
       {/* <div>
