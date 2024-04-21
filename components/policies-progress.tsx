@@ -26,7 +26,7 @@ export const PoliciesAndProgress = () => {
         <div className="mt-10">
           <div className="flex items-center justify-between">
             {Array.from({ length: 7 }, (_, index) => (
-              <div className="relative group">
+              <div className="relative group" key={index}>
                 <h2
                   className="text-lg font-bold text-[#305e95] hover:text-red-500 hover:underline-offset-8 cursor-pointer"
                   key={index}
