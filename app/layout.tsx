@@ -12,7 +12,7 @@ import { GoogleTagManager } from "@next/third-parties/google";
 import { apiCall } from "@/lib/api";
 import Script from "next/script";
 
-export const runtime = "edge";
+// export const runtime = "edge";
 export const dynamic = "force-dynamic";
 const inter = Inter({ subsets: ["latin"] });
 
