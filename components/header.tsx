@@ -6,6 +6,7 @@ import { apiCall } from "@/lib/api";
 import Image from "next/image";
 import Link from "next/link";
 import Slider from "./slider";
+export const dynamic = "force-dynamic";
 
 async function getData() {
   try {

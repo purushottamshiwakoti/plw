@@ -1,4 +1,4 @@
-export const dynamic = "force-dynamic";
+
 
 export const apiCall=async(name:string,params:string)=>{
     try {
