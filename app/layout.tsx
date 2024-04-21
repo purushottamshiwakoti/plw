@@ -44,14 +44,14 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const data = await getData();
+  // const data = await getData();
   return (
     <html>
       <head>
-        <Script async src={data?.googleAnalytics} />
-        <Script async src={data?.facebookPexels} />
+        {/* <Script async src={data?.googleAnalytics} />
+        <Script async src={data?.facebookPexels} /> */}
       </head>
-      <GoogleTagManager gtmId={data?.googleTagsManager ?? ""} />
+      {/* <GoogleTagManager gtmId={data?.googleTagsManager ?? ""} /> */}
       <body className={inter.className}>
         <Header />
         <HeaderNav />
