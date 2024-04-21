@@ -12,9 +12,9 @@ export const PoliciesAndProgress = () => {
       <div className="px-[10rem] mt-[5rem] mb-10">
         <div className="  flex flex-col items-center justify-center">
           <div className="flex gap-[1px]  items-center justify-center ">
-            <Star fill="#CD2828" strokeWidth={0} className="w-5 h-5" />
-            <Star fill="#CD2828" strokeWidth={0} className="w-7 h-7" />
-            <Star fill="#CD2828" strokeWidth={0} className="w-5 h-5" />
+            <Star fill="#299726" strokeWidth={0} className="w-5 h-5" />
+            <Star fill="#299726" strokeWidth={0} className="w-7 h-7" />
+            <Star fill="#299726" strokeWidth={0} className="w-5 h-5" />
           </div>
 
           <p className="text-primary mt-2">Best Policies From Politaro</p>
@@ -26,18 +26,27 @@ export const PoliciesAndProgress = () => {
         <div className="mt-10">
           <div className="flex items-center justify-between">
             {Array.from({ length: 7 }, (_, index) => (
-              <h2
-                className="text-lg font-bold text-[#305e95] hover:underline "
-                key={index}
-              >
-                Tax Reforms
-              </h2>
+              <div className="relative group">
+                <h2
+                  className="text-lg font-bold text-[#305e95] hover:text-red-500 hover:underline-offset-8 cursor-pointer"
+                  key={index}
+                >
+                  Tax Reforms
+                </h2>{" "}
+                {/* Use flex container to hold hr and arrows */}
+                <hr
+                  className="w-full opacity-0 group-hover:opacity-100   -bottom-[17px]
+ absolute border-red-500"
+                />
+                {/* First horizontal line */}
+                {/* Second horizontal line */}
+              </div>
             ))}
           </div>
           <hr className=" w-full mt-4   " />
         </div>
 
-        <div className="grid grid-cols-2 mt-10">
+        <div className="grid grid-cols-2 my-10 pb-20">
           <div>
             <Image
               src={"/images/p2.jpg"}
@@ -49,8 +58,8 @@ export const PoliciesAndProgress = () => {
           </div>
           <div>
             {Array.from({ length: 4 }, (_, index) => (
-              <Accordion type="single" collapsible key={index}>
-                <AccordionItem value="item-1">
+              <Accordion type="single" key={index}>
+                <AccordionItem value="my-item">
                   <AccordionTrigger>Is it accessible?</AccordionTrigger>
                   <AccordionContent>
                     Yes. It adheres to the WAI-ARIA design pattern.

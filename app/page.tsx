@@ -148,8 +148,8 @@ export default async function Home() {
           review={data?.reviews}
         />
         <SocialIcons url={data?.socialIcons} />
-        {/* <ConfirmVotes />
-        <PoliciesAndProgress /> */}
+        <ConfirmVotes />
+        <PoliciesAndProgress />
         <div className="pb-10"></div>
       </div>
       {/* <div>

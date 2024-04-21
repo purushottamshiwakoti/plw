@@ -7,9 +7,9 @@ export const ConfirmVotes = () => {
       <div className=" bg-[url('/images/banner.jpg')] bg-no-repeat bg-center bg-cover  mb-10 ">
         <div className="bg-primary/90 p-10 py-[7rem] flex flex-col items-center justify-center">
           <div className="flex gap-[1px]  items-center justify-center ">
-            <Star fill="#CD2828" strokeWidth={0} className="w-5 h-5" />
-            <Star fill="#CD2828" strokeWidth={0} className="w-7 h-7" />
-            <Star fill="#CD2828" strokeWidth={0} className="w-5 h-5" />
+            <Star fill="#299726" strokeWidth={0} className="w-5 h-5" />
+            <Star fill="#299726" strokeWidth={0} className="w-7 h-7" />
+            <Star fill="#299726" strokeWidth={0} className="w-5 h-5" />
           </div>
 
           <p className="text-white mt-2">Great Politaro Ideas</p>
@@ -24,7 +24,7 @@ export const ConfirmVotes = () => {
             laborum. Sed ut perspiciatis unde omnis.
           </p>
           <div className="mt-10">
-            <Button className="bg-buttonBg  rounded-[5px] p-[25px] w-[9rem] hover:bg-white hover:text-black uppercase text-[15px] font-[700]">
+            <Button className="bg-buttonHoverBg  rounded-[5px] p-[25px] w-[9rem] hover:bg-white hover:text-black uppercase text-[15px] font-[700]">
               Learn More
             </Button>
           </div>
