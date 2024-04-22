@@ -35,7 +35,7 @@ export const PoliciesAndProgress = () => {
                 </h2>{" "}
                 {/* Use flex container to hold hr and arrows */}
                 <hr
-                  className="w-full opacity-0 group-hover:opacity-100   -bottom-[17px]
+                  className="w-[150%] -left-[25%] opacity-0 group-hover:opacity-100   -bottom-[17px]
  absolute border-red-500"
                 />
                 {/* First horizontal line */}
@@ -57,16 +57,33 @@ export const PoliciesAndProgress = () => {
             />
           </div>
           <div>
-            {Array.from({ length: 4 }, (_, index) => (
-              <Accordion type="single" key={index}>
-                <AccordionItem value="my-item">
-                  <AccordionTrigger>Is it accessible?</AccordionTrigger>
-                  <AccordionContent>
-                    Yes. It adheres to the WAI-ARIA design pattern.
-                  </AccordionContent>
-                </AccordionItem>
-              </Accordion>
-            ))}
+            <Accordion
+              type="single"
+              collapsible
+              defaultValue="item-1"
+              className="w-full"
+            >
+              <AccordionItem value="item-1">
+                <AccordionTrigger>Is it accessible?</AccordionTrigger>
+                <AccordionContent>
+                  Yes. It adheres to the WAI-ARIA design pattern.
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="item-2">
+                <AccordionTrigger>Is it styled?</AccordionTrigger>
+                <AccordionContent>
+                  Yes. It comes with default styles that matches the other
+                  components&apos; aesthetic.
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="item-3">
+                <AccordionTrigger>Is it animated?</AccordionTrigger>
+                <AccordionContent>
+                  Yes. It&apos;s animated by default, but you can disable it if
+                  you prefer.
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
           </div>
         </div>
       </div>

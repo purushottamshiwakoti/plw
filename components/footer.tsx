@@ -1,8 +1,23 @@
-import { Locate, Mail, Phone } from "lucide-react";
+"use client";
+import { ChevronRight, Locate, Mail, Phone } from "lucide-react";
 import Image from "next/image";
 import { SmallSocialIcon } from "./small-social-icon";
 import { ContactList } from "./contact-list";
+import { useSpring, animated } from "react-spring";
 
+function AnimationNumber({ n }: { n: number }) {
+  const { number: number } = useSpring({
+    form: { number: 0 },
+    number: n,
+    delay: 200,
+    config: {
+      mass: 1,
+      tenson: 20,
+      friction: 10,
+    },
+  });
+  return <animated.div>{number.to((n: number) => n.toFixed(0))}</animated.div>;
+}
 export const Footer = () => {
   return (
     <>
@@ -21,7 +36,8 @@ export const Footer = () => {
             <div className="flex items-center gap-20">
               {Array.from({ length: 4 }, (_, index) => (
                 <div key={index}>
-                  <h2 className="font-semibold text-3xl"> $9.1K</h2>
+                  {/* <h2 className="font-semibold text-3xl"> $9.1K</h2> */}
+                  <AnimationNumber n={900} />
                   <p className="text-sm mt-1">Donated Money</p>
                 </div>
               ))}
@@ -33,7 +49,7 @@ export const Footer = () => {
           {/* about us start  */}
           <div className="space-y-4">
             <h2 className="font-semibold text-xl capitalize">About us</h2>
-            <p>
+            <p className="text-sm">
               Lorem ipsum dolor sit amet consecteur adipisicing elitm sed
               eiusmod tempor incididunt ut labore etsu dolore magna aliquatenim
               veniam quis.
@@ -48,7 +64,15 @@ export const Footer = () => {
             <h2 className="font-semibold text-xl capitalize">The Party</h2>
             {Array.from({ length: 5 }, (_, index) => (
               <div key={index}>
-                <h4>About Politaro</h4>
+                <div className="cursor-pointer group flex items-center ">
+                  <div className="flex gap-0 opacity-0 group-hover:opacity-100 transition-all duration-300 ">
+                    <ChevronRight className="w-3 h-3" />
+                    <ChevronRight className="w-3 h-3 -ml-4" />
+                  </div>
+                  <h2 className="group-hover:ml-4 group-hover:text-buttonHoverBg text-sm transition-all duration-500">
+                    About Politaro
+                  </h2>
+                </div>
                 <hr className="border-[#2B3C51] mt-2 w-[80%]" />
               </div>
             ))}
@@ -60,7 +84,15 @@ export const Footer = () => {
             <h2 className="font-semibold text-xl capitalize">Useful Links</h2>
             {Array.from({ length: 5 }, (_, index) => (
               <div key={index}>
-                <h4>Our Partners</h4>
+                <div className="cursor-pointer group flex items-center ">
+                  <div className="flex gap-0 opacity-0 group-hover:opacity-100 transition-all duration-300 ">
+                    <ChevronRight className="w-3 h-3" />
+                    <ChevronRight className="w-3 h-3 -ml-4" />
+                  </div>
+                  <h2 className="group-hover:ml-4 group-hover:text-buttonHoverBg text-sm transition-all duration-500">
+                    Our Partners
+                  </h2>
+                </div>
                 <hr className="border-[#2B3C51] mt-2 w-[80%]" />
               </div>
             ))}
@@ -73,8 +105,8 @@ export const Footer = () => {
         <div className="mt-10 ">
           <p className="text-center">
             © {new Date().getFullYear()}{" "}
-            <span className="text-buttonBg">Politaro</span> - Political Party.
-            All rights reserved.
+            <span className="text-buttonHoverBg">Politaro</span> - Political
+            Party. All rights reserved.
           </p>
         </div>
       </div>

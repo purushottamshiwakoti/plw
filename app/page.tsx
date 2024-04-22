@@ -173,7 +173,7 @@ export default async function Home() {
           title={data?.confirmVoteTitle}
           bgImage={data?.confirmVoteBackgroundImage}
         />
-        {/* <PoliciesAndProgress /> */}
+        <PoliciesAndProgress />
         <div className="pb-10"></div>
       </div>
       {/* <div>
