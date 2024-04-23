@@ -18,7 +18,7 @@ async function getData() {
   try {
     const res = await apiCall(
       "home-page",
-      "populate=Banner.BannerImage&populate=Election&populate=Services.Icon.Icon.media&populate=AboutSFM.Image.media&populate=DonationIcons.Icon.media&populate=MovementIcon.Icon.media&populate=Reviews.Image.media&populate=AboutSFM.SocialMedia&populate=DonationBanner&populate=SocialMedia&populate=ConfirmVotes.BackgroundImage"
+      "populate=Banner.BannerImage&populate=Election&populate=Services.Icon.Icon.media&populate=AboutSFM.Image.media&populate=DonationIcons.Icon.media&populate=MovementIcon.Icon.media&populate=Reviews.Image.media&populate=AboutSFM.SocialMedia&populate=DonationBanner&populate=SocialMedia&populate=ConfirmVotes.BackgroundImage&populate=FAQ.Image.media&populate=FAQ.QuestionAnswer"
     );
     const { data } = res;
 
@@ -63,6 +63,9 @@ async function getData() {
     const confirmVoteBackgroundImage =
       data.attributes.ConfirmVotes.BackgroundImage.data.attributes.formats
         .thumbnail.url;
+    const faqTitle = data.attributes.FAQTitle;
+    const faqSubTitle = data.attributes.FAQSubTitle;
+    const faqs = data.attributes.FAQ;
 
     const bannerImage =
       data.attributes.Banner.BannerImage.data.attributes.formats.thumbnail.url;
@@ -105,6 +108,9 @@ async function getData() {
       confirmVoteButtonName,
       confirmVoteButtonLink,
       confirmVoteBackgroundImage,
+      faqTitle,
+      faqSubTitle,
+      faqs,
     };
   } catch (error) {
     console.log("Error retrieving data:", error);
@@ -173,7 +179,11 @@ export default async function Home() {
           title={data?.confirmVoteTitle}
           bgImage={data?.confirmVoteBackgroundImage}
         />
-        <PoliciesAndProgress />
+        <PoliciesAndProgress
+          subTitle={data?.faqSubTitle}
+          title={data?.faqTitle}
+          faq={data?.faqs}
+        />
         <div className="pb-10"></div>
       </div>
       {/* <div>

@@ -56,7 +56,7 @@ export default async function RootLayout({
         <Header />
         <HeaderNav />
         {children}
-        <Footer />
+        {/* <Footer /> */}
         <TopSctoll />
         <NextTopLoader color="#299726" />
       </body>

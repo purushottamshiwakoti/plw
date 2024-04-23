@@ -1,3 +1,4 @@
+"use client";
 import { Star } from "lucide-react";
 import Image from "next/image";
 import {
@@ -6,7 +7,55 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-export const PoliciesAndProgress = () => {
+import { useState } from "react";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+
+interface PoliciesAndProgressProps {
+  title: string;
+  subTitle: string;
+  faq: {
+    Title: string;
+    QuestionAnswer: {
+      Question: string;
+      Answer: string;
+    }[];
+    Image: {
+      alt: string;
+      media: {
+        data: {
+          attributes: {
+            formats: {
+              small: {
+                url: string;
+              };
+            };
+          };
+        };
+      };
+    };
+  }[];
+}
+
+export const PoliciesAndProgress = ({
+  subTitle,
+  title,
+  faq,
+}: PoliciesAndProgressProps) => {
+  const [faqData, setFaqData] = useState(faq[0].Title);
+  const faqList = faq.filter((item) => item.Title == faqData);
+  const [changed, setChanged] = useState(true);
+
+  useGSAP(() => {
+    gsap.fromTo(
+      ".faqs",
+      { opacity: 0, y: 100 },
+      { opacity: 1, y: 0, duration: 1 }
+    );
+
+    setChanged(false);
+  }, [changed]);
+
   return (
     <>
       <div className="px-[10rem] mt-[5rem] mb-10">
@@ -17,26 +66,36 @@ export const PoliciesAndProgress = () => {
             <Star fill="#299726" strokeWidth={0} className="w-5 h-5" />
           </div>
 
-          <p className="text-primary mt-2">Best Policies From Politaro</p>
+          <p className="text-primary mt-2">{title}</p>
 
           <h2 className="text-primary text-5xl font-bold text-center tracking-wide leading-snug mt-4 px-[20%]">
-            Organized Policies To Influence Real Progress
+            {subTitle}
           </h2>
         </div>
         <div className="mt-10">
-          <div className="flex items-center justify-between">
-            {Array.from({ length: 7 }, (_, index) => (
+          <div className="flex items-center  gap-[54px]">
+            {faq.map((item, index) => (
               <div className="relative group" key={index}>
                 <h2
-                  className="text-lg font-bold text-[#305e95] hover:text-red-500 hover:underline-offset-8 cursor-pointer"
+                  className={
+                    faqData == item.Title
+                      ? "text-lg font-bold  hover:text-buttonHoverBg text-buttonHoverBg  cursor-pointer"
+                      : "text-lg font-bold text-[#305e95] hover:text-buttonHoverBg  cursor-pointer"
+                  }
+                  onClick={() => {
+                    setFaqData(item.Title), setChanged(true);
+                  }}
                   key={index}
                 >
-                  Tax Reforms
+                  {item.Title}
                 </h2>{" "}
                 {/* Use flex container to hold hr and arrows */}
                 <hr
-                  className="w-[150%] -left-[25%] opacity-0 group-hover:opacity-100   -bottom-[17px]
- absolute border-red-500"
+                  className={
+                    faqData == item.Title
+                      ? "w-[150%] -left-[25%] opacity-100   -bottom-[17px] absolute border-buttonHoverBg"
+                      : "w-[150%] -left-[25%] opacity-0 group-hover:opacity-100   -bottom-[17px] absolute border-buttonHoverBg"
+                  }
                 />
                 {/* First horizontal line */}
                 {/* Second horizontal line */}
@@ -46,44 +105,33 @@ export const PoliciesAndProgress = () => {
           <hr className=" w-full mt-4   " />
         </div>
 
-        <div className="grid grid-cols-2 my-10 pb-20">
+        <div className="grid grid-cols-2 my-10  opacity-0 faqs pb-20 ">
           <div>
             <Image
-              src={"/images/p2.jpg"}
+              src={faqList[0].Image.media.data.attributes.formats.small.url}
               alt="hello"
               width={500}
-              height={800}
+              height={500}
               className="object-cover"
             />
           </div>
           <div>
-            <Accordion
-              type="single"
-              collapsible
-              defaultValue="item-1"
-              className="w-full"
-            >
-              <AccordionItem value="item-1">
-                <AccordionTrigger>Is it accessible?</AccordionTrigger>
-                <AccordionContent>
-                  Yes. It adheres to the WAI-ARIA design pattern.
-                </AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="item-2">
-                <AccordionTrigger>Is it styled?</AccordionTrigger>
-                <AccordionContent>
-                  Yes. It comes with default styles that matches the other
-                  components&apos; aesthetic.
-                </AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="item-3">
-                <AccordionTrigger>Is it animated?</AccordionTrigger>
-                <AccordionContent>
-                  Yes. It&apos;s animated by default, but you can disable it if
-                  you prefer.
-                </AccordionContent>
-              </AccordionItem>
-            </Accordion>
+            {faqList[0].QuestionAnswer.map((item, index) => {
+              return (
+                <Accordion
+                  type="single"
+                  collapsible
+                  defaultValue={faqList[0].QuestionAnswer[0].Question}
+                  className="w-full"
+                  key={index}
+                >
+                  <AccordionItem value={item.Question}>
+                    <AccordionTrigger>{item.Question}</AccordionTrigger>
+                    <AccordionContent>{item.Answer}</AccordionContent>
+                  </AccordionItem>
+                </Accordion>
+              );
+            })}
           </div>
         </div>
       </div>
