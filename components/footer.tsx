@@ -69,6 +69,21 @@ export const Footer = ({
   menu,
   menuTitle,
 }: FooterProps) => {
+  console.log({
+    counter,
+    logo,
+    logoAlt,
+    aboutDescription,
+    aboutTitle,
+    email,
+    getInTouchTitle,
+    location,
+    phone,
+    socialMedia,
+    footerText,
+    menu,
+    menuTitle,
+  });
   return (
     <>
       <div className="bg-[#061A33]/10 text-muted-foreground pt-[5rem] pb-10  ">
