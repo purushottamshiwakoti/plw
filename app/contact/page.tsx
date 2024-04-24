@@ -17,11 +17,11 @@ const ContactUsPage = () => {
           Contact us on Social Media
         </h2>
         <div className="mt-5">
-          <SmallSocialIcon size="40px" url={[]}  />
+          <SmallSocialIcon size="40px" url={[]} />
         </div>
       </div>
       <div className="mt-14 ">
-        <ContactList title="Contact us on others" />
+        {/* <ContactList title="Contact us on others" /> */}
       </div>
     </div>
   );
