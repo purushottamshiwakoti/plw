@@ -1,6 +1,16 @@
 import { Locate, Mail, Phone } from "lucide-react";
 
-export const ContactList = ({ title }: { title: string }) => {
+export const ContactList = ({
+  title,
+  email,
+  phone,
+  location,
+}: {
+  title: string | undefined;
+  email: string | undefined;
+  phone: string | undefined;
+  location: string | undefined;
+}) => {
   return (
     <>
       <div className="space-y-4">
@@ -9,26 +19,26 @@ export const ContactList = ({ title }: { title: string }) => {
           <div className="space-y-4">
             <div className="flex items-center gap-2">
               <Phone className="text-buttonHoverBg" />
-              <a href="tel:+13452067849" className="font-semibold ">
-                +1 (345) 206 7849
+              <a href={`tel:${phone}`} className="font-semibold ">
+                {phone}
               </a>
             </div>
             <div className="flex items-center gap-2">
               <Mail className="text-buttonHoverBg" />
-              <a href="mailto:info@example.com" className="font-semibold ">
-                info@example.com
+              <a href={`mailto:${email}`} className="font-semibold ">
+                {email}
               </a>
             </div>
             <div className="flex items-center gap-2">
-              <Locate className="text-buttonHoverBg w-10 h-10" />
-              <a
-                href="https://maps.google.com?q=143+Ringer+House,+NY+58920+United+States"
+              <Locate className="text-buttonHoverBg w-auto h-auto" />
+              {/* <a
+                // href="https://maps.google.com?q=143+Ringer+House,+NY+58920+United+States"
                 className="font-normal "
                 target="_blank"
                 rel="noopener noreferrer"
-              >
-                143 Ringer House, NY 58920 United States
-              </a>
+              > */}
+              {location}
+              {/* </a> */}
             </div>
           </div>
         </div>

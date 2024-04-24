@@ -10,6 +10,7 @@ import Slider from "./slider";
 async function getData() {
   try {
     const res = await apiCall("header", "populate=*");
+    console.log(res);
     const { data } = res;
 
     const title = data.attributes.Title;
@@ -18,6 +19,7 @@ async function getData() {
     const iconAlt = data.attributes.Icon.data.attributes.name;
     const menu = data.attributes.Menu;
     const newsCampaign = data.attributes.NewsCampaign;
+    console.log(newsCampaign);
     const socialMedia = data.attributes.SocialMedia;
 
     return {
@@ -30,13 +32,14 @@ async function getData() {
       socialMedia,
     };
   } catch (error) {
-    console.error("Error retrieving data:", error);
+    console.log("Error retrieving data:", error);
     return null;
   }
 }
 
 export const Header = async () => {
   const data = await getData();
+  console.log(data);
   return (
     <div
       className={` flex items-center justify-between px-[10rem] p-3`}
@@ -47,7 +50,12 @@ export const Header = async () => {
       <div>
         <div className="flex items-center gap-2">
           <Image
-            src={data?.icon}
+            // src={data?.icon}
+            src={
+              process.env.NODE_ENV === "development"
+                ? `${process.env.APPURL}${data?.icon}`
+                : data?.icon
+            }
             alt={data?.iconAlt}
             width={25}
             height={25}

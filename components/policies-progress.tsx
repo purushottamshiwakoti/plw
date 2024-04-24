@@ -10,6 +10,7 @@ import {
 import { useState } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import { AppUrl } from "@/lib/url";
 
 interface PoliciesAndProgressProps {
   title: string;
@@ -108,7 +109,13 @@ export const PoliciesAndProgress = ({
         <div className="grid grid-cols-2 my-10  opacity-0 faqs pb-20 ">
           <div>
             <Image
-              src={faqList[0].Image.media.data.attributes.formats.small.url}
+              // src={faqList[0].Image.media.data.attributes.formats.small.url}
+              src={
+                process.env.NODE_ENV == "development"
+                  ? AppUrl +
+                    faqList[0].Image.media.data.attributes.formats.small.url
+                  : faqList[0].Image.media.data.attributes.formats.small.url
+              }
               alt="hello"
               width={500}
               height={500}

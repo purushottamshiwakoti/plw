@@ -1,6 +1,7 @@
 import { Star } from "lucide-react";
 import { Button } from "./ui/button";
 import Link from "next/link";
+import { AppUrl } from "@/lib/url";
 
 interface ConfirmVotesProps {
   title: string;
@@ -25,8 +26,14 @@ export const ConfirmVotes = ({
     <>
       <div
         className="  bg-no-repeat bg-center bg-cover  mb-10 "
+        // style={{
+        //   backgroundImage: `url(${bgImage})`,
+        // }}
+
         style={{
-          backgroundImage: `url(${bgImage})`,
+          backgroundImage: `url(${
+            process.env.NODE_ENV == "development" ? AppUrl + bgImage : bgImage
+          })`,
         }}
       >
         <div className="bg-primary/90 p-10 py-[7rem] flex flex-col items-center justify-center">

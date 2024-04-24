@@ -23,16 +23,54 @@ export const metadata: Metadata = {
 
 async function getData() {
   try {
-    const res = await apiCall("seo", "populate=*");
-    const { data } = res;
+    const [seoResponse, footerResponse] = await Promise.all([
+      apiCall("seo", "populate=*"),
+      apiCall(
+        "footer",
+        "populate=FooterMenu.page&populate=FooterMenu.subMenu&populate=SocialMedia&populate=Counter&populate=Logo.media"
+      ),
+    ]);
 
-    const googleAnalytics = data.attributes.GoogleAnalytics;
-    const googleTagsManager = data.attributes.GoogleTagsManager;
-    const facebookPexels = data.attributes.FacebookPexels;
+    const seoData = seoResponse.data;
+    const footerData = footerResponse.data;
+
+    const logo =
+      footerData.attributes.Logo.media.data.attributes.formats.large.url;
+    const logoAlt = footerData.attributes.Logo.alt;
+    const counter = footerData.attributes.Counter;
+    const phone = footerData.attributes.Phone;
+    const email = footerData.attributes.Email;
+    const location = footerData.attributes.Location;
+    const socialMedia = footerData.attributes.SocialMedia;
+    const aboutTitle = footerData.attributes.AboutTitle;
+    const aboutDescription = footerData.attributes.AboutDescription;
+    const getInTouchTitle = footerData.attributes.GetInTouchTitle;
+    const footerText = footerData.attributes.FooterText;
+    const menuTitle = footerData.attributes.MenuTitle;
+    const menu = footerData.attributes.FooterMenu;
+
+    const googleAnalytics = seoData.attributes.GoogleAnalytics;
+    const googleTagsManager = seoData.attributes.GoogleTagsManager;
+    const facebookPexels = seoData.attributes.FacebookPexels;
+
     return {
       googleAnalytics,
       googleTagsManager,
       facebookPexels,
+      footerData,
+      logo,
+      logoAlt,
+      counter,
+      phone,
+      email,
+      location,
+      socialMedia,
+      aboutTitle,
+      aboutDescription,
+      getInTouchTitle,
+      footerText,
+      menuTitle,
+      menu,
     };
   } catch (error) {
     console.log(error);
@@ -56,7 +94,21 @@ export default async function RootLayout({
         <Header />
         <HeaderNav />
         {children}
-        {/* <Footer /> */}
+        <Footer
+          counter={data?.counter}
+          logo={data?.logo}
+          logoAlt={data?.logoAlt}
+          aboutDescription={data?.aboutDescription}
+          aboutTitle={data?.aboutTitle}
+          email={data?.email}
+          getInTouchTitle={data?.getInTouchTitle}
+          location={data?.location}
+          phone={data?.phone}
+          socialMedia={data?.socialMedia}
+          footerText={data?.footerText}
+          menu={data?.menu}
+          menuTitle={data?.menuTitle}
+        />
         <TopSctoll />
         <NextTopLoader color="#299726" />
       </body>

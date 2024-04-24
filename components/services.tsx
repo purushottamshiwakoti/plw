@@ -59,7 +59,12 @@ export const Services = ({
               <div className="bg-[#F4F4F4] group-hover:bg-buttonHoverBg/40 border-1 w-[170px] h-[165px] ">
                 <div className="bg-transparent flex items-center justify-center h-full">
                   <Image
-                    src={item.Icon.media.data.attributes.formats.thumbnail.url}
+                    // src={item.Icon.media.data.attributes.formats.thumbnail.url}
+                    src={
+                      process.env.NODE_ENV === "development"
+                        ? `${process.env.APPURL}${item.Icon.media.data.attributes.formats.thumbnail.url}`
+                        : item.Icon.media.data.attributes.formats.thumbnail.url
+                    }
                     alt={item.Icon.alt}
                     width={70}
                     height={70}

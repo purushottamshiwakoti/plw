@@ -21,7 +21,7 @@ export const LatestEvents = () => {
                   fill
                   className="object-cover"
                 />
-                <div className="bg-[#E23E4E] absolute -bottom-8 rounded-sm text-white py-3 left-4 p-[3px] w-[5rem] flex flex-col items-center justify-center">
+                <div className="bg-buttonHoverBg absolute -bottom-8 rounded-sm text-white py-3 left-4 p-[3px] w-[5rem] flex flex-col items-center justify-center">
                   <span className="font-bold text-2xl">14</span>
                   <span className="uppercase text-base ">Mar</span>
                 </div>
@@ -76,7 +76,10 @@ export const LatestEvents = () => {
                   maiores.
                 </p>
                 <div>
-                  <Button variant={"link"} className="flex p-0 text-[#E23E4E]">
+                  <Button
+                    variant={"link"}
+                    className="flex p-0 text-hovbg-buttonHoverBg"
+                  >
                     Read More
                   </Button>
                 </div>
@@ -87,7 +90,7 @@ export const LatestEvents = () => {
         <div className="mt-5">
           {" "}
           <div className="flex items-center justify-center">
-            <Button className="bg-buttonBg rounded-[5px] p-[25px] w-[9rem] hover:bg-white hover:text-black capitalize text-[15px] ">
+            <Button className="bg-buttonHoverBg rounded-[5px] p-[25px] w-[9rem] hover:bg-white hover:text-black capitalize text-[15px] ">
               View all
               <ArrowRight className="w-5 h-5 ml-1" />
             </Button>

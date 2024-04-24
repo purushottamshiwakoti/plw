@@ -50,30 +50,36 @@ export const FutureMovement = ({
         <p className="text-center text-[#666] mx-[14rem] mt-3">{description}</p>
       </div>
       <div className="mt-10 grid grid-cols-3 gap-10">
-        {icon.map((item, index) => (
-          <div className="space-y-3 w-full " key={index}>
-            <div className="flex items-center gap-10 ">
-              {/* <CircleAlertIcon className="text-blue-500 w-10 h-10" /> */}
-              {item.Icon.media.data.attributes.formats.small && (
-                <Image
-                  alt={item.Icon.alt}
-                  src={item.Icon.media.data.attributes.formats.small.url}
-                  width={50}
-                  height={50}
-                />
-              )}
+        {icon &&
+          icon.map((item, index) => (
+            <div className="space-y-3 w-full " key={index}>
+              <div className="flex items-center gap-10 ">
+                {/* <CircleAlertIcon className="text-blue-500 w-10 h-10" /> */}
+                {item.Icon.media.data.attributes.formats.small && (
+                  <Image
+                    alt={item.Icon.alt}
+                    // src={item.Icon.media.data.attributes.formats.small.url}
+                    src={
+                      process.env.NODE_ENV === "development"
+                        ? `${process.env.APPURL}${item.Icon.media.data.attributes.formats.small.url}`
+                        : item.Icon.media.data.attributes.formats.small.url
+                    }
+                    width={50}
+                    height={50}
+                  />
+                )}
 
-              <div>
-                <h2 className="text-blue-500 text-xl font-semibold line-clamp-2 flex-1">
-                  {item.Title}
-                </h2>
-                <p className="line-clamp-4 mt-1 text-muted-foreground">
-                  {item.Description}
-                </p>
+                <div>
+                  <h2 className="text-blue-500 text-xl font-semibold line-clamp-2 flex-1">
+                    {item.Title}
+                  </h2>
+                  <p className="line-clamp-4 mt-1 text-muted-foreground">
+                    {item.Description}
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
       </div>
     </section>
   );

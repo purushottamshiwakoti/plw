@@ -31,7 +31,12 @@ export const Momvement = ({
       <div className="flex ">
         <div className="p-10">
           <Image
-            src={image}
+            // src={image}
+            src={
+              process.env.NODE_ENV === "development"
+                ? `${process.env.APPURL}${image}`
+                : image
+            }
             alt={imageAlt}
             width={500}
             height={500}

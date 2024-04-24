@@ -164,6 +164,7 @@ export default async function Home() {
           title={data?.movementDescription}
           icon={data?.movementIcon}
         />
+        <LatestEvents />
         <Saying
           description={data?.reviewDescription}
           title={data?.reviewTitle}
@@ -215,3 +216,5 @@ export default async function Home() {
     </main>
   );
 }
+
+

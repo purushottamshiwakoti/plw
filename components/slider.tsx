@@ -22,16 +22,17 @@ const Slider = ({
   return (
     <div className="relative overflow-hidden ">
       <div className="flex transition-transform duration-500 ease-in-out transform">
-        {slides.map((slide, index) => (
-          <span
-            key={index}
-            className={`ml-3 ${
-              index !== currentSlideIndex ? "hidden" : ""
-            } max-w-lg line-clamp-1`}
-          >
-            {slide.Title}
-          </span>
-        ))}
+        {slides &&
+          slides.map((slide, index) => (
+            <span
+              key={index}
+              className={`ml-3 ${
+                index !== currentSlideIndex ? "hidden" : ""
+              } max-w-lg line-clamp-1`}
+            >
+              {slide.Title}
+            </span>
+          ))}
       </div>
     </div>
   );
