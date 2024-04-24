@@ -13,11 +13,9 @@ export const apiCall = async (name: string, params: string) => {
         });
 
         const res = await response.json();
-        console.log(res);
         return res;
 
     } catch (error) {
-        console.log(error);
         return null;
     }
 }

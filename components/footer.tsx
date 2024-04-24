@@ -31,7 +31,6 @@ interface FooterProps {
 }
 
 function AnimationNumber({ n }: { n: string }) {
-  console.log(n);
   const numericValue = parseFloat(n.replace(/[^\d.-]/g, "")); // Extract numeric value
   const suffix = n.replace(/[\d.-]/g, ""); // Extract suffix (non-numeric part)
   const { number } = useSpring({
@@ -90,18 +89,19 @@ export const Footer = ({
               />
             </Link>
             <div className="flex items-center gap-20">
-              {counter.map((item, index) => {
-                return (
-                  <div key={index}>
-                    <h2 className="font-semibold  text-2xl">
-                      {" "}
-                      {item.Description}
-                    </h2>
-                    {/* <AnimationNumber n={item.Description} /> */}
-                    <p className="text-sm mt-1">{item.Title}</p>
-                  </div>
-                );
-              })}
+              {counter &&
+                counter.map((item, index) => {
+                  return (
+                    <div key={index}>
+                      <h2 className="font-semibold  text-2xl">
+                        {" "}
+                        {item.Description}
+                      </h2>
+                      {/* <AnimationNumber n={item.Description} /> */}
+                      <p className="text-sm mt-1">{item.Title}</p>
+                    </div>
+                  );
+                })}
             </div>
           </div>
         </div>
@@ -119,23 +119,24 @@ export const Footer = ({
           {/* party start  */}
           <div className="space-y-4">
             <h2 className="font-semibold text-xl capitalize">{menuTitle}</h2>
-            {menu.map((item, index) => (
-              <div key={index}>
-                <div className="cursor-pointer group flex items-center ">
-                  <div className="flex gap-0 opacity-0 group-hover:opacity-100 transition-all duration-300 ">
-                    <ChevronRight className="w-3 h-3" />
-                    <ChevronRight className="w-3 h-3 -ml-4" />
+            {menu &&
+              menu.map((item, index) => (
+                <div key={index}>
+                  <div className="cursor-pointer group flex items-center ">
+                    <div className="flex gap-0 opacity-0 group-hover:opacity-100 transition-all duration-300 ">
+                      <ChevronRight className="w-3 h-3" />
+                      <ChevronRight className="w-3 h-3 -ml-4" />
+                    </div>
+                    <Link
+                      href={item.Link}
+                      className="group-hover:ml-4 group-hover:text-buttonHoverBg text-sm transition-all duration-500"
+                    >
+                      {item.Name}
+                    </Link>
                   </div>
-                  <Link
-                    href={item.Link}
-                    className="group-hover:ml-4 group-hover:text-buttonHoverBg text-sm transition-all duration-500"
-                  >
-                    {item.Name}
-                  </Link>
+                  <hr className="border-[#2B3C51] mt-2 w-[80%]" />
                 </div>
-                <hr className="border-[#2B3C51] mt-2 w-[80%]" />
-              </div>
-            ))}
+              ))}
           </div>
           {/* party end */}
 

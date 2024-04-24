@@ -10,7 +10,6 @@ import Slider from "./slider";
 async function getData() {
   try {
     const res = await apiCall("header", "populate=*");
-    console.log(res);
     const { data } = res;
 
     const title = data.attributes.Title;
@@ -19,7 +18,6 @@ async function getData() {
     const iconAlt = data.attributes.Icon.data.attributes.name;
     const menu = data.attributes.Menu;
     const newsCampaign = data.attributes.NewsCampaign;
-    console.log(newsCampaign);
     const socialMedia = data.attributes.SocialMedia;
 
     return {
