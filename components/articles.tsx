@@ -41,7 +41,7 @@ export const Articles = () => {
                 />
                 <div className="absolute bottom-10 left-10">
                   <Button className="bg-buttonHoverBg hover:bg-buttonHoverBg/80 rounded-sm px-[30px]">
-                    Category {index+1}
+                    Category {index + 1}
                   </Button>
                 </div>
               </div>
@@ -95,13 +95,15 @@ export const Articles = () => {
           //   </Link>
         ))}
 
-      <Pagination
-        total={4}
-        siblings={1}
-        defaultValue={pagination.active}
-        onChange={pagination.setPage}
-        color="#299726"
-      />
+      <div className="flex items-center justify-center">
+        <Pagination
+          total={4}
+          siblings={1}
+          defaultValue={pagination.active}
+          onChange={pagination.setPage}
+          color="#299726"
+        />
+      </div>
     </div>
   );
 };

@@ -14,12 +14,12 @@ const ArticlePage = () => {
       <div>
         <CustomBreadCrum />
 
-        <div className="mt-5 flex   space-x-10   ">
-          <div className="relative w-[60%]">
+        <div className="mt-5 flex   space-x-20   ">
+          <div className="relative w-[50%]">
             <ArticleDetail />
             <AddComment />
           </div>
-          <div className="relative ">
+          <div className="relative w-[30%] ">
             <Categories />
             <div className="mt-10">
               <RecentEvents />

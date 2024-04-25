@@ -58,7 +58,7 @@ export const Header = async () => {
             height={25}
             className="rotate-45"
           />
-          <div className="text-sm flex items-center">
+          <div className="text-sm flex items-center flex-grow">
             <span className="font-medium">{data?.title}</span>
             <span className="">
               {/* Our new campaign 2020 ready to launch from next week */}
@@ -67,13 +67,15 @@ export const Header = async () => {
           </div>
         </div>
       </div>
-      <div>
-        {data?.menu.map((item: any) => (
-          <Button variant={"link"} key={item.id} asChild>
-            <Link href={`${item.Link}`}>{item.Name}</Link>
-          </Button>
-        ))}
-      </div>
+      {data?.menu && (
+        <div>
+          {data?.menu.map((item: any) => (
+            <Button variant={"link"} key={item.id} asChild>
+              <Link href={`${item.Link}`}>{item.Name}</Link>
+            </Button>
+          ))}
+        </div>
+      )}
       <div>
         <SmallSocialIcon size="20px" url={data?.socialMedia} />
       </div>
