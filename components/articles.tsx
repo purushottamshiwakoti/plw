@@ -41,7 +41,7 @@ export const Articles = () => {
                 />
                 <div className="absolute bottom-10 left-10">
                   <Button className="bg-buttonHoverBg hover:bg-buttonHoverBg/80 rounded-sm px-[30px]">
-                    Hello
+                    Category {index+1}
                   </Button>
                 </div>
               </div>
