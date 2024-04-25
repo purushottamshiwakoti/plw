@@ -11,7 +11,7 @@ export const TrendingPost = () => {
       <div className="mt-2">
         <div className="mt-5 space-y-3">
           {Array.from({ length: 7 }, (_, index) => (
-            <div>
+            <div key={index}>
               <div className="flex items-center gap-2">
                 <Image
                   src={"/images/p2.jpg"}
