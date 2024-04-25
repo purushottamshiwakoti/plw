@@ -2,6 +2,7 @@ import { PersonStandingIcon, Star } from "lucide-react";
 import Image from "next/image";
 
 interface DonationProps {
+  showDonationTitle: boolean;
   title: string;
   banner: string;
   description: string;
@@ -30,6 +31,7 @@ export const Donation = ({
   donations,
   title,
   banner,
+  showDonationTitle,
 }: DonationProps) => {
   return (
     <div
@@ -39,17 +41,19 @@ export const Donation = ({
       }}
     >
       <div className="bg-[#06B37C]/90 p-10">
-        <div className="mt-5 space-y-3  ">
-          <h2 className="text-white text-center font-semibold text-3xl ">
-            {title}
-          </h2>
-          <div className="flex gap-[1px]  items-center justify-center ">
-            <Star fill="white" strokeWidth={0} className="w-5 h-5" />
-            <Star fill="white" strokeWidth={0} className="w-7 h-7" />
-            <Star fill="white" strokeWidth={0} className="w-5 h-5" />
+        {showDonationTitle && (
+          <div className="mt-5 space-y-3  ">
+            <h2 className="text-white text-center font-semibold text-3xl ">
+              {title}
+            </h2>
+            <div className="flex gap-[1px]  items-center justify-center ">
+              <Star fill="white" strokeWidth={0} className="w-5 h-5" />
+              <Star fill="white" strokeWidth={0} className="w-7 h-7" />
+              <Star fill="white" strokeWidth={0} className="w-5 h-5" />
+            </div>
+            <p className=" text-white text-xl text-center">{description}</p>
           </div>
-          <p className=" text-white text-xl text-center">{description}</p>
-        </div>
+        )}
         <div className="grid grid-cols-4  mt-10 px-[6rem]">
           {donations &&
             donations.map((item, index) => (

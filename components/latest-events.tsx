@@ -1,4 +1,11 @@
-import { ArrowRight, Calendar, Folder, Upload, User } from "lucide-react";
+import {
+  ArrowLeft,
+  ArrowRight,
+  Calendar,
+  Folder,
+  Upload,
+  User,
+} from "lucide-react";
 import Image from "next/image";
 import { Button } from "./ui/button";
 
@@ -12,7 +19,7 @@ export const LatestEvents = () => {
           </h2>
         </div>
         <div className="mt-10 grid grid-cols-3 gap-10">
-          {Array.from({ length: 6 }, (_, index) => (
+          {Array.from({ length: 3 }, (_, index) => (
             <div className="space-y-3 shadow-xl border-1 w-full " key={index}>
               <div className=" relative w-full h-[200px] ">
                 <Image
@@ -41,14 +48,14 @@ export const LatestEvents = () => {
                   </div>
                 </div>
                 <div className="mt-3 text-[#7E7E7E]">
-                  <div className="flex  gap-2 ">
+                  {/* <div className="flex  gap-2 ">
                     <Folder className="w-5 h-5" />
                     <div className="line-clamp-1">
                       Media Office Today NewsMedia Office Today News
                     </div>
-                  </div>
+                  </div> */}
                 </div>
-                <p className="mt-3 line-clamp-6">
+                <p className="mt-3 line-clamp-3">
                   Lorem ipsum, dolor sit amet consectetur adipisicing elit.
                   Consequatur voluptas necessitatibus iusto voluptates ipsum
                   eveniet, odio neque cupiditate natus, blanditiis aperiam
@@ -88,13 +95,20 @@ export const LatestEvents = () => {
           ))}
         </div>
         <div className="mt-5">
-          {" "}
-          <div className="flex items-center justify-center">
+          <div className="flex items-center justify-center gap-4">
+            <Button variant={"outline"}>
+              <ArrowLeft />
+            </Button>
+            <Button variant={"outline"}>
+              <ArrowRight />
+            </Button>
+          </div>{" "}
+          {/* <div className="flex items-center justify-center">
             <Button className="bg-buttonHoverBg rounded-[5px] p-[25px] w-[9rem] hover:bg-white hover:text-black capitalize text-[15px] ">
               View all
               <ArrowRight className="w-5 h-5 ml-1" />
             </Button>
-          </div>
+          </div> */}
         </div>
       </div>
     </>

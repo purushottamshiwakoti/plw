@@ -37,7 +37,6 @@ async function getData() {
 
 export const Header = async () => {
   const data = await getData();
-  console.log(data);
   return (
     <div
       className={` flex items-center justify-between px-[10rem] p-3`}
@@ -46,7 +45,7 @@ export const Header = async () => {
       }}
     >
       <div>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center  gap-2">
           <Image
             // src={data?.icon}
             src={

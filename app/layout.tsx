@@ -50,6 +50,7 @@ async function getData() {
     const footerText = footerData.attributes.FooterText;
     const menuTitle = footerData.attributes.MenuTitle;
     const menu = footerData.attributes.FooterMenu;
+    const backgroundColor = footerData.attributes.BackgroundColor;
 
     const googleAnalytics = seoData.attributes.GoogleAnalytics;
     const googleTagsManager = seoData.attributes.GoogleTagsManager;
@@ -73,6 +74,7 @@ async function getData() {
       footerText,
       menuTitle,
       menu,
+      backgroundColor,
     };
   } catch (error) {
     console.log(error);
@@ -114,6 +116,7 @@ export default async function RootLayout({
             footerText={data?.footerText}
             menu={data?.menu}
             menuTitle={data?.menuTitle}
+            backgroundColor={data?.backgroundColor}
           />
           <TopSctoll />
           <NextTopLoader color="#299726" />

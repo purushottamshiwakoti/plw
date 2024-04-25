@@ -23,6 +23,7 @@ export const SmallSocialIcon = ({
               height: size,
               borderRadius: "100%",
             }}
+            target="_blank"
             key={item.id}
           />
         ))}

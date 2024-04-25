@@ -28,6 +28,7 @@ interface FooterProps {
   footerText: string | undefined;
   menuTitle: string | undefined;
   menu: any[];
+  backgroundColor: string | undefined;
 }
 
 function AnimationNumber({ n }: { n: string }) {
@@ -68,25 +69,16 @@ export const Footer = ({
   footerText,
   menu,
   menuTitle,
+  backgroundColor,
 }: FooterProps) => {
-  console.log({
-    counter,
-    logo,
-    logoAlt,
-    aboutDescription,
-    aboutTitle,
-    email,
-    getInTouchTitle,
-    location,
-    phone,
-    socialMedia,
-    footerText,
-    menu,
-    menuTitle,
-  });
   return (
     <>
-      <div className="bg-[#061A33]/10 text-muted-foreground pt-[5rem] pb-10  ">
+      <div
+        className=" text-muted-foreground pt-[5rem] pb-10  "
+        style={{
+          backgroundColor: backgroundColor ?? "#fff",
+        }}
+      >
         <div className="px-[10rem]">
           <div className=" flex items-center justify-between">
             <Link href={"/"}>
@@ -126,7 +118,7 @@ export const Footer = ({
           <div className="space-y-4">
             <h2 className="font-semibold text-xl capitalize">{aboutTitle}</h2>
             <p className="text-sm">{aboutDescription}</p>
-            <div>
+            <div className="gid ">
               <SmallSocialIcon size="30px" url={socialMedia} />
             </div>
           </div>

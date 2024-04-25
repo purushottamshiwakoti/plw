@@ -66,6 +66,7 @@ async function getData() {
     const faqTitle = data.attributes.FAQTitle;
     const faqSubTitle = data.attributes.FAQSubTitle;
     const faqs = data.attributes.FAQ;
+    const showDonationTitle = data.attributes.ShowDonationTitle;
 
     const bannerImage =
       data.attributes.Banner.BannerImage.data.attributes.formats.thumbnail.url;
@@ -111,6 +112,7 @@ async function getData() {
       faqTitle,
       faqSubTitle,
       faqs,
+      showDonationTitle,
     };
   } catch (error) {
     console.log("Error retrieving data:", error);
@@ -156,6 +158,7 @@ export default async function Home() {
             title={data?.donationTitle}
             donations={data?.donationIcons}
             banner={data?.donationBanner}
+            showDonationTitle={data?.showDonationTitle}
           />
         </div>
         {/* <LatestEvents /> */}
@@ -216,5 +219,3 @@ export default async function Home() {
     </main>
   );
 }
-
-

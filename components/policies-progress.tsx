@@ -128,11 +128,11 @@ export const PoliciesAndProgress = ({
                 <Accordion
                   type="single"
                   collapsible
-                  defaultValue={faqList[0].QuestionAnswer[0].Question}
+                  defaultValue={"0"}
                   className="w-full"
                   key={index}
                 >
-                  <AccordionItem value={item.Question}>
+                  <AccordionItem value={index.toLocaleString()}>
                     <AccordionTrigger>{item.Question}</AccordionTrigger>
                     <AccordionContent>{item.Answer}</AccordionContent>
                   </AccordionItem>
