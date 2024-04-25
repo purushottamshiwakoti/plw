@@ -11,6 +11,8 @@ import { HeaderNav } from "@/components/header-nav";
 import { GoogleTagManager } from "@next/third-parties/google";
 import { apiCall } from "@/lib/api";
 import Script from "next/script";
+import { createTheme, MantineProvider } from "@mantine/core";
+import "@mantine/core/styles.css";
 
 // export const runtime = "edge";
 export const dynamic = "force-dynamic";
@@ -83,6 +85,9 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const data = await getData();
+  const theme = createTheme({
+    /** Put your mantine theme override here */
+  });
   return (
     <html>
       <head>
@@ -91,26 +96,28 @@ export default async function RootLayout({
       </head>
       <GoogleTagManager gtmId={data?.googleTagsManager ?? ""} />
       <body className={inter.className}>
-        <Header />
-        <HeaderNav />
-        {children}
-        <Footer
-          counter={data?.counter}
-          logo={data?.logo}
-          logoAlt={data?.logoAlt}
-          aboutDescription={data?.aboutDescription}
-          aboutTitle={data?.aboutTitle}
-          email={data?.email}
-          getInTouchTitle={data?.getInTouchTitle}
-          location={data?.location}
-          phone={data?.phone}
-          socialMedia={data?.socialMedia}
-          footerText={data?.footerText}
-          menu={data?.menu}
-          menuTitle={data?.menuTitle}
-        />
-        <TopSctoll />
-        <NextTopLoader color="#299726" />
+        <MantineProvider theme={theme}>
+          <Header />
+          <HeaderNav />
+          {children}
+          <Footer
+            counter={data?.counter}
+            logo={data?.logo}
+            logoAlt={data?.logoAlt}
+            aboutDescription={data?.aboutDescription}
+            aboutTitle={data?.aboutTitle}
+            email={data?.email}
+            getInTouchTitle={data?.getInTouchTitle}
+            location={data?.location}
+            phone={data?.phone}
+            socialMedia={data?.socialMedia}
+            footerText={data?.footerText}
+            menu={data?.menu}
+            menuTitle={data?.menuTitle}
+          />
+          <TopSctoll />
+          <NextTopLoader color="#299726" />
+        </MantineProvider>
       </body>
     </html>
   );

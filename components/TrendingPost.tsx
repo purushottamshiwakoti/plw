@@ -10,7 +10,7 @@ export const TrendingPost = () => {
       </div>
       <div className="mt-2">
         <div className="mt-5 space-y-3">
-          {Array.from({ length: 3 }, (_, index) => (
+          {Array.from({ length: 7 }, (_, index) => (
             <div>
               <div className="flex items-center gap-2">
                 <Image

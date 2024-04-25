@@ -1,4 +1,6 @@
 import { TrendingPost } from "@/components/TrendingPost";
+import { AddComment } from "@/components/add-comment";
+import { ArticleDetail } from "@/components/article-detail";
 import { Articles } from "@/components/articles";
 import { Categories } from "@/components/categories";
 import { CustomBreadCrum } from "@/components/custom-breadcrum";
@@ -6,7 +8,7 @@ import { PopularTags } from "@/components/popular-tags";
 import { RecentEvents } from "@/components/recent-events";
 import { SearchInput } from "@/components/search-input";
 
-const CategoryPage = () => {
+const ArticlePage = () => {
   return (
     <div className="mx-[10rem] py-10">
       <div>
@@ -14,8 +16,8 @@ const CategoryPage = () => {
 
         <div className="mt-5 flex   space-x-10   ">
           <div className="relative w-[60%]">
-            <SearchInput />
-            <Articles />
+            <ArticleDetail />
+            <AddComment />
           </div>
           <div className="relative ">
             <Categories />
@@ -35,4 +37,4 @@ const CategoryPage = () => {
   );
 };
 
-export default CategoryPage;
+export default ArticlePage;

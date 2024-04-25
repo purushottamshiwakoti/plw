@@ -15,7 +15,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { affiliateFormSchema } from "./schemas";
+import { affiliateFormSchema } from "../../schemas";
 import { Textarea } from "../ui/textarea";
 
 export const AffiliateForm = () => {
