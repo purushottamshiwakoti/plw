@@ -3,17 +3,20 @@ import { Navbar } from "./navbar";
 
 async function getData() {
   try {
-    const res = await apiCall(
-      "header-menu",
-      "populate=Menu.SubMenu&populate=logo&populate=Menu.page.sub_pages.children"
-    );
+    const [res, menuData] = await Promise.all([
+      apiCall(
+        "header-menu",
+        "populate=Menu.SubMenu&populate=logo&populate=Menu.page.sub_pages.children"
+      ),
+      apiCall("menus/4", "nested&populate=*"),
+    ]);
     const { data } = res;
 
     const buttonName = data.attributes.ButtonName;
     const backgroundColor = data.attributes.BackgroundColor;
     const showButton = data.attributes.ShowButton;
     const buttonLink = data.attributes.ButtonLink;
-    const menu = data.attributes.Menu;
+    const menu = menuData.data.attributes.items.data;
     const logo = data.attributes.logo.data.attributes.formats.large.url;
 
     return {
