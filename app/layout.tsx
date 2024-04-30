@@ -13,6 +13,7 @@ import { apiCall } from "@/lib/api";
 import Script from "next/script";
 import { createTheme, MantineProvider } from "@mantine/core";
 import "@mantine/core/styles.css";
+import { cookies } from "next/headers";
 
 // export const runtime = "edge";
 export const dynamic = "force-dynamic";
@@ -37,20 +38,35 @@ async function getData() {
     const footerData = footerResponse.data;
 
     const logo =
+      // footerData.attributes.Logo.media.data.attributes.formats.large.url;
       footerData.attributes.Logo.media.data.attributes.formats.large.url;
+    console.log(logo);
     const logoAlt = footerData.attributes.Logo.alt;
+    console.log(logoAlt);
     const counter = footerData.attributes.Counter;
+    console.log(counter);
     const phone = footerData.attributes.Phone;
+    console.log(phone);
     const email = footerData.attributes.Email;
+    console.log(email);
     const location = footerData.attributes.Location;
+    console.log(location);
     const socialMedia = footerData.attributes.SocialMedia;
+    console.log(socialMedia);
     const aboutTitle = footerData.attributes.AboutTitle;
+    console.log(aboutTitle);
     const aboutDescription = footerData.attributes.AboutDescription;
+    console.log(aboutDescription);
     const getInTouchTitle = footerData.attributes.GetInTouchTitle;
+    console.log(getInTouchTitle);
     const footerText = footerData.attributes.FooterText;
+    console.log(footerText);
     const menuTitle = footerData.attributes.MenuTitle;
+    console.log(menuTitle);
     const menu = footerData.attributes.FooterMenu;
+    console.log(menu);
     const backgroundColor = footerData.attributes.BackgroundColor;
+    console.log(backgroundColor);
 
     const googleAnalytics = seoData.attributes.GoogleAnalytics;
     const googleTagsManager = seoData.attributes.GoogleTagsManager;
@@ -90,8 +106,11 @@ export default async function RootLayout({
   const theme = createTheme({
     /** Put your mantine theme override here */
   });
+  const cookieStore = cookies();
+  const locale = cookieStore.get("language")?.value ?? "en";
+
   return (
-    <html>
+    <html dir={locale == "ar" ? "rtl" : ""}>
       <head>
         <Script async src={data?.googleAnalytics} />
         <Script async src={data?.facebookPexels} />

@@ -12,6 +12,7 @@ import { SearchDialog } from "./dialog/search-dialog";
 import { usePathname } from "next/navigation";
 import { AppUrl } from "@/lib/url";
 import { MenuItem } from "./menu-item";
+import { CountrySelector } from "./country-selector";
 
 interface NavbarProps {
   className?: string;
@@ -69,6 +70,9 @@ export const Navbar: React.FC<NavbarProps> = ({
             <Link href={buttonLink ?? "/"}>{buttonName}</Link>
           </Button>
         )}
+      </div>
+      <div>
+        <CountrySelector />
       </div>
     </nav>
   );

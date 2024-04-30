@@ -115,7 +115,7 @@ async function getData() {
       showDonationTitle,
     };
   } catch (error) {
-    console.log("Error retrieving data:", error);
+    // console.log("Error retrieving data:", error);
     return null;
   }
 }
