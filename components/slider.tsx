@@ -20,7 +20,7 @@ const Slider = ({
   }, []); // Run effect only once on component mount
 
   return (
-    <div className="relative overflow-hidden ">
+    <div className="relative overflow-hidden lg:my-0 my-2 ">
       <div className="flex transition-transform duration-500 ease-in-out transform">
         {slides &&
           slides.map((slide, index) => (

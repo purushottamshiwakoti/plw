@@ -11,7 +11,7 @@ export const SocialIcons = ({
 }) => {
   return (
     <>
-      <div className="flex items-center justify-center gap-10 mb-10">
+      <div className="flex items-center justify-center flex-wrap gap-10 mb-10">
         {url &&
           url.map((item: any, index) => (
             <SocialIcon url={item.Link} key={index} target="_blank" />

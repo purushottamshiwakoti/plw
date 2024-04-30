@@ -158,13 +158,12 @@ export default async function Home() {
             showDonationTitle={data?.showDonationTitle}
           />
         </div>
-        {/* <LatestEvents /> */}
+        <LatestEvents />
         <FutureMovement
           description={data?.movementTitle}
           title={data?.movementDescription}
           icon={data?.movementIcon}
         />
-        <LatestEvents />
         <Saying
           description={data?.reviewDescription}
           title={data?.reviewTitle}

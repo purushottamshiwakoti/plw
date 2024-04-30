@@ -12,27 +12,29 @@ export const TopHeader = ({ data }: { data: any }) => {
   return (
     isMenuShown && (
       <div
-        className={` flex items-center justify-between px-[10rem] p-3`}
+        className={` lg:flex items-center justify-between lg:px-[10rem] p-3`}
         style={{
           backgroundColor: data?.backgroundColor ?? "#eaeaea",
         }}
       >
         <div>
-          <div className="flex items-center  gap-2">
-            <Image
-              // src={data?.icon}
-              src={
-                process.env.NODE_ENV === "development"
-                  ? `${process.env.APPURL}${data?.icon}`
-                  : data?.icon
-              }
-              alt={data?.iconAlt}
-              width={25}
-              height={25}
-              className="rotate-45"
-            />
-            <div className="text-sm flex items-center flex-grow">
+          <div className="lg:flex items-center  gap-2">
+            <div className="flex items-center gap-2">
+              <Image
+                // src={data?.icon}
+                src={
+                  process.env.NODE_ENV === "development"
+                    ? `${process.env.APPURL}${data?.icon}`
+                    : data?.icon
+                }
+                alt={data?.iconAlt}
+                width={25}
+                height={25}
+                className="rotate-45"
+              />
               <span className="font-medium">{data?.title}</span>
+            </div>
+            <div className="text-sm lg:flex items-center flex-grow">
               <span className="">
                 {/* Our new campaign 2020 ready to launch from next week */}
                 <Slider slides={data?.newsCampaign} />
@@ -49,7 +51,7 @@ export const TopHeader = ({ data }: { data: any }) => {
             ))}
           </div>
         )}
-        <div>
+        <div className="lg:block flex items-start justify-center">
           <SmallSocialIcon size="20px" url={data?.socialMedia} />
         </div>
       </div>

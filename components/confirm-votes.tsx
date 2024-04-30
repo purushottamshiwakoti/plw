@@ -36,7 +36,7 @@ export const ConfirmVotes = ({
           })`,
         }}
       >
-        <div className="bg-primary/90 p-10 py-[7rem] flex flex-col items-center justify-center">
+        <div className="bg-primary/90 lg:p-10 p-4 lg:py-[7rem] flex flex-col items-center justify-center">
           <div className="flex gap-[1px]  items-center justify-center ">
             <Star fill="#299726" strokeWidth={0} className="w-5 h-5" />
             <Star fill="#299726" strokeWidth={0} className="w-7 h-7" />
@@ -45,10 +45,10 @@ export const ConfirmVotes = ({
 
           <p className="text-white mt-2">{title}</p>
 
-          <h2 className="text-white text-3xl font-bold tracking-wider mt-4">
+          <h2 className="text-white lg:text-3xl text-2xl text-center font-bold tracking-wider mt-4">
             {subtitle}
           </h2>
-          <p className="text-white text-center leading-relaxed  mt-6 px-[17%]">
+          <p className="text-white text-center leading-relaxed  mt-6 lg:px-[17%]">
             {description}
           </p>
           {showButton && (

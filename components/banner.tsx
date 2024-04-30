@@ -23,7 +23,7 @@ export const Banner = ({
   return (
     <div>
       <div
-        className={`h-[35rem]  w-full flex flex-col   bg-no-repeat bg-center bg-cover`}
+        className={` h-[35rem]  w-full flex flex-col   bg-no-repeat bg-center bg-cover`}
         style={{
           backgroundImage: `url(${
             process.env.NODE_ENV == "development" ? AppUrl + image : image
@@ -35,11 +35,11 @@ export const Banner = ({
 
         <div className="text-white font-[400] mt-[8rem] text-[18px] z-10 ">
           <h3 className="title text-center ">{title}</h3>
-          <h2 className="mt-5 font-[700] text-[50px]    px-[22rem] description text-center ">
+          <h2 className="mt-5 font-[700] lg:text-[50px]  text-2xl lg:leading-normal   lg:px-[22rem] description text-center ">
             {description}
           </h2>
           {showInput && (
-            <div className="mt-5 flex items-center justify-center">
+            <div className="mt-5 lg:mx-0 md:mx-10 mx-1 lg:flex items-center justify-center">
               <SubscribeEmail button={button} />
             </div>
           )}

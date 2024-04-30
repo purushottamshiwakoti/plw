@@ -43,7 +43,7 @@ export const Donation = ({
       <div className="bg-[#06B37C]/90 p-10">
         {showDonationTitle && (
           <div className="mt-5 space-y-3  ">
-            <h2 className="text-white text-center font-semibold text-3xl ">
+            <h2 className="text-white text-center font-semibold lg:text-3xl text-xl ">
               {title}
             </h2>
             <div className="flex gap-[1px]  items-center justify-center ">
@@ -51,14 +51,16 @@ export const Donation = ({
               <Star fill="white" strokeWidth={0} className="w-7 h-7" />
               <Star fill="white" strokeWidth={0} className="w-5 h-5" />
             </div>
-            <p className=" text-white text-xl text-center">{description}</p>
+            <p className=" text-white lg:text-xl text-lg text-center">
+              {description}
+            </p>
           </div>
         )}
-        <div className="grid grid-cols-4  mt-10 px-[6rem]">
+        <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1  lg:mt-10 mt-4 lg:px-[6rem] px-1 md:px-3 md:gap-4">
           {donations &&
             donations.map((item, index) => (
               <div
-                className="group flex items-center hover:-translate-y-5 transition-all duration-500 flex-col my-14 mx-4 cursor-pointer bg-white/20 rounded-md py-10"
+                className="group flex items-center hover:-translate-y-5 transition-all duration-500 flex-col lg:my-14 my-5 lg:mx-4 cursor-pointer bg-white/20 rounded-md py-10"
                 key={index}
               >
                 <div className="p-10   rounded-md  w-40 h-40 flex items-center">

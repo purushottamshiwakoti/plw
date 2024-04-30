@@ -79,8 +79,8 @@ export const Footer = ({
           backgroundColor: backgroundColor ?? "#fff",
         }}
       >
-        <div className="px-[10rem]">
-          <div className=" flex items-center justify-between">
+        <div className="lg:px-[10rem] px-4">
+          <div className=" lg:flex items-center justify-between">
             <Link href={"/"}>
               <Image
                 // src={"/images/logo.svg"}
@@ -95,7 +95,7 @@ export const Footer = ({
                 priority
               />
             </Link>
-            <div className="flex items-center gap-20">
+            <div className="lg:flex items-center lg:gap-20 gap-5 grid md:grid-cols-4 grid-cols-2 lg:mt-0 mt-4">
               {counter &&
                 counter.map((item, index) => {
                   return (
@@ -113,7 +113,7 @@ export const Footer = ({
           </div>
         </div>
         <hr className="mt-16 border-[#2B3C51]" />
-        <div className="px-[10rem] mt-[3rem] grid grid-cols-3 gap-10">
+        <div className="lg:px-[10rem] px-4 lg:mt-[3rem] mt-4 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-10">
           {/* about us start  */}
           <div className="space-y-4">
             <h2 className="font-semibold text-xl capitalize">{aboutTitle}</h2>

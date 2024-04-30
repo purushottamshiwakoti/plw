@@ -21,13 +21,13 @@ interface SayingProps {
 export const Saying = ({ description, title, review }: SayingProps) => {
   return (
     <>
-      <section className="px-[10rem] w-full my-20">
-        <div className="mt-5 space-y-3  ">
+      <section className="lg:px-[10rem] p-4 w-full my-20">
+        <div className="lg:mt-5 space-y-3  ">
           <h2 className="text-[#222] text-2xl font-bold text-center ">
             {title}
           </h2>
 
-          <p className="text-center text-[#666] mx-[14rem] mt-3">
+          <p className="text-center text-[#666] lg:mx-[14rem] mt-3">
             {description}
           </p>
           <div className="flex gap-[1px]  items-center justify-center ">
@@ -36,7 +36,7 @@ export const Saying = ({ description, title, review }: SayingProps) => {
             <Star fill="#299726" strokeWidth={0} className="w-5 h-5" />
           </div>
         </div>
-        <div className="mt-10 grid grid-cols-3 gap-10">
+        <div className="mt-10 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-10">
           {review &&
             review.map((item, index) => (
               <div

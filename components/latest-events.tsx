@@ -19,9 +19,9 @@ import {
 export const LatestEvents = () => {
   return (
     <>
-      <div className="my-10 px-[10rem] ">
+      <div className="my-10 lg:px-[10rem] px-4 ">
         <div>
-          <h2 className="text-[#4F4F4F] text-center font-bold text-3xl">
+          <h2 className="text-[#4F4F4F] text-center font-bold text-3xl my-10">
             Featured
           </h2>
         </div>

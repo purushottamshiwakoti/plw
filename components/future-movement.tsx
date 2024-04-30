@@ -38,18 +38,22 @@ export const FutureMovement = ({
   icon,
 }: FutureMovementProps) => {
   return (
-    <section className="px-[10rem] w-full my-20">
+    <section className="lg:px-[10rem] px-4 w-full my-20">
       <div className="flex gap-[1px]  items-center justify-center ">
         <Star fill="#299726" strokeWidth={0} className="w-5 h-5" />
         <Star fill="#299726" strokeWidth={0} className="w-7 h-7" />
         <Star fill="#299726" strokeWidth={0} className="w-5 h-5" />
       </div>
       <div className="mt-5 space-y-3  ">
-        <h2 className="text-[#222] text-2xl font-bold text-center ">{title}</h2>
+        <h2 className="text-[#222] lg:text-2xl text-xl font-bold text-center ">
+          {title}
+        </h2>
 
-        <p className="text-center text-[#666] mx-[14rem] mt-3">{description}</p>
+        <p className="text-center text-[#666] lg:mx-[14rem] mt-3">
+          {description}
+        </p>
       </div>
-      <div className="mt-10 grid grid-cols-3 gap-10">
+      <div className="mt-10 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-10">
         {icon &&
           icon.map((item, index) => (
             <div className="space-y-3 w-full " key={index}>

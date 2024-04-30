@@ -8,10 +8,10 @@ interface SubscribeEmailProps {
 
 export const SubscribeEmail = ({ button }: SubscribeEmailProps) => {
   return (
-    <div className="flex  gap-2 bg-black/60 px-2 py-3 focus-visible:ring-0 ">
+    <div className="flex lg:flex-row flex-col  gap-2 bg-black/60 px-2 py-3 focus-visible:ring-0 ">
       <div className="relative">
         <Input
-          className="w-[20rem] h-[3.5rem] pl-[3rem]  text-lg rounded-sm text-muted-foreground"
+          className="lg:w-[20rem] w-full h-[3.5rem] pl-[3rem]  text-lg rounded-sm text-muted-foreground"
           placeholder="Enter Your Email..."
         />
         <Mail className="absolute top-5 left-3 text-muted-foreground" />

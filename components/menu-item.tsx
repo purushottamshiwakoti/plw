@@ -76,6 +76,7 @@ export const MenuItem = ({ menu }: { menu: any }) => {
                   onClick={() => {
                     setDropdown(null);
                     setHoverMenu(["hello"]);
+                    toggleMenu(true);
                   }}
                 >
                   <p
@@ -295,6 +296,7 @@ export const MenuItem = ({ menu }: { menu: any }) => {
                                                             setHoverMenu([
                                                               "hello",
                                                             ]);
+                                                            toggleMenu(true);
                                                           }}
                                                         >
                                                           <p
