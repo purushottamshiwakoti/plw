@@ -1,11 +1,17 @@
 import { apiCall } from "@/lib/api";
 import { Navbar } from "./navbar";
+import { cookies } from "next/headers";
 
 async function getData() {
+  const cookieStore = cookies();
+
+  const locale = cookieStore.get("language")?.value ?? "en";
+  const endpoint = locale === "en" ? "menus/4" : "menus/4";
+
   try {
     const [res, menuData] = await Promise.all([
       apiCall("navbar", "populate=Logo.media"),
-      apiCall("menus/4", "nested&populate=*"),
+      apiCall(`${endpoint}`, "nested&populate=*"),
     ]);
     const { data } = res;
 

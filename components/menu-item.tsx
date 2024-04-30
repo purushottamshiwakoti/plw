@@ -1,4 +1,5 @@
 "use client";
+import useHeaderMenuStore from "@/hooks/use-toogle-header";
 import { cn } from "@/lib/utils";
 import { Separator } from "@radix-ui/react-separator";
 import { ChevronDown, ChevronRight, ChevronUp } from "lucide-react";
@@ -7,6 +8,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 export const MenuItem = ({ menu }: { menu: any }) => {
+  const { toggleMenu } = useHeaderMenuStore();
   const [hoverMenu, setHoverMenu] = useState<any>(["hello"]);
   const [dropdown, setDropdown] = useState<string | null>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -88,7 +90,7 @@ export const MenuItem = ({ menu }: { menu: any }) => {
                   <div
                     onMouseEnter={() =>
                       setHoverMenu((prev: any[]) => [
-                        ...prev,
+                        ...(prev || []),
                         child.attributes.title,
                       ])
                     }
@@ -162,12 +164,17 @@ export const MenuItem = ({ menu }: { menu: any }) => {
                       title={item.attributes.title}
                       // onClick={() => handleParentClick(item.attributes.title)}
                       // onMouseLeave={() => handleParentClick("")}
-                      onMouseEnter={() =>
-                        handleParentClick(item.attributes.title)
-                      }
+                      onMouseEnter={() => {
+                        handleParentClick(item.attributes.title);
+
+                        item.attributes.children.data.length > 4
+                          ? toggleMenu(false)
+                          : null;
+                      }}
                     >
                       <span className="flex items-center">
                         {item.attributes.title}
+
                         {dropdown === item.attributes.title ? (
                           <ChevronDown className="w-3 h-3 ml-[2px]" />
                         ) : (
@@ -182,7 +189,10 @@ export const MenuItem = ({ menu }: { menu: any }) => {
                           // onMouseEnter={() => setDropdown(item.Name)} // Keep dropdown open when hovering over the dropdown menu
                           // onMouseOut={() => setDropdown(null)}
                           ref={dropdownRef}
-                          onMouseLeave={() => handleParentClick("null")}
+                          onMouseLeave={() => {
+                            handleParentClick("null");
+                            setHoverMenu("");
+                          }}
                         >
                           {item.attributes.children.data.map(
                             (child: any, childIndex: any) =>
@@ -212,7 +222,7 @@ export const MenuItem = ({ menu }: { menu: any }) => {
                                       <div
                                         onMouseEnter={() =>
                                           setHoverMenu((prev: any) => [
-                                            ...prev,
+                                            ...(prev || []),
                                             child.attributes.title,
                                           ])
                                         }
@@ -246,82 +256,49 @@ export const MenuItem = ({ menu }: { menu: any }) => {
                                   <Separator className=" " />
                                 </div>
                               ) : (
-                                <div
-                                  className="bg-white min-h-[70vh] max-h-[80vh]
+                                <>
+                                  <div
+                                    className="bg-white min-h-[70vh] max-h-[80vh]
                                 shadow-sm
                                 flex fixed left-0 mx-[10rem] w-[80vw]   overflow-auto"
-                                >
-                                  <div className="flex px-14 py-5  justify-between flex-wrap  ">
-                                    {item.attributes.children.data.map(
-                                      (item: any, index: number) => (
-                                        <div className="  w-[17vw] mt-3 relative ">
-                                          <div>
-                                            <h2 className="text-sm font-semibold text-gray-500">
-                                              {item.attributes.title}
-                                            </h2>
-                                            <span className="border-2 border-red-400 absolute w-[30%] left-0 top-7"></span>
-                                            <hr className="my-2 " />
-                                          </div>
-                                          <div>
-                                            {item.attributes.children.data
-                                              .length > 0 &&
-                                              item.attributes.children.data.map(
-                                                (child: any, index: number) => (
-                                                  <div
-                                                    className=" "
-                                                    key={index}
-                                                  >
-                                                    {child.attributes.children
-                                                      .data.length == 0 ? (
-                                                      <Link
-                                                        href={`${child.attributes.url}`}
-                                                        onClick={() => {
-                                                          setDropdown(null);
-                                                          setHoverMenu([
-                                                            "hello",
-                                                          ]);
-                                                        }}
-                                                      >
-                                                        <p
-                                                          className="p-3  text-sm text-gray-700  "
-                                                          title={
-                                                            child.attributes
-                                                              .title
-                                                          }
-                                                        >
-                                                          {
-                                                            child.attributes
-                                                              .title
-                                                          }
-                                                        </p>
-                                                      </Link>
-                                                    ) : (
-                                                      <>
-                                                        <div
-                                                          onMouseEnter={() =>
-                                                            setHoverMenu(
-                                                              (prev: any) => [
-                                                                ...prev,
-                                                                child.attributes
-                                                                  .title,
-                                                              ]
-                                                            )
-                                                          }
-                                                          onMouseLeave={() => {
-                                                            setHoverMenu(
-                                                              hoverMenu.filter(
-                                                                (item: any) =>
-                                                                  item !=
-                                                                  child
-                                                                    .attributes
-                                                                    .title
-                                                              )
-                                                            );
+                                    onMouseLeave={() => toggleMenu(true)}
+                                  >
+                                    <div className="flex px-14 py-5  justify-between flex-wrap  ">
+                                      {item.attributes.children.data.map(
+                                        (item: any, index: number) => (
+                                          <div className="  w-[17vw] mt-3 relative ">
+                                            <div>
+                                              <h2 className="text-sm font-semibold text-gray-500">
+                                                {item.attributes.title}
+                                              </h2>
+                                              <span className="border-2 border-buttonHoverBg absolute w-[30%] left-0 top-7"></span>
+                                              <hr className="my-2 " />
+                                            </div>
+                                            <div>
+                                              {item.attributes.children.data
+                                                .length > 0 &&
+                                                item.attributes.children.data.map(
+                                                  (
+                                                    child: any,
+                                                    index: number
+                                                  ) => (
+                                                    <div
+                                                      className=" "
+                                                      key={index}
+                                                    >
+                                                      {child.attributes.children
+                                                        .data.length == 0 ? (
+                                                        <Link
+                                                          href={`${child.attributes.url}`}
+                                                          onClick={() => {
+                                                            setDropdown(null);
+                                                            setHoverMenu([
+                                                              "hello",
+                                                            ]);
                                                           }}
-                                                          className="relative w-full"
                                                         >
                                                           <p
-                                                            className="p-3  text-gray-700   text-sm flex items-center justify-between peer "
+                                                            className="p-3  text-sm text-gray-700  "
                                                             title={
                                                               child.attributes
                                                                 .title
@@ -331,32 +308,75 @@ export const MenuItem = ({ menu }: { menu: any }) => {
                                                               child.attributes
                                                                 .title
                                                             }
-                                                            <ChevronRight className="w-3 h-3 ml-2" />
                                                           </p>
-                                                          <div>
-                                                            {renderChildren({
-                                                              children:
+                                                        </Link>
+                                                      ) : (
+                                                        <>
+                                                          <div
+                                                            onMouseEnter={() =>
+                                                              setHoverMenu(
+                                                                (prev: any) => [
+                                                                  ...(prev ||
+                                                                    []),
+                                                                  child
+                                                                    .attributes
+                                                                    .title,
+                                                                ]
+                                                              )
+                                                            }
+                                                            onMouseLeave={() => {
+                                                              setHoverMenu(
+                                                                hoverMenu.filter(
+                                                                  (item: any) =>
+                                                                    item !=
+                                                                    child
+                                                                      .attributes
+                                                                      .title
+                                                                )
+                                                              );
+                                                            }}
+                                                            className="relative w-full"
+                                                          >
+                                                            <p
+                                                              className="p-3  text-gray-700   text-sm flex items-center justify-between peer "
+                                                              title={
                                                                 child.attributes
-                                                                  .children
-                                                                  .data,
-                                                              title:
+                                                                  .title
+                                                              }
+                                                            >
+                                                              {
                                                                 child.attributes
-                                                                  .title,
-                                                            })}
+                                                                  .title
+                                                              }
+                                                              <ChevronRight className="w-3 h-3 ml-2" />
+                                                            </p>
+                                                            <div>
+                                                              {renderChildren({
+                                                                children:
+                                                                  child
+                                                                    .attributes
+                                                                    .children
+                                                                    .data,
+                                                                title:
+                                                                  child
+                                                                    .attributes
+                                                                    .title,
+                                                              })}
+                                                            </div>
                                                           </div>
-                                                        </div>
-                                                      </>
-                                                    )}
-                                                    <Separator className=" " />
-                                                  </div>
-                                                )
-                                              )}
+                                                        </>
+                                                      )}
+                                                      <Separator className=" " />
+                                                    </div>
+                                                  )
+                                                )}
+                                            </div>
                                           </div>
-                                        </div>
-                                      )
-                                    )}
+                                        )
+                                      )}
+                                    </div>
                                   </div>
-                                </div>
+                                </>
                               )
                           )}
                         </div>

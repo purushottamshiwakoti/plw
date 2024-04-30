@@ -5,14 +5,11 @@ import { ElectionTime } from "@/components/election-time";
 import { FutureMovement } from "@/components/future-movement";
 import { LatestEvents } from "@/components/latest-events";
 import { Momvement } from "@/components/movement";
-import { Navbar } from "@/components/navbar";
 import { PoliciesAndProgress } from "@/components/policies-progress";
 import { Saying } from "@/components/saying";
 import { Services } from "@/components/services";
 import { SocialIcons } from "@/components/social-icons";
-import { TopSctoll } from "@/components/top-scroll";
 import { apiCall } from "@/lib/api";
-import Image from "next/image";
 
 async function getData() {
   try {

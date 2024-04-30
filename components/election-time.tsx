@@ -25,13 +25,16 @@ export const ElectionTime = ({
     const totalSeconds: number =
       (electionStartTime.getTime() - currentTime.getTime()) / 1000;
 
-    if (totalSeconds > 0) {
+    if (totalSeconds >= 0) {
+      // Change condition to include zero
       const days = Math.floor(totalSeconds / (60 * 60 * 24));
       const hours = Math.floor((totalSeconds % (60 * 60 * 24)) / (60 * 60));
       const minutes = Math.floor((totalSeconds % (60 * 60)) / 60);
       const seconds = Math.floor(totalSeconds % 60);
 
       setTimeRemaining({ days, hours, minutes, seconds });
+    } else {
+      setTimeRemaining({ days: 0, hours: 0, minutes: 0, seconds: 0 });
     }
   };
 
