@@ -119,7 +119,7 @@ export default async function RootLayout({
       <body className={inter.className}>
         <MantineProvider theme={theme}>
           <Header />
-          {/* <HeaderNav /> */}
+          <HeaderNav />
           {children}
           <Footer
             counter={data?.counter}

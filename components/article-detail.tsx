@@ -25,7 +25,7 @@ export const ArticleDetail = () => {
         <h3 className="text-[#323031] font-bold text-2xl">
           Upholds The Idea That True Democracy Right{" "}
         </h3>
-        <div className="flex items-center gap-5">
+        <div className="md:flex items-center gap-5 md:space-y-0 space-y-3">
           <div className="flex items-center gap-2">
             <User className="h-5 w-5 text-buttonHoverBg" />
             <p className="text-muted-foreground font-medium">admin</p>

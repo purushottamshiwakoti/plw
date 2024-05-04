@@ -13,6 +13,7 @@ import { usePathname } from "next/navigation";
 import { AppUrl } from "@/lib/url";
 import { MenuItem } from "./menu-item";
 import { CountrySelector } from "./country-selector";
+import { MobileNav } from "./mobile-nav";
 
 interface NavbarProps {
   className?: string;
@@ -40,7 +41,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   return (
     <nav
       className={cn(
-        " border-b text-white h-20 flex items-center justify-between px-[10rem] sticky w-full top-0 z-50",
+        " border-b text-white h-20 flex items-center justify-between lg:px-[10rem] px-4 sticky w-full top-0 z-50",
         className
       )}
       style={{
@@ -59,9 +60,16 @@ export const Navbar: React.FC<NavbarProps> = ({
           priority
         />
       </Link>
-      <MenuItem menu={menu} />
 
-      <div>
+      <div className="lg:hidden block ">
+        <MobileNav menu={menu} />
+      </div>
+
+      <div className="lg:block hidden">
+        <MenuItem menu={menu} />
+      </div>
+
+      <div className="lg:block hidden">
         {showButton && (
           <Button
             className="bg-buttonHoverBg rounded-[5px] p-[25px] w-[9rem] hover:bg-buttonHoverBg/80  text-[15px] font-[700]"
@@ -71,7 +79,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           </Button>
         )}
       </div>
-      <div>
+      <div className="lg:block hidden">
         <CountrySelector />
       </div>
     </nav>

@@ -20,7 +20,7 @@ export const Articles = () => {
   const category = params.category;
 
   return (
-    <div className="mt-5 space-y-20">
+    <div className="mt-5 lg:space-y-20 space-y-5">
       {Array.from({ length: 20 })
         .slice(startIndex, endIndex)
         .map((_, index) => (
@@ -71,7 +71,7 @@ export const Articles = () => {
                   </Button>
                 </div>
                 <hr className="w-[10%] border-2" />
-                <div className="flex items-center gap-5">
+                <div className="md:flex items-center gap-5 space-y-2 md:space-y-0">
                   <div className="flex items-center gap-2">
                     <User className="h-5 w-5 text-buttonHoverBg" />
                     <p className="text-muted-foreground font-medium">admin</p>
