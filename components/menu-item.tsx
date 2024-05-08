@@ -55,7 +55,7 @@ export const MenuItem = ({ menu }: { menu: any }) => {
       hoverMenu &&
       hoverMenu.includes(title) && (
         <div
-          className=" absolute  -right-[10rem]  top-0 z-10 bg-white w-[10rem]   border-t-blue-700  shadow-md "
+          className=" absolute  -right-[14rem] top-0 z-10 bg-white w-[14rem]   border-t-blue-700  shadow-md "
 
           // onMouseEnter={() => setDropdown(item.Name)} // Keep dropdown open when hovering over the dropdown menu
           //   onMouseLeave={() => {
@@ -132,7 +132,7 @@ export const MenuItem = ({ menu }: { menu: any }) => {
 
   const path = usePathname();
   return (
-    <div className="relative">
+    <div className="relative ">
       <ul className="flex items-center gap-10 text-primary">
         {menu.map((item: any, index: number) => {
           return (
@@ -199,7 +199,7 @@ export const MenuItem = ({ menu }: { menu: any }) => {
                             (child: any, childIndex: any) =>
                               item.attributes.children.data.length < 4 ? (
                                 <div
-                                  className="  transition  duration-300 hover:bg-buttonHoverBg"
+                                  className="  transition  duration-300 hover:bg-buttonHoverBg min-w-[15rem]"
                                   key={childIndex}
                                 >
                                   {child.attributes.children.data.length ==

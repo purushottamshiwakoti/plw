@@ -31,9 +31,7 @@ export const ConfirmVotes = ({
         // }}
 
         style={{
-          backgroundImage: `url(${
-            process.env.NODE_ENV == "development" ? AppUrl + bgImage : bgImage
-          })`,
+          backgroundImage: `url(${AppUrl + bgImage})`,
         }}
       >
         <div className="bg-primary/90 lg:p-10 p-4 lg:py-[7rem] flex flex-col items-center justify-center">

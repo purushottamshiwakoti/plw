@@ -25,9 +25,7 @@ export const Banner = ({
       <div
         className={` h-[35rem]  w-full flex flex-col   bg-no-repeat bg-center bg-cover`}
         style={{
-          backgroundImage: `url(${
-            process.env.NODE_ENV == "development" ? AppUrl + image : image
-          })`,
+          backgroundImage: `url(${AppUrl + image})`,
         }}
       >
         <div className="absolute bg-black h-[35rem] w-full  opacity-[70%] z-10 " />
