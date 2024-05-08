@@ -7,7 +7,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import useLanguageStore from "@/hooks/use-language-stroe";
 import Image from "next/image";
 import { useState } from "react";
 import { setCookie, getCookie } from "cookies-next";
