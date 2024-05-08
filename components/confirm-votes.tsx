@@ -31,7 +31,7 @@ export const ConfirmVotes = ({
         // }}
 
         style={{
-          backgroundImage: `url(${AppUrl + bgImage})`,
+          backgroundImage: `url(${AppUrl}${bgImage})`,
         }}
       >
         <div className="bg-primary/90 lg:p-10 p-4 lg:py-[7rem] flex flex-col items-center justify-center">

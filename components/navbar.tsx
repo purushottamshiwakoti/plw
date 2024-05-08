@@ -38,8 +38,6 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   // const menuItem = hasEmptyChildren(menu);
 
-  console.log(`${AppUrl}${logo}`);
-
   return (
     <nav
       className={cn(
