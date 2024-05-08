@@ -60,12 +60,7 @@ export const Saying = ({ description, title, review }: SayingProps) => {
                       // src={
                       //   item.Image.media.data.attributes.formats.thumbnail.url
                       // }
-                      src={
-                        process.env.NODE_ENV === "development"
-                          ? `${process.env.APPURL}${item.Image.media.data.attributes.formats.thumbnail.url}`
-                          : item.Image.media.data.attributes.formats.thumbnail
-                              .url
-                      }
+                      src={`${process.env.APPURL}${item.Image.media.data.attributes.formats.thumbnail.url}`}
                       width={100}
                       height={100}
                       alt={item.Image.alt}

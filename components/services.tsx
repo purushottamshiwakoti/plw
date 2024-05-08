@@ -60,11 +60,7 @@ export const Services = ({
                 <div className="bg-transparent flex items-center justify-center h-full">
                   <Image
                     // src={item.Icon.media.data.attributes.formats.thumbnail.url}
-                    src={
-                      process.env.NODE_ENV === "development"
-                        ? `${process.env.APPURL}${item.Icon.media.data.attributes.formats.thumbnail.url}`
-                        : item.Icon.media.data.attributes.formats.thumbnail.url
-                    }
+                    src={`${process.env.APPURL}${item.Icon.media.data.attributes.formats.thumbnail.url}`}
                     alt={item.Icon.alt}
                     width={55}
                     height={55}

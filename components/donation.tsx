@@ -74,11 +74,7 @@ export const Donation = ({
                     {/* <PersonStandingIcon className="text-white w-24 h-24" /> */}
                     <Image
                       alt={item.Icon.alt}
-                      src={
-                        process.env.NODE_ENV === "development"
-                          ? `${AppUrl}${item.Icon.media.data.attributes.formats.small.url}`
-                          : item.Icon.media.data.attributes.formats.small.url
-                      }
+                      src={`${AppUrl}${item.Icon.media.data.attributes.formats.small.url}`}
                       width={80}
                       height={80}
                     />

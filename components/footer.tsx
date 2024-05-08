@@ -84,11 +84,7 @@ export const Footer = ({
             <Link href={"/"}>
               <Image
                 // src={"/images/logo.svg"}
-                src={
-                  process.env.NODE_ENV === "development"
-                    ? `${AppUrl}${logo}`
-                    : logo
-                }
+                src={`${AppUrl}${logo}`}
                 alt={logoAlt}
                 width={180}
                 height={50}

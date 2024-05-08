@@ -32,11 +32,7 @@ export const Momvement = ({
         <div className="lg:p-10 p-2 md:p-5">
           <Image
             // src={image}
-            src={
-              process.env.NODE_ENV === "development"
-                ? `${process.env.APPURL}${image}`
-                : image
-            }
+            src={`${process.env.APPURL}${image}`}
             alt={imageAlt}
             width={500}
             height={500}

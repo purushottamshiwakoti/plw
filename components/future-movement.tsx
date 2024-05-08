@@ -63,11 +63,7 @@ export const FutureMovement = ({
                   <Image
                     alt={item.Icon.alt}
                     // src={item.Icon.media.data.attributes.formats.small.url}
-                    src={
-                      process.env.NODE_ENV === "development"
-                        ? `${process.env.APPURL}${item.Icon.media.data.attributes.formats.small.url}`
-                        : item.Icon.media.data.attributes.formats.small.url
-                    }
+                    src={`${process.env.APPURL}${item.Icon.media.data.attributes.formats.small.url}`}
                     width={50}
                     height={50}
                   />

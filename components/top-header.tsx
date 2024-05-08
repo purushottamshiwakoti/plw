@@ -22,11 +22,7 @@ export const TopHeader = ({ data }: { data: any }) => {
             <div className="flex items-center gap-2">
               <Image
                 // src={data?.icon}
-                src={
-                  process.env.NODE_ENV === "development"
-                    ? `${process.env.APPURL}${data?.icon}`
-                    : data?.icon
-                }
+                src={`${process.env.APPURL}${data?.icon}`}
                 alt={data?.iconAlt}
                 width={25}
                 height={25}

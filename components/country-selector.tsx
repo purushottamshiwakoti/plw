@@ -7,9 +7,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import Image from "next/image";
-import { useState } from "react";
-import { setCookie, getCookie } from "cookies-next";
+import { getCookie, setCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
 import { FlagIcon } from "react-flag-kit";
 

@@ -130,10 +130,8 @@ export const PoliciesAndProgress = ({
             <Image
               // src={faqList[0].Image.media.data.attributes.formats.small.url}
               src={
-                process.env.NODE_ENV == "development"
-                  ? AppUrl +
-                    faqList[0].Image.media.data.attributes.formats.small.url
-                  : faqList[0].Image.media.data.attributes.formats.small.url
+                AppUrl +
+                faqList[0].Image.media.data.attributes.formats.small.url
               }
               alt="hello"
               width={500}
