@@ -267,7 +267,10 @@ export const MenuItem = ({ menu }: { menu: any }) => {
                                     <div className="flex px-14 py-5  justify-between flex-wrap  ">
                                       {item.attributes.children.data.map(
                                         (item: any, index: number) => (
-                                          <div className="  w-[17vw] mt-3 relative ">
+                                          <div
+                                            className="  w-[17vw] mt-3 relative "
+                                            key={index}
+                                          >
                                             <div>
                                               <h2 className="text-sm font-semibold text-gray-500">
                                                 {item.attributes.title}

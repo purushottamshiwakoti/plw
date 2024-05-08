@@ -30,7 +30,7 @@ export const MobileNav = ({ menu }: { menu: any }) => {
           {menu.map(
             (item: any, index: any) =>
               item.attributes.children.data.length == 0 && (
-                <DialogClose asChild>
+                <DialogClose asChild key={index}>
                   <Link href={item.attributes.url ?? "/"}>
                     <span
                       className={cn(
