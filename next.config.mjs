@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ["energized-dinosaur-67d26950c1.media.strapiapp.com", "127.0.0.1"],
+    domains: ["127.0.0.1", "93.127.195.143"],
   },
 };
 

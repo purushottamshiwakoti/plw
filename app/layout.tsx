@@ -112,8 +112,8 @@ export default async function RootLayout({
   return (
     <html dir={locale == "ar" ? "rtl" : ""}>
       <head>
-        <Script async src={data?.googleAnalytics} />
-        <Script async src={data?.facebookPexels} />
+        {/* <Script async src={data?.googleAnalytics} />
+        <Script async src={data?.facebookPexels} /> */}
       </head>
       <GoogleTagManager gtmId={data?.googleTagsManager ?? ""} />
       <body className={inter.className}>

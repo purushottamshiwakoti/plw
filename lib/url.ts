@@ -1,1 +1,1 @@
-export const AppUrl="http://127.0.0.1:1337"
+export const AppUrl = "http://93.127.195.143";

@@ -6,16 +6,19 @@ async function getData() {
   const cookieStore = cookies();
 
   const locale = cookieStore.get("language")?.value ?? "en";
-  const endpoint = locale === "en" ? "menus/4" : "menus/4";
+  const endpoint = locale === "en" ? "menus/1" : "menus/1";
 
   try {
     const [res, menuData] = await Promise.all([
       apiCall("navbar", "populate=Logo.media"),
       apiCall(`${endpoint}`, "nested&populate=*"),
     ]);
+    console.log(menuData);
     const { data } = res;
+    console.log(data);
 
     const buttonName = data.attributes.ButtonName;
+    console.log(buttonName);
 
     const backgroundColor = data.attributes.BackgroundColor;
 
@@ -24,8 +27,10 @@ async function getData() {
     const buttonLink = data.attributes.ButtonLink;
 
     const menu = menuData.data.attributes.items.data;
+    console.log(menu);
 
     const logo = data.attributes.Logo.media.data.attributes.formats.large.url;
+    console.log(logo);
 
     return {
       buttonName,

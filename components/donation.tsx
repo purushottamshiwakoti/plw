@@ -1,3 +1,4 @@
+import { AppUrl } from "@/lib/url";
 import { PersonStandingIcon, Star } from "lucide-react";
 import Image from "next/image";
 
@@ -15,7 +16,7 @@ interface DonationProps {
         data: {
           attributes: {
             formats: {
-              medium: {
+              small: {
                 url: string;
               };
             };
@@ -33,11 +34,12 @@ export const Donation = ({
   banner,
   showDonationTitle,
 }: DonationProps) => {
+  console.log(description, donations, title, banner, showDonationTitle);
   return (
     <div
       className="  bg-no-repeat bg-center bg-cover  mb-10"
       style={{
-        backgroundImage: `url(${banner})`,
+        backgroundImage: `url(${AppUrl}${banner})`,
       }}
     >
       <div className="bg-[#06B37C]/90 p-10">
@@ -58,32 +60,38 @@ export const Donation = ({
         )}
         <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1  lg:mt-10 mt-4 lg:px-[6rem] px-1 md:px-3 md:gap-4">
           {donations &&
-            donations.map((item, index) => (
-              <div
-                className="group flex items-center hover:-translate-y-5 transition-all duration-500 flex-col lg:my-14 my-5 lg:mx-4 cursor-pointer bg-white/20 rounded-md py-10"
-                key={index}
-              >
-                <div className="p-10   rounded-md  w-40 h-40 flex items-center">
-                  {/* <PersonStandingIcon className="text-white w-24 h-24" /> */}
-                  <Image
-                    alt={item.Icon.alt}
-                    src={
-                      process.env.NODE_ENV === "development"
-                        ? `${process.env.APPURL}${item.Icon.media.data.attributes.formats.medium.url}`
-                        : item.Icon.media.data.attributes.formats.medium.url
-                    }
-                    width={80}
-                    height={80}
-                  />
+            donations.map((item, index) => {
+              console.log(
+                `${AppUrl}${item.Icon.media.data.attributes.formats.small?.url}`
+              );
+              console.log(item.Icon.media.data.attributes.formats.small);
+              return (
+                <div
+                  className="group flex items-center hover:-translate-y-5 transition-all duration-500 flex-col lg:my-14 my-5 lg:mx-4 cursor-pointer bg-white/20 rounded-md py-10"
+                  key={index}
+                >
+                  <div className="p-10   rounded-md  w-40 h-40 flex items-center">
+                    {/* <PersonStandingIcon className="text-white w-24 h-24" /> */}
+                    <Image
+                      alt={item.Icon.alt}
+                      src={
+                        process.env.NODE_ENV === "development"
+                          ? `${AppUrl}${item.Icon.media.data.attributes.formats.small.url}`
+                          : item.Icon.media.data.attributes.formats.small.url
+                      }
+                      width={80}
+                      height={80}
+                    />
+                  </div>
+                  <div className="mt-4 text-white">
+                    <h2 className="font-bold text-3xl">{item.Description}</h2>
+                  </div>
+                  <p className="text-white mt-2 text-lg line-clamp-5 ">
+                    {item.Title}
+                  </p>
                 </div>
-                <div className="mt-4 text-white">
-                  <h2 className="font-bold text-3xl">{item.Description}</h2>
-                </div>
-                <p className="text-white mt-2 text-lg line-clamp-5 ">
-                  {item.Title}
-                </p>
-              </div>
-            ))}
+              );
+            })}
         </div>
       </div>
     </div>

@@ -38,6 +38,8 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   // const menuItem = hasEmptyChildren(menu);
 
+  console.log(`${AppUrl}${logo}`);
+
   return (
     <nav
       className={cn(
@@ -51,9 +53,7 @@ export const Navbar: React.FC<NavbarProps> = ({
       <Link href="/">
         <Image
           // src={logo}
-          src={
-            process.env.NODE_ENV === "development" ? `${AppUrl}${logo}` : logo
-          }
+          src={`${AppUrl}${logo}`}
           alt="logo"
           width={180}
           height={50}
