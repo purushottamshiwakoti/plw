@@ -6,6 +6,7 @@ import Slider from "./slider";
 import { Button } from "./ui/button";
 import Link from "next/link";
 import useHeaderMenuStore from "@/hooks/use-toogle-header";
+import { AppUrl } from "@/lib/url";
 
 export const TopHeader = ({ data }: { data: any }) => {
   const { isMenuShown } = useHeaderMenuStore();
@@ -22,7 +23,7 @@ export const TopHeader = ({ data }: { data: any }) => {
             <div className="flex items-center gap-2">
               <Image
                 // src={data?.icon}
-                src={`${process.env.APPURL}${data?.icon}`}
+                src={`${AppUrl}${data?.icon}`}
                 alt={data?.iconAlt}
                 width={25}
                 height={25}
