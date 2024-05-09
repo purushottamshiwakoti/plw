@@ -1,12 +1,12 @@
 "use client";
 
-import Image from "next/image";
-import { SmallSocialIcon } from "./small-social-icon";
-import Slider from "./slider";
-import { Button } from "./ui/button";
-import Link from "next/link";
 import useHeaderMenuStore from "@/hooks/use-toogle-header";
 import { AppUrl } from "@/lib/url";
+import Image from "next/image";
+import Link from "next/link";
+import Slider from "./slider";
+import { SmallSocialIcon } from "./small-social-icon";
+import { Button } from "./ui/button";
 
 export const TopHeader = ({ data }: { data: any }) => {
   const { isMenuShown } = useHeaderMenuStore();
@@ -23,7 +23,7 @@ export const TopHeader = ({ data }: { data: any }) => {
             <div className="flex items-center gap-2">
               <Image
                 // src={data?.icon}
-                src={`${AppUrl}${data.icon}`}
+                src={`${process.env.APPURL}${data.icon}`}
                 alt={data?.iconAlt}
                 width={25}
                 height={25}
