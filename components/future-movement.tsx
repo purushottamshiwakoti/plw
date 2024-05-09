@@ -21,7 +21,7 @@ interface FutureMovementProps {
         data: {
           attributes: {
             formats: {
-              small: {
+              thumbnail: {
                 url: string;
               };
             };
@@ -37,6 +37,7 @@ export const FutureMovement = ({
   title,
   icon,
 }: FutureMovementProps) => {
+  console.log(icon);
   return (
     <section className="lg:px-[10rem] px-4 w-full my-20">
       <div className="flex gap-[1px]  items-center justify-center ">
@@ -59,11 +60,11 @@ export const FutureMovement = ({
             <div className="space-y-3 w-full " key={index}>
               <div className="flex items-center gap-10 ">
                 {/* <CircleAlertIcon className="text-blue-500 w-10 h-10" /> */}
-                {item.Icon.media.data.attributes.formats.small && (
+                {item.Icon.media.data.attributes.formats.thumbnail && (
                   <Image
                     alt={item.Icon.alt}
                     // src={item.Icon.media.data.attributes.formats.small.url}
-                    src={`${process.env.APPURL}${item.Icon.media.data.attributes.formats.small.url}`}
+                    src={`${process.env.APPURL}${item.Icon.media.data.attributes.formats.thumbnail.url}`}
                     width={50}
                     height={50}
                   />
