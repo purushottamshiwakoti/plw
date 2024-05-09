@@ -259,12 +259,12 @@ export const MenuItem = ({ menu }: { menu: any }) => {
                               ) : (
                                 <>
                                   <div
-                                    className="bg-white min-h-[70vh] max-h-[80vh]
+                                    className="bg-white min-h-[70vh] max-h-[90vh]
                                 shadow-sm
-                                flex fixed left-0 mx-[10rem] w-[80vw]   overflow-auto"
+                                flex fixed left-0 mx-[10rem] w-auto   overflow-auto"
                                     onMouseLeave={() => toggleMenu(true)}
                                   >
-                                    <div className="flex px-14 py-5  justify-between flex-wrap  ">
+                                    <div className="flex px-5 py-5  justify-between flex-wrap  ">
                                       {item.attributes.children.data.map(
                                         (item: any, index: number) => (
                                           <div
