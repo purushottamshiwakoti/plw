@@ -127,17 +127,19 @@ export const PoliciesAndProgress = ({
 
         <div className="grid lg:grid-cols-2 grid-cols-1 my-10  opacity-0 faqs pb-20 ">
           <div>
-            <Image
-              // src={faqList[0].Image.media.data.attributes.formats.small.url}
-              src={
-                AppUrl +
-                faqList[0].Image.media.data.attributes.formats.small.url
-              }
-              alt="hello"
-              width={500}
-              height={500}
-              className="object-cover"
-            />
+            {faqList[0] && (
+              <Image
+                // src={faqList[0].Image.media.data.attributes.formats.small.url}
+                src={
+                  AppUrl +
+                  faqList[0]?.Image.media.data.attributes.formats.small.url
+                }
+                alt="hello"
+                width={500}
+                height={500}
+                className="object-cover"
+              />
+            )}
           </div>
           <div className="lg:mt-0 mt-4">
             <Accordion
@@ -146,14 +148,15 @@ export const PoliciesAndProgress = ({
               defaultValue={"0"}
               className="w-full"
             >
-              {faqList[0].QuestionAnswer.map((item, index) => {
-                return (
-                  <AccordionItem value={index.toLocaleString()} key={index}>
-                    <AccordionTrigger>{item.Question}</AccordionTrigger>
-                    <AccordionContent>{item.Answer}</AccordionContent>
-                  </AccordionItem>
-                );
-              })}
+              {faqList[0] &&
+                faqList[0]?.QuestionAnswer.map((item, index) => {
+                  return (
+                    <AccordionItem value={index.toLocaleString()} key={index}>
+                      <AccordionTrigger>{item.Question}</AccordionTrigger>
+                      <AccordionContent>{item.Answer}</AccordionContent>
+                    </AccordionItem>
+                  );
+                })}
             </Accordion>
           </div>
         </div>

@@ -50,7 +50,6 @@ export const MenuItem = ({ menu }: { menu: any }) => {
     children: any;
     title: string;
   }) => {
-    console.log(hoverMenu);
     return (
       hoverMenu &&
       hoverMenu.includes(title) && (
@@ -173,7 +172,10 @@ export const MenuItem = ({ menu }: { menu: any }) => {
                           : null;
                       }}
                     >
-                      <span className="flex items-center">
+                      <Link
+                        href={item.attributes.title}
+                        className="flex items-center"
+                      >
                         {item.attributes.title}
 
                         {dropdown === item.attributes.title ? (
@@ -181,7 +183,7 @@ export const MenuItem = ({ menu }: { menu: any }) => {
                         ) : (
                           <ChevronUp className="w-3 h-3 ml-[2px] " />
                         )}
-                      </span>
+                      </Link>
                     </span>
                     <div>
                       {dropdown === item.attributes.title && (

@@ -6,7 +6,7 @@ async function getData() {
   const cookieStore = cookies();
 
   const locale = cookieStore.get("language")?.value ?? "en";
-  const endpoint = locale === "en" ? "menus/1" : "menus/1";
+  const endpoint = locale === "en" ? "menus/1" : "menus/3";
 
   try {
     const [res, menuData] = await Promise.all([
