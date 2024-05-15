@@ -1,7 +1,7 @@
 import { TrendingPost } from "@/components/TrendingPost";
 import { Articles } from "@/components/articles";
 import { Categories } from "@/components/categories";
-import { CustomBreadCrum } from "@/components/custom-breadcrum";
+import { CustomBreadcrumb } from "@/components/custom-breadcrum";
 import { PopularTags } from "@/components/popular-tags";
 import { RecentEvents } from "@/components/recent-events";
 import { SearchInput } from "@/components/search-input";
@@ -10,9 +10,9 @@ const CategoryPage = () => {
   return (
     <div className="lg:mx-[10rem] mx-4 py-10">
       <div>
-        <CustomBreadCrum />
+        <CustomBreadcrumb />
 
-        <div className="mt-5 lg:flex   lg:space-x-20   ">
+        <div className="mt-5 lg:flex   gap-20  ">
           <div className="relative lg:w-[50%]">
             <SearchInput />
             <Articles />

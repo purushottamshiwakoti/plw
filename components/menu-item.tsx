@@ -71,7 +71,7 @@ export const MenuItem = ({ menu }: { menu: any }) => {
             >
               {child.attributes.children.data.length == 0 ? (
                 <Link
-                  href={`${child.attributes.link}`}
+                  href={`${child.attributes.url}`}
                   onClick={() => {
                     setDropdown(null);
                     setHoverMenu(["hello"]);
@@ -103,13 +103,14 @@ export const MenuItem = ({ menu }: { menu: any }) => {
                     }}
                     className="relative  w-full "
                   >
-                    <p
+                    <Link
+                      href={child.attributes.url}
                       className="p-3 text-gray-700  text-sm hover:text-white  flex items-center group justify-between "
                       title={child.attributes.title}
                     >
                       {child.attributes.title}
                       <ChevronRight className="w-3 h-3  ml-2  " />
-                    </p>
+                    </Link>
 
                     {renderChildren({
                       children: child.attributes.children.data,
@@ -173,7 +174,7 @@ export const MenuItem = ({ menu }: { menu: any }) => {
                       }}
                     >
                       <Link
-                        href={item.attributes.title}
+                        href={item.attributes.url ?? "#"}
                         className="flex items-center"
                       >
                         {item.attributes.title}
@@ -237,15 +238,16 @@ export const MenuItem = ({ menu }: { menu: any }) => {
                                             )
                                           );
                                         }}
-                                        className="relative w-full"
+                                        className="relative w-  full"
                                       >
-                                        <p
+                                        <Link
+                                          href={child.attributes.url}
                                           className="p-3 px-8 text-gray-700  hover:text-white text-sm flex justify-between items-center peer "
                                           title={child.attributes.title}
                                         >
                                           {child.attributes.title}
                                           <ChevronRight className="w-3 h-3 ml-2" />
-                                        </p>
+                                        </Link>
                                         <div>
                                           {renderChildren({
                                             children:
@@ -274,9 +276,12 @@ export const MenuItem = ({ menu }: { menu: any }) => {
                                             key={index}
                                           >
                                             <div>
-                                              <h2 className="text-sm font-semibold text-gray-500">
+                                              <Link
+                                                href={item.attributes.url}
+                                                className="text-sm font-semibold text-gray-500"
+                                              >
                                                 {item.attributes.title}
-                                              </h2>
+                                              </Link>
                                               <span className="border-2 border-buttonHoverBg absolute w-[30%] left-0 top-7"></span>
                                               <hr className="my-2 " />
                                             </div>
@@ -344,7 +349,11 @@ export const MenuItem = ({ menu }: { menu: any }) => {
                                                             }}
                                                             className="relative w-full"
                                                           >
-                                                            <p
+                                                            <Link
+                                                              href={
+                                                                child.attributes
+                                                                  .url
+                                                              }
                                                               className="p-3  text-gray-700   text-sm flex items-center justify-between peer "
                                                               title={
                                                                 child.attributes
@@ -356,7 +365,7 @@ export const MenuItem = ({ menu }: { menu: any }) => {
                                                                   .title
                                                               }
                                                               <ChevronRight className="w-3 h-3 ml-2" />
-                                                            </p>
+                                                            </Link>
                                                             <div>
                                                               {renderChildren({
                                                                 children:

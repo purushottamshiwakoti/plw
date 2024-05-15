@@ -30,7 +30,7 @@ export const Articles = () => {
             className="bg-white shadow-md pb-5  group cursor-pointer "
             key={index + startIndex}
           >
-            <Link href={`${category}/article${index + 1}`}>
+            <Link href={`/article/${index + 1}`}>
               <div className="w-full h-[25rem] overflow-hidden relative">
                 <div className="bg-white/40 opacity-0 group-hover:opacity-100 absolute w-full transition-all duration-500  h-[25rem] top-0 z-50" />
                 <Image

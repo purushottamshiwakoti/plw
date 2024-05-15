@@ -9,19 +9,25 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import { useParams } from "next/navigation";
+import React from "react";
 
-export const CustomBreadCrum = () => {
+import _ from "lodash";
+
+export const CustomBreadcrumb = () => {
   const params = useParams();
   let breads = [];
   for (const key in params) {
     const value = params[key];
     breads.push(value);
   }
-  const page = breads[breads.length - 1];
-  const components = breads.filter((item) => item !== page);
+  const allBreads = _.flattenDeep(breads);
+  const page = allBreads[allBreads.length - 1];
+  let components = breads.filter((item) => item !== page);
 
-  console.log(page);
-  console.log(components);
+  components = _.flattenDeep(components);
+  components = components.slice(0, components.length - 1);
+  components = _.flattenDeep(components);
+
   return (
     <Breadcrumb>
       <BreadcrumbList>
@@ -31,18 +37,19 @@ export const CustomBreadCrum = () => {
         <BreadcrumbSeparator />
         {components.length > 0 && (
           <>
-            <BreadcrumbItem>
-              {components.map((item, index) => (
-                <BreadcrumbLink
-                  href={`/${item}`}
-                  key={index}
-                  className="capitalize"
-                >
-                  {item}
-                </BreadcrumbLink>
-              ))}
-            </BreadcrumbItem>
-            <BreadcrumbSeparator />
+            {components.map((item, index) => (
+              <React.Fragment key={index}>
+                <BreadcrumbItem>
+                  <BreadcrumbLink
+                    href={`/${components.slice(0, index + 1).join("/")}`}
+                    className="capitalize"
+                  >
+                    {String(item).replaceAll("-", " ")}
+                  </BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator />
+              </React.Fragment>
+            ))}
           </>
         )}
         <BreadcrumbItem>
