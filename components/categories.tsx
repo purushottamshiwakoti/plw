@@ -1,7 +1,9 @@
 export const Categories = () => {
   return (
     <div>
-      <h2 className="uppercase text-base font-semibold ">Categories</h2>
+      <h2 className="uppercase text-base font-semibold ">
+        The latest articles
+      </h2>
       <div>
         <hr className="w-[35%] border-2 border-buttonHoverBg" />
       </div>

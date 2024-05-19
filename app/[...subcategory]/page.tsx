@@ -7,24 +7,41 @@ import { PopularTags } from "@/components/popular-tags";
 import { RecentEvents } from "@/components/recent-events";
 import { SearchInput } from "@/components/search-input";
 import { apiCall } from "@/lib/api";
+import { notFound } from "next/navigation";
 
 async function getPages(subcategory: string[]) {
   try {
-    console.log(subcategory[subcategory.length - 1]);
-    const res = await apiCall(
-      `pages/${subcategory[subcategory.length - 1]}`,
-      "populate=*"
-    );
-    console.log();
+    const lastSubcategory = subcategory[subcategory.length - 1];
+    console.log(lastSubcategory);
+
+    const res = await apiCall(`pages/${lastSubcategory}`, "populate=*");
+    const categories = subcategory.slice(0, -1);
+    console.log(categories);
+
+    const promises = categories.map(async (item) => {
+      const response = await apiCall(`pages/${item}`, "populate=*");
+      console.log(response?.error?.status);
+      if (response.error) {
+        throw new Error("API call failed"); // Throw an error if API call fails
+      }
+    });
+
+    await Promise.all(promises);
+
     return res.data.attributes.articles.data;
   } catch (error) {
     console.log(error);
+    // You can handle the error here, maybe return a specific error response
+    return notFound(); // Assuming notFound() returns an appropriate error response
   }
 }
 
 const CategoryPage = async ({ params }: { params: any }) => {
   const { subcategory } = params;
   const data = await getPages(subcategory);
+  if (!data) {
+    return notFound();
+  }
 
   return (
     <div className="lg:mx-[10rem] mx-4 py-10">
