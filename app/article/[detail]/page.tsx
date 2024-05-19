@@ -30,7 +30,7 @@ const ArticlePage = async ({ params }: { params: any }) => {
         {/* <CustomBreadcrumb /> */}
 
         <div className="mt-5 lg:flex   lg:gap-20 ">
-          <div className="relative lg:w-[50%]">
+          <div className="relative lg:w-[55%]">
             {data ? (
               <>
                 <ArticleDetail data={data} />
@@ -40,7 +40,7 @@ const ArticlePage = async ({ params }: { params: any }) => {
               <ArticleNotFOund />
             )}
           </div>
-          <div className="lg:relative lg:w-[30%] md:w-[50%] lg:mt-0 mt-8">
+          <div className="lg:relative lg:w-[20%] md:w-[50%] lg:mt-0 mt-8">
             <Categories />
             <div className="mt-10">
               <RecentEvents />

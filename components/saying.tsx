@@ -1,10 +1,10 @@
-import { Calendar, Folder, Quote, Star, User } from "lucide-react";
-import Image from "next/image";
+"use client";
+import { useState } from "react";
 import { Button } from "./ui/button";
-import {
-  BlocksRenderer,
-  type BlocksContent,
-} from "@strapi/blocks-react-renderer";
+import parse from "html-react-parser";
+import Image from "next/image";
+import { AppUrl } from "@/lib/url";
+import { Star, Quote } from "lucide-react";
 
 interface SayingProps {
   title: string;
@@ -13,24 +13,46 @@ interface SayingProps {
     Name: string;
     Designation: string;
     Stars: string;
-    Review: any;
-    Image: any;
+    Review: string;
+    Image: {
+      media: {
+        data: {
+          attributes: {
+            formats: {
+              thumbnail: {
+                url: string;
+              };
+            };
+          };
+        };
+      };
+      alt: string;
+    };
   }[];
 }
 
 export const Saying = ({ description, title, review }: SayingProps) => {
+  const [showFullReview, setShowFullReview] = useState<null | string>(null);
+
+  const handleReadMore = (review: string) => {
+    setShowFullReview(review);
+  };
+
+  const handleShowLess = () => {
+    setShowFullReview(null);
+  };
+
   return (
     <>
       <section className="lg:px-[10rem] p-4 w-full my-20">
-        <div className="lg:mt-5 space-y-3  ">
-          <h2 className="text-[#222] text-2xl font-bold text-center ">
+        <div className="lg:mt-5 space-y-3">
+          <h2 className="text-[#222] text-2xl font-bold text-center">
             {title}
           </h2>
-
           <p className="text-center text-[#666] lg:mx-[14rem] mt-3">
             {description}
           </p>
-          <div className="flex gap-[1px]  items-center justify-center ">
+          <div className="flex gap-[1px] items-center justify-center">
             <Star fill="#299726" strokeWidth={0} className="w-5 h-5" />
             <Star fill="#299726" strokeWidth={0} className="w-7 h-7" />
             <Star fill="#299726" strokeWidth={0} className="w-5 h-5" />
@@ -40,15 +62,39 @@ export const Saying = ({ description, title, review }: SayingProps) => {
           {review &&
             review.map((item, index) => (
               <div
-                className="shadow-xl border-1 w-full flex flex-col p-3"
+                className="shadow-xl border-1 w-full flex flex-col p-3 review-card"
                 key={index}
               >
-                <div className="px-6 py-10 flex-1 flex flex-col">
+                <div className="px-6 py-10 flex flex-col">
                   <div className="flex items-start justify-start mb-3">
                     <Quote className="text-[#09274C]" />
                   </div>
-                  <div className="mt-3 flex-1 overflow-hidden">
-                    <BlocksRenderer content={item.Review} />
+                  <div
+                    className={`mt-3 ${showFullReview ? "overflow-auto" : ""}`}
+                  >
+                    {showFullReview === item.Review ? (
+                      <>
+                        {parse(item.Review)}
+                        <Button
+                          variant={"link"}
+                          className="p-0"
+                          onClick={handleShowLess}
+                        >
+                          Show Less
+                        </Button>
+                      </>
+                    ) : (
+                      <>
+                        {parse(item.Review.slice(0, 300) + "...")}
+                        <Button
+                          variant={"link"}
+                          className="p-0"
+                          onClick={() => handleReadMore(item.Review)}
+                        >
+                          Read More
+                        </Button>
+                      </>
+                    )}
                   </div>
                   <div className="flex items-start justify-end mt-3">
                     <Quote className="text-[#09274C]" />
@@ -57,10 +103,7 @@ export const Saying = ({ description, title, review }: SayingProps) => {
                 <div className="mt-4 flex items-center justify-between">
                   <div className="flex items-center space-x-3">
                     <Image
-                      // src={
-                      //   item.Image.media.data.attributes.formats.thumbnail.url
-                      // }
-                      src={`${process.env.APPURL}${item.Image.media.data.attributes.formats.thumbnail.url}`}
+                      src={`${AppUrl}${item.Image.media.data.attributes.formats.thumbnail.url}`}
                       width={100}
                       height={100}
                       alt={item.Image.alt}

@@ -28,7 +28,7 @@ async function getPages(subcategory: string[]) {
 
     await Promise.all(promises);
 
-    return res.data.attributes.articles.data;
+    return res.body;
   } catch (error) {
     console.log(error);
     // You can handle the error here, maybe return a specific error response
@@ -43,6 +43,7 @@ const CategoryPage = async ({ params }: { params: any }) => {
     return notFound();
   }
 
+
   return (
     <div className="lg:mx-[10rem] mx-4 py-10">
       <div>
@@ -51,7 +52,11 @@ const CategoryPage = async ({ params }: { params: any }) => {
         <div className="mt-5 lg:flex   gap-20  ">
           <div className="relative lg:w-[55%]">
             <SearchInput />
-            {data.length > 0 ? <Articles data={data} /> : <ArticleNotFOund />}
+            {data.data.length > 0 ? (
+              <Articles data={data} />
+            ) : (
+              <ArticleNotFOund />
+            )}
           </div>
           <div className="lg:relative md:w-[50%] lg:w-[20%] lg:mt-0 mt-8">
             <Categories />

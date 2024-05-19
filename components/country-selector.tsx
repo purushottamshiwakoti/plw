@@ -1,46 +1,29 @@
-"use client";
-
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { getCookie, setCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
-import { FlagIcon } from "react-flag-kit";
 
 export const CountrySelector = () => {
   const router = useRouter();
   const lang = getCookie("language");
 
-  const handleSetLanguage = (value: any) => {
-    setCookie("language", value);
+  const handleSetLanguage = (e: any) => {
+    const selectedLanguage = e.target.value;
+    setCookie("language", selectedLanguage);
     router.refresh();
   };
+
   return (
-    <Select
-      defaultValue={lang ?? "en"}
-      onValueChange={(val: any) => handleSetLanguage(val)}
+    <select
+      id="countries"
+      className="w-[5rem] bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600
+     
+      dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+      value={lang ?? "en"}
+      onChange={handleSetLanguage}
     >
-      <SelectTrigger className="w-[80px] text-primary">
-        <SelectValue placeholder="Select " />
-      </SelectTrigger>
-      <SelectContent>
-        <SelectItem value="en">
-          <div className="flex items-center gap-2">
-            <FlagIcon code="US" size={20} />
-            English
-          </div>
-        </SelectItem>
-        <SelectItem value="ar">
-          <div className="flex items-center gap-2">
-            <FlagIcon code="AE" size={20} />
-            Arabic
-          </div>
-        </SelectItem>
-      </SelectContent>
-    </Select>
+      <option value="ar" className="mt-10 ">
+        🇦🇪 Ar
+      </option>
+      <option value="en">🇺🇸 En</option>
+    </select>
   );
 };
