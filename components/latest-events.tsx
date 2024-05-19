@@ -19,9 +19,9 @@ import {
 export const LatestEvents = () => {
   return (
     <>
-      <div className="my-10 lg:px-[10rem] px-4 ">
+      <div className="my-10 mt-20 lg:px-[10rem] px-4 ">
         <div>
-          <h2 className="text-[#4F4F4F] text-center font-bold text-3xl my-10">
+          <h2 className="text-[#4F4F4F] text-center font-bold text-3xl mb-10 ">
             Featured
           </h2>
         </div>
@@ -29,21 +29,21 @@ export const LatestEvents = () => {
           opts={{
             align: "start",
           }}
-          className="w-full mt-4 "
+          className="w-full mt-4  px-[12rem]  "
         >
-          <CarouselContent>
+          <CarouselContent className="gap-6">
             {Array.from({ length: 10 }).map((_, index) => (
-              <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
-                <div
-                  className="space-y-3 shadow-xl border-1 w-full "
-                  key={index}
-                >
-                  <div className=" relative w-full h-[200px] ">
+              <CarouselItem
+                key={index}
+                className="w-full md:basis-1/2 lg:basis-1/3 shadow-xl border "
+              >
+                <div className="space-y-3   " key={index}>
+                  <div className="relative  -ml-4 h-[200px]">
                     <Image
                       src={"/images/p2.jpg"}
                       alt="img"
                       fill
-                      className="object-cover"
+                      className="object-cover "
                     />
                     <div className="bg-buttonHoverBg absolute -bottom-8 rounded-sm text-white py-3 left-4 p-[3px] w-[5rem] flex flex-col items-center justify-center">
                       <span className="font-bold text-2xl">14</span>
@@ -113,7 +113,7 @@ export const LatestEvents = () => {
               </CarouselItem>
             ))}
           </CarouselContent>
-          <div className="mt-5">
+          <div className="mt-10">
             <div className="flex items-center justify-center gap-4">
               <CarouselPrevious className="w-12" />
               <CarouselNext className="w-12" />
