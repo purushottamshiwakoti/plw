@@ -49,11 +49,11 @@ const CategoryPage = async ({ params }: { params: any }) => {
         <CustomBreadcrumb />
 
         <div className="mt-5 lg:flex   gap-20  ">
-          <div className="relative lg:w-[50%]">
+          <div className="relative lg:w-[55%]">
             <SearchInput />
             {data.length > 0 ? <Articles data={data} /> : <ArticleNotFOund />}
           </div>
-          <div className="lg:relative md:w-[50%] lg:w-[30%] lg:mt-0 mt-8">
+          <div className="lg:relative md:w-[50%] lg:w-[20%] lg:mt-0 mt-8">
             <Categories />
             <div className="mt-10">
               <RecentEvents />

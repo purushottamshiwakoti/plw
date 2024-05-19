@@ -54,7 +54,7 @@ export const MenuItem = ({ menu }: { menu: any }) => {
       hoverMenu &&
       hoverMenu.includes(title) && (
         <div
-          className=" absolute  -right-[14rem] top-0 z-10 bg-white w-[14rem]   border-t-blue-700  shadow-md "
+          className=" absolute  -right-[14rem] top-0 z-10 bg-white w-[14rem]   border-t-buttonHoverBg  shadow-md "
 
           // onMouseEnter={() => setDropdown(item.Name)} // Keep dropdown open when hovering over the dropdown menu
           //   onMouseLeave={() => {
@@ -107,6 +107,11 @@ export const MenuItem = ({ menu }: { menu: any }) => {
                       href={child.attributes.url}
                       className="p-3 text-gray-700  text-sm hover:text-white  flex items-center group justify-between "
                       title={child.attributes.title}
+                      onClick={() => {
+                        setDropdown(null);
+                        setHoverMenu(["hello"]);
+                        toggleMenu(true);
+                      }}
                     >
                       {child.attributes.title}
                       <ChevronRight className="w-3 h-3  ml-2  " />
@@ -138,7 +143,14 @@ export const MenuItem = ({ menu }: { menu: any }) => {
           return (
             <li key={index} className=" group cursor-pointer">
               {item.attributes.children.data.length == 0 ? (
-                <Link href={item.attributes.url ?? "/"}>
+                <Link
+                  href={item.attributes.url ?? "/"}
+                  onClick={() => {
+                    setDropdown(null);
+                    setHoverMenu(["hello"]);
+                    toggleMenu(true);
+                  }}
+                >
                   <span
                     className={cn(
                       path === item.attributes.url
@@ -176,6 +188,11 @@ export const MenuItem = ({ menu }: { menu: any }) => {
                       <Link
                         href={item.attributes.url ?? "#"}
                         className="flex items-center"
+                        onClick={() => {
+                          setDropdown(null);
+                          setHoverMenu(["hello"]);
+                          toggleMenu(true);
+                        }}
                       >
                         {item.attributes.title}
 
@@ -189,7 +206,7 @@ export const MenuItem = ({ menu }: { menu: any }) => {
                     <div>
                       {dropdown === item.attributes.title && (
                         <div
-                          className=" absolute mt-[26px]  z-10 bg-white  origin-left border-t-blue-700 border-t-[0.2rem] shadow-md"
+                          className=" absolute mt-[26px]  z-10 bg-white  origin-left border-t-buttonHoverBg border-t-[0.2rem] shadow-md"
                           // onMouseEnter={() => setDropdown(item.Name)} // Keep dropdown open when hovering over the dropdown menu
                           // onMouseOut={() => setDropdown(null)}
                           ref={dropdownRef}
@@ -244,6 +261,11 @@ export const MenuItem = ({ menu }: { menu: any }) => {
                                           href={child.attributes.url}
                                           className="p-3 px-8 text-gray-700  hover:text-white text-sm flex justify-between items-center peer "
                                           title={child.attributes.title}
+                                          onClick={() => {
+                                            setDropdown(null);
+                                            setHoverMenu(["hello"]);
+                                            toggleMenu(true);
+                                          }}
                                         >
                                           {child.attributes.title}
                                           <ChevronRight className="w-3 h-3 ml-2" />
@@ -279,6 +301,11 @@ export const MenuItem = ({ menu }: { menu: any }) => {
                                               <Link
                                                 href={item.attributes.url}
                                                 className="text-sm font-semibold text-gray-500"
+                                                onClick={() => {
+                                                  setDropdown(null);
+                                                  setHoverMenu(["hello"]);
+                                                  toggleMenu(true);
+                                                }}
                                               >
                                                 {item.attributes.title}
                                               </Link>
@@ -359,6 +386,17 @@ export const MenuItem = ({ menu }: { menu: any }) => {
                                                                 child.attributes
                                                                   .title
                                                               }
+                                                              onClick={() => {
+                                                                setDropdown(
+                                                                  null
+                                                                );
+                                                                setHoverMenu([
+                                                                  "hello",
+                                                                ]);
+                                                                toggleMenu(
+                                                                  true
+                                                                );
+                                                              }}
                                                             >
                                                               {
                                                                 child.attributes
