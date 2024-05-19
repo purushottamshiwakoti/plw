@@ -58,7 +58,7 @@ export const Donation = ({
             </p>
           </div>
         )}
-        <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1  lg:mt-10 mt-4 lg:px-[6rem] px-1 md:px-3 md:gap-4">
+        <div className=" flex justify-center flex-wrap">
           {donations &&
             donations.map((item, index) => {
               console.log(
@@ -67,10 +67,10 @@ export const Donation = ({
               console.log(item.Icon.media.data.attributes.formats.small);
               return (
                 <div
-                  className="group flex items-center hover:-translate-y-5 transition-all duration-500 flex-col lg:my-14 my-5 lg:mx-4 cursor-pointer bg-white/20 rounded-md py-10"
+                  className="group   hover:-translate-y-5 transition-all duration-500 flex-col lg:my-14 my-5 lg:mx-4 cursor-pointer bg-white/20 rounded-md py-10"
                   key={index}
                 >
-                  <div className="p-10   rounded-md  w-40 h-40 flex items-center">
+                  <div className="  rounded-md  min-w-72 min-h-32 flex flex-col items-center justify-center">
                     {/* <PersonStandingIcon className="text-white w-24 h-24" /> */}
                     <Image
                       alt={item.Icon.alt}
@@ -79,12 +79,12 @@ export const Donation = ({
                       height={80}
                     />
                   </div>
-                  <div className="mt-4 text-white">
+                  <div className=" flex flex-col items-center text-white">
                     <h2 className="font-bold text-3xl">{item.Description}</h2>
+                    <p className="text-white mt-2 text-lg line-clamp-5 ">
+                      {item.Title}
+                    </p>
                   </div>
-                  <p className="text-white mt-2 text-lg line-clamp-5 ">
-                    {item.Title}
-                  </p>
                 </div>
               );
             })}
