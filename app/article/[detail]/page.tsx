@@ -8,8 +8,11 @@ import { CustomBreadcrumb } from "@/components/custom-breadcrum";
 import { PopularTags } from "@/components/popular-tags";
 import { RecentEvents } from "@/components/recent-events";
 import { SearchInput } from "@/components/search-input";
+import { Skeleton } from "@/components/ui/skeleton";
 import { apiCall } from "@/lib/api";
 import { getDate } from "date-fns";
+import { ChevronRight } from "lucide-react";
+import { notFound } from "next/navigation";
 
 async function getArticle(slug: string) {
   try {
@@ -18,12 +21,16 @@ async function getArticle(slug: string) {
     return res.data;
   } catch (error) {
     console.log(error);
+    return notFound();
   }
 }
 
 const ArticlePage = async ({ params }: { params: any }) => {
   const data = await getArticle(params.detail);
   console.log(data);
+  if (!data) {
+    return notFound();
+  }
   return (
     <div className="lg:mx-[10rem] mx-4 py-10">
       <div>

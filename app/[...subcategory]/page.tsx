@@ -6,48 +6,71 @@ import { CustomBreadcrumb } from "@/components/custom-breadcrum";
 import { PopularTags } from "@/components/popular-tags";
 import { RecentEvents } from "@/components/recent-events";
 import { SearchInput } from "@/components/search-input";
+import { Skeleton } from "@/components/ui/skeleton";
 import { apiCall } from "@/lib/api";
+import { ArrowRight, ChevronRight } from "lucide-react";
 import { notFound } from "next/navigation";
 
-async function getPages(subcategory: string[]) {
+async function getPages(subcategory: string[], page: number | undefined) {
+  let breads: string[] = [];
+  let paginationPage = page ?? 1;
+
   try {
     const lastSubcategory = subcategory[subcategory.length - 1];
-    console.log(lastSubcategory);
 
-    const res = await apiCall(`pages/${lastSubcategory}`, "populate=*");
-    const categories = subcategory.slice(0, -1);
+    const res = await apiCall(
+      `articles`,
+      `populate=*&filter[pages][slug][$eq]=${lastSubcategory}&pagination[page]=${paginationPage}&pagination[pageSize]=10 `
+    );
+    const categories = subcategory;
     console.log(categories);
 
     const promises = categories.map(async (item) => {
-      const response = await apiCall(`pages/${item}`, "populate=*");
-      console.log(response?.error?.status);
-      if (response.error) {
-        throw new Error("API call failed"); // Throw an error if API call fails
+      console.log(item);
+      try {
+        const response = await apiCall(`pages/${item}`, "populate=*");
+        console.log(response.data.attributes.Title);
+        breads.push(response.data.attributes.Title);
+        console.log(breads);
+        if (response.error) {
+          throw new Error("API call failed");
+        }
+        console.log(breads);
+      } catch (error) {
+        console.error(error);
       }
     });
+    console.log(breads);
 
     await Promise.all(promises);
 
-    return res.body;
+    return { res, breads }; // Return both res and breads
   } catch (error) {
-    console.log(error);
-    // You can handle the error here, maybe return a specific error response
-    return notFound(); // Assuming notFound() returns an appropriate error response
+    console.error(error);
+    throw error; // Re-throw error to be caught by caller if needed
   }
 }
 
-const CategoryPage = async ({ params }: { params: any }) => {
+const CategoryPage = async ({
+  params,
+  searchParams,
+}: {
+  params: any;
+  searchParams: any;
+}) => {
   const { subcategory } = params;
-  const data = await getPages(subcategory);
+  const { page } = searchParams;
+  const response = await getPages(subcategory, page);
+  const { res, breads } = response;
+  const data = res;
   if (!data) {
     return notFound();
   }
 
-
   return (
     <div className="lg:mx-[10rem] mx-4 py-10">
       <div>
-        <CustomBreadcrumb />
+        <CustomBreadcrumb breads={breads} />
 
         <div className="mt-5 lg:flex   gap-20  ">
           <div className="relative lg:w-[55%]">

@@ -4,7 +4,7 @@ import Image from "next/image";
 export const TrendingPost = () => {
   return (
     <div>
-      <h2 className="uppercase text-base font-semibold ">Trending Posts</h2>
+      <h2 className="uppercase text-base font-semibold ">Featured Posts</h2>
       <div>
         <hr className="w-[35%] border-2 border-buttonHoverBg" />
       </div>

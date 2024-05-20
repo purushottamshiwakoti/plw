@@ -13,20 +13,9 @@ import React from "react";
 
 import _ from "lodash";
 
-export const CustomBreadcrumb = () => {
-  const params = useParams();
-  let breads = [];
-  for (const key in params) {
-    const value = params[key];
-    breads.push(value);
-  }
-  const allBreads = _.flattenDeep(breads);
-  const page = allBreads[allBreads.length - 1];
-  let components = breads.filter((item) => item !== page);
-
-  components = _.flattenDeep(components);
-  components = components.slice(0, components.length - 1);
-  components = _.flattenDeep(components);
+export const CustomBreadcrumb = ({ breads }: { breads: any[] }) => {
+  const page = breads[breads.length - 1];
+  const components = breads.slice(0, breads.length - 1);
 
   return (
     <Breadcrumb>

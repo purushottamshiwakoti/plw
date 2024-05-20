@@ -9,7 +9,9 @@ import { PoliciesAndProgress } from "@/components/policies-progress";
 import { Saying } from "@/components/saying";
 import { Services } from "@/components/services";
 import { SocialIcons } from "@/components/social-icons";
+import { Skeleton } from "@/components/ui/skeleton";
 import { apiCall } from "@/lib/api";
+import { Loader } from "lucide-react";
 
 async function getData() {
   try {
