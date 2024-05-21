@@ -6,8 +6,11 @@ import { ChevronDown, ChevronRight, ChevronUp } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
+import { getCookie } from "cookies-next";
 
 export const MenuItem = ({ menu }: { menu: any }) => {
+  const cookie = getCookie("language") ?? "en";
+
   const { toggleMenu } = useHeaderMenuStore();
   const [hoverMenu, setHoverMenu] = useState<any>(["hello"]);
   const [dropdown, setDropdown] = useState<string | null>(null);
@@ -283,12 +286,18 @@ export const MenuItem = ({ menu }: { menu: any }) => {
                                   <Separator className=" " />
                                 </div>
                               ) : (
-                                index == 2 && (
+                                childIndex == 2 && (
                                   <>
                                     <div
-                                      className="bg-white 
-                                shadow-sm
-                                flex mx-[10rem] h-[40vh] w-[80vw] -ml-[33vw]  overflow-auto"
+                                      className={`bg-white 
+                                      shadow-sm
+                                      flex mx-[10rem] h-[80vh] w-[80vw] 
+                                   
+                                      overflow-auto ${
+                                        cookie == "ar"
+                                          ? "   -mr-[33vw]"
+                                          : "-ml-[33vw]"
+                                      }`}
                                       onMouseLeave={() => toggleMenu(true)}
                                     >
                                       <div className="flex px-5 py-5  justify-between flex-wrap  ">
