@@ -15,10 +15,14 @@ import { Loader } from "lucide-react";
 
 async function getData() {
   try {
-    const res = await apiCall(
-      "home-page",
-      "populate=Banner.BannerImage&populate=Election&populate=Services.Icon.Icon.media&populate=AboutSFM.Image.media&populate=DonationIcons.Icon.media&populate=MovementIcon.Icon.media&populate=Reviews.Image.media&populate=AboutSFM.SocialMedia&populate=DonationBanner&populate=SocialMedia&populate=ConfirmVotes.BackgroundImage&populate=FAQ.Image.media&populate=FAQ.QuestionAnswer"
-    );
+    const [res, featuresRes] = await Promise.all([
+      apiCall(
+        "home-page",
+        "populate=Banner.BannerImage&populate=Election&populate=Services.Icon.Icon.media&populate=AboutSFM.Image.media&populate=DonationIcons.Icon.media&populate=MovementIcon.Icon.media&populate=Reviews.Image.media&populate=AboutSFM.SocialMedia&populate=DonationBanner&populate=SocialMedia&populate=ConfirmVotes.BackgroundImage&populate=FAQ.Image.media&populate=FAQ.QuestionAnswer"
+      ),
+      apiCall("articles", "filters[IsFeatured][$eq]=true&populate=*"),
+    ]);
+
     const { data } = res;
 
     // Extract banner attributes with proper null/undefined checks
@@ -74,6 +78,8 @@ async function getData() {
     const bannerImage =
       data.attributes.Banner.BannerImage.data.attributes.formats.thumbnail.url;
 
+    const featuredData = featuresRes.data;
+
     return {
       bannerTitle,
       bannerDescription,
@@ -116,6 +122,7 @@ async function getData() {
       faqSubTitle,
       faqs,
       showDonationTitle,
+      featuredData,
     };
   } catch (error) {
     // console.log("Error retrieving data:", error);
@@ -164,7 +171,7 @@ export default async function Home() {
             showDonationTitle={data?.showDonationTitle}
           />
         </div>
-        <LatestEvents />
+        <LatestEvents data={data?.featuredData} />
         <FutureMovement
           description={data?.movementTitle}
           title={data?.movementDescription}

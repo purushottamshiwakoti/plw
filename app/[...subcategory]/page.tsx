@@ -11,22 +11,37 @@ import { apiCall } from "@/lib/api";
 import { ArrowRight, ChevronRight } from "lucide-react";
 import { notFound } from "next/navigation";
 
-async function getPages(subcategory: string[], page: number | undefined) {
+async function getPages(
+  subcategory: string[],
+  page: number | undefined,
+  filter: string | undefined
+) {
   let breads: string[] = [];
   let paginationPage = page ?? 1;
 
   try {
     const lastSubcategory = subcategory[subcategory.length - 1];
+    let res;
 
-    const res = await apiCall(
-      `articles`,
-      `populate=*&filter[pages][slug][$eq]=${lastSubcategory}&pagination[page]=${paginationPage}&pagination[pageSize]=10 `
+    if (filter) {
+      res = await apiCall(
+        `articles`,
+        `populate=*&filter[pages][slug][$eq]=${lastSubcategory}&pagination[page]=${paginationPage}&pagination[pageSize]=1 &filters[Title][$startsWith]=${filter}`
+      );
+    } else {
+      res = await apiCall(
+        `articles`,
+        `populate=*&filter[pages][slug][$eq]=${lastSubcategory}&pagination[page]=${paginationPage}&pagination[pageSize]=1 `
+      );
+    }
+    const featuredRes = apiCall(
+      "articles",
+      "filters[IsFeatured][$eq]=true&populate=*&pagination[pageSize]=7"
     );
+    const latestRes = apiCall("articles", "populate=*&pagination[pageSize]=7");
     const categories = subcategory;
-    console.log(categories);
 
     const promises = categories.map(async (item) => {
-      console.log(item);
       try {
         const response = await apiCall(`pages/${item}`, "populate=*");
         console.log(response.data.attributes.Title);
@@ -59,8 +74,8 @@ const CategoryPage = async ({
   searchParams: any;
 }) => {
   const { subcategory } = params;
-  const { page } = searchParams;
-  const response = await getPages(subcategory, page);
+  const { page, filter } = searchParams;
+  const response = await getPages(subcategory, page, filter);
   const { res, breads } = response;
   const data = res;
   if (!data) {
@@ -83,15 +98,11 @@ const CategoryPage = async ({
           </div>
           <div className="lg:relative md:w-[50%] lg:w-[20%] lg:mt-0 mt-8">
             <Categories />
-            <div className="mt-10">
-              <RecentEvents />
-            </div>
+            <div className="mt-10">{/* <RecentEvents /> */}</div>
             <div className="mt-10">
               <TrendingPost />
             </div>
-            <div className="mt-10">
-              <PopularTags />
-            </div>
+            <div className="mt-10">{/* <PopularTags /> */}</div>
           </div>
         </div>
       </div>

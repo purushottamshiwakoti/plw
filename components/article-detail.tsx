@@ -20,9 +20,9 @@ export const ArticleDetail = ({ data }: { data: Article }) => {
           className="object-cover "
         />
         <div className="absolute bottom-10 left-10">
-          <Button className="bg-buttonHoverBg hover:bg-buttonHoverBg/80 rounded-sm px-[30px]">
+          {/* <Button className="bg-buttonHoverBg hover:bg-buttonHoverBg/80 rounded-sm px-[30px]">
             Category
-          </Button>
+          </Button> */}
         </div>
       </div>
       <div className="space-y-5 mt-10">

@@ -15,14 +15,26 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import parse from "html-react-parser";
+import { removeImage } from "@/lib/remove-img";
+import Link from "next/link";
+import { format } from "date-fns";
+import { AppUrl } from "@/lib/url";
+import { getCookie } from "cookies-next";
+import { cookies } from "next/headers";
 
-export const LatestEvents = () => {
+export const LatestEvents = ({ data }: { data: any[] }) => {
+  const cookieStore = cookies();
+
+  const locale = cookieStore.get("language")?.value ?? "en";
+  console.log(locale);
+
   return (
     <>
       <div className="my-10 mt-20 lg:px-[10rem] px-4 ">
         <div>
           <h2 className="text-[#4F4F4F] text-center font-bold text-3xl mb-10 ">
-            Featured
+            {locale == "en" ? "Featured" : "متميز"}
           </h2>
         </div>
         <Carousel
@@ -32,7 +44,7 @@ export const LatestEvents = () => {
           className="w-full mt-4  px-[12rem]  "
         >
           <CarouselContent className="gap-6">
-            {Array.from({ length: 10 }).map((_, index) => (
+            {data.map((item, index) => (
               <CarouselItem
                 key={index}
                 className="w-full md:basis-1/2 lg:basis-1/3 shadow-xl border "
@@ -40,19 +52,23 @@ export const LatestEvents = () => {
                 <div className="space-y-3   " key={index}>
                   <div className="relative  -ml-4 h-[200px]">
                     <Image
-                      src={"/images/p2.jpg"}
-                      alt="img"
+                      src={`${AppUrl}${item.attributes.Image.data.attributes.formats.medium.url}`}
+                      alt={item.attributes.alt}
                       fill
                       className="object-cover "
                     />
                     <div className="bg-buttonHoverBg absolute -bottom-8 rounded-sm text-white py-3 left-4 p-[3px] w-[5rem] flex flex-col items-center justify-center">
-                      <span className="font-bold text-2xl">14</span>
-                      <span className="uppercase text-base ">Mar</span>
+                      <span className="font-bold text-2xl">
+                        {format(item.attributes.createdAt, "d")}
+                      </span>
+                      <span className="uppercase text-base">
+                        {format(item.attributes.createdAt, "MMM")}
+                      </span>
                     </div>
                   </div>
                   <div className="px-6 py-10">
                     <h2 className="text-[#302E2F] font-bold text-xl flex-1 line-clamp-2">
-                      Sunday News Summary 14-04-24.
+                      {item.attributes.Title}
                     </h2>
                     <div className="flex items-center justify-between mt-3 text-[#7E7E7E]">
                       <div className="flex  gap-2">
@@ -61,7 +77,10 @@ export const LatestEvents = () => {
                       </div>
                       <div className="flex  gap-2">
                         <Calendar className="w-5 h-5" />
-                        <div>April 2 2021</div>
+                        <div>
+                          {/* April 2 2021 */}
+                          {format(item.attributes.createdAt, "PPP")}
+                        </div>
                       </div>
                     </div>
                     <div className="mt-3 text-[#7E7E7E]">
@@ -72,40 +91,18 @@ export const LatestEvents = () => {
                     </div>
                   </div> */}
                     </div>
-                    <p className="mt-3 line-clamp-3">
-                      Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                      Consequatur voluptas necessitatibus iusto voluptates ipsum
-                      eveniet, odio neque cupiditate natus, blanditiis aperiam
-                      mollitia laborum sint non quasi, quod ratione? Ad maiores
-                      architecto blanditiis ab doloribus incidunt esse, ipsum,
-                      saepe at ipsam illum ex asperiores. Suscipit quis
-                      inventore esse sequi ab magni et, blanditiis fugit est aut
-                      distinctio a, nisi rem obcaecati ea eaque! Quia veritatis
-                      optio enim blanditiis nemo doloribus nisi maxime ex. Odit
-                      laborum et labore deserunt sed ipsum modi architecto
-                      incidunt est possimus accusamus amet ipsam, enim fugit
-                      eum, praesentium dolore facilis dolor ad quas iure,
-                      asperiores dignissimos consequuntur? Rerum distinctio
-                      dolores labore exercitationem quod, cum nesciunt
-                      laudantium repellat dolorem quos deleniti cumque omnis
-                      vero non ipsum, facilis amet optio iusto sit magnam error?
-                      Reiciendis quam ullam eveniet enim. Ratione suscipit
-                      expedita inventore, fuga sunt officiis quidem aliquam
-                      repellendus corporis voluptatem libero velit fugit vel
-                      doloribus nemo rem nihil! Ipsam at a harum rem voluptatum
-                      error repudiandae! Explicabo qui beatae iure earum, nihil
-                      fugiat assumenda consectetur quasi ipsum, corporis
-                      temporibus, esse dignissimos nisi. Quo a amet vitae ex
-                      dolorum exercitationem accusamus sequi quidem doloribus
-                      ipsum, eveniet dicta quam harum repudiandae minus, fugiat
-                      aliquam libero. Magni ab dicta vero maiores.
-                    </p>
+                    <div className="mt-3 line-clamp-3">
+                      {parse(removeImage(item.attributes.Description))}
+                    </div>
                     <div>
                       <Button
                         variant={"link"}
-                        className="flex p-0 text-hovbg-buttonHoverBg"
+                        className="flex items-start justify-start p-0 text-hovbg-buttonHoverBg"
+                        asChild
                       >
-                        Read More
+                        <Link href={`/article/${item.attributes.slug}`}>
+                          Read More
+                        </Link>
                       </Button>
                     </div>
                   </div>

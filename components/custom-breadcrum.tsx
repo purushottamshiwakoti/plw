@@ -12,16 +12,20 @@ import { useParams } from "next/navigation";
 import React from "react";
 
 import _ from "lodash";
+import { getCookie } from "cookies-next";
 
 export const CustomBreadcrumb = ({ breads }: { breads: any[] }) => {
   const page = breads[breads.length - 1];
   const components = breads.slice(0, breads.length - 1);
+  const cookie = getCookie("language") ?? "en";
 
   return (
     <Breadcrumb>
       <BreadcrumbList>
         <BreadcrumbItem>
-          <BreadcrumbLink href="/">Home</BreadcrumbLink>
+          <BreadcrumbLink href="/">
+            {cookie == "en" ? "Home" : "منزل"}
+          </BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbSeparator />
         {components.length > 0 && (

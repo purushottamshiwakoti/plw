@@ -55,9 +55,7 @@ const ArticlePage = async ({ params }: { params: any }) => {
             <div className="mt-10">
               <TrendingPost />
             </div>
-            <div className="mt-10">
-              <PopularTags />
-            </div>
+            <div className="mt-10">{/* <PopularTags />   */}</div>
           </div>
         </div>
       </div>
