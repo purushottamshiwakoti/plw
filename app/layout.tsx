@@ -14,6 +14,7 @@ import Script from "next/script";
 import { createTheme, MantineProvider } from "@mantine/core";
 import "@mantine/core/styles.css";
 import { cookies } from "next/headers";
+import { Toaster } from "sonner";
 
 // export const runtime = "edge";
 export const dynamic = "force-dynamic";
@@ -140,6 +141,7 @@ export default async function RootLayout({
           <TopSctoll />
           <NextTopLoader color="#299726" />
         </MantineProvider>
+        <Toaster richColors />
       </body>
     </html>
   );

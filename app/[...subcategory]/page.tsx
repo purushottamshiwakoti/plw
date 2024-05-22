@@ -34,11 +34,14 @@ async function getPages(
         `populate=*&filter[pages][slug][$eq]=${lastSubcategory}&pagination[page]=${paginationPage}&pagination[pageSize]=1 `
       );
     }
-    const featuredRes = apiCall(
+    const featuredRes = await apiCall(
       "articles",
       "filters[IsFeatured][$eq]=true&populate=*&pagination[pageSize]=7"
     );
-    const latestRes = apiCall("articles", "populate=*&pagination[pageSize]=7");
+    const latestRes = await apiCall(
+      "articles",
+      "populate=*&pagination[pageSize]=7"
+    );
     const categories = subcategory;
 
     const promises = categories.map(async (item) => {
@@ -55,11 +58,10 @@ async function getPages(
         console.error(error);
       }
     });
-    console.log(breads);
 
     await Promise.all(promises);
 
-    return { res, breads }; // Return both res and breads
+    return { res, breads, featuredRes }; // Return both res and breads
   } catch (error) {
     console.error(error);
     throw error; // Re-throw error to be caught by caller if needed
@@ -76,7 +78,8 @@ const CategoryPage = async ({
   const { subcategory } = params;
   const { page, filter } = searchParams;
   const response = await getPages(subcategory, page, filter);
-  const { res, breads } = response;
+  const { res, breads, featuredRes } = response;
+
   const data = res;
   if (!data) {
     return notFound();
@@ -100,7 +103,7 @@ const CategoryPage = async ({
             <Categories />
             <div className="mt-10">{/* <RecentEvents /> */}</div>
             <div className="mt-10">
-              <TrendingPost />
+              <TrendingPost data={featuredRes.data} />
             </div>
             <div className="mt-10">{/* <PopularTags /> */}</div>
           </div>

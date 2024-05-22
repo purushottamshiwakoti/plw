@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 import { Button } from "@/components/ui/button";
+
 import {
   Form,
   FormControl,
@@ -16,8 +17,17 @@ import {
 import { Input } from "@/components/ui/input";
 import { affiliateFormSchema, commentFormSchema } from "../../schemas";
 import { Textarea } from "../ui/textarea";
+import { getCookie } from "cookies-next";
+import { useState } from "react";
+import { AppUrl } from "@/lib/url";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
-export const CommentForm = () => {
+export const CommentForm = ({ data }: { data: string }) => {
+  const cookie = getCookie("language") ?? "en";
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
+
   const form = useForm<z.infer<typeof commentFormSchema>>({
     resolver: zodResolver(commentFormSchema),
     defaultValues: {
@@ -28,10 +38,46 @@ export const CommentForm = () => {
   });
 
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof commentFormSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
+  async function onSubmit(values: z.infer<typeof commentFormSchema>) {
+    try {
+      setLoading(true);
+      const formData = {
+        data: {
+          FullName: values.fullName,
+          Email: values.email,
+          Comment: values.comment,
+          article: data,
+        },
+      };
+      const response = await fetch(`${AppUrl}/api/comments`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+      if (response.ok) {
+        console.log("Form data submitted successfully!");
+        toast.success(
+          cookie == "en"
+            ? "Successfully posted comment"
+            : "تم نشر التعليق بنجاح"
+        );
+        router.refresh();
+        form.reset();
+        // Additional logic if needed upon successful submission
+      } else {
+        console.error("Failed to submit form data:", response.statusText);
+        toast.error(cookie == "en" ? "Something went wrong" : "هناك خطأ ما");
+
+        // Additional error handling logic
+      }
+    } catch (error) {
+      console.error("Error occurred while submitting form data:", error);
+      // Additional error handling logic
+    } finally {
+      setLoading(false);
+    }
   }
   return (
     <Form {...form}>
@@ -42,11 +88,20 @@ export const CommentForm = () => {
           render={({ field }) => (
             <FormItem>
               <FormLabel>
-                Full Name
+                {cookie == "en" ? "Full Name" : "الاسم الكامل"}
                 <span className="text-red-500">*</span>
               </FormLabel>
               <FormControl>
-                <Input placeholder="Enter firstname here" {...field} required />
+                <Input
+                  placeholder={
+                    cookie == "en"
+                      ? "Enter firstname here"
+                      : "أدخل الاسم الأول هنا"
+                  }
+                  {...field}
+                  required
+                  disabled={loading}
+                />
               </FormControl>
 
               <FormMessage />
@@ -61,13 +116,20 @@ export const CommentForm = () => {
             <FormItem>
               <FormLabel>
                 Email Address
+                {cookie == "en" ? "Email Address" : "عنوان البريد الإلكتروني"}
                 <span className="text-red-500">*</span>
               </FormLabel>
               <FormControl>
                 <Input
-                  placeholder="Enter your email here"
+                  // placeholder="Enter your email here"
+                  placeholder={
+                    cookie == "en"
+                      ? "Enter your email here"
+                      : "أدخل عنوان بريدك الإلكتروني هنا                      "
+                  }
                   {...field}
                   required
+                  disabled={loading}
                 />
               </FormControl>
 
@@ -81,14 +143,20 @@ export const CommentForm = () => {
           render={({ field }) => (
             <FormItem>
               <FormLabel>
-                Comment
+                {/* Comment */}
+                {cookie == "en" ? "Comment" : "تعليق"}
+
                 <span className="text-red-500">*</span>
               </FormLabel>
               <FormControl>
                 <Textarea
-                  placeholder="Enter comment here"
+                  // placeholder="Enter comment here"
+                  placeholder={
+                    cookie == "en" ? "Enter firstname here" : "أدخل التعليق هنا"
+                  }
                   {...field}
                   required
+                  disabled={loading}
                   rows={8}
                 />
               </FormControl>
@@ -101,7 +169,8 @@ export const CommentForm = () => {
           type="submit"
           className="bg-buttonHoverBg rounded-[5px] p-[25px] w-[9rem] hover:bg-buttonHoverBg/80   text-[15px] font-[700]"
         >
-          Submit
+          {/* Submit */}
+          {cookie == "en" ? "Submit" : "يُقدِّم"}
         </Button>
       </form>
     </Form>

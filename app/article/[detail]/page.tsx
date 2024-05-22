@@ -9,6 +9,7 @@ import { PopularTags } from "@/components/popular-tags";
 import { RecentEvents } from "@/components/recent-events";
 import { SearchInput } from "@/components/search-input";
 import { Skeleton } from "@/components/ui/skeleton";
+import ViewComment from "@/components/view-comment";
 import { apiCall } from "@/lib/api";
 import { getDate } from "date-fns";
 import { ChevronRight } from "lucide-react";
@@ -17,8 +18,12 @@ import { notFound } from "next/navigation";
 async function getArticle(slug: string) {
   try {
     const res = await apiCall(`articles/${slug}`, "populate=*");
+    const featuredRes = await apiCall(
+      "articles",
+      "filters[IsFeatured][$eq]=true&populate=*&pagination[pageSize]=7"
+    );
     // console.log();
-    return res.data;
+    return { res, featuredRes };
   } catch (error) {
     console.log(error);
     return notFound();
@@ -26,8 +31,9 @@ async function getArticle(slug: string) {
 }
 
 const ArticlePage = async ({ params }: { params: any }) => {
-  const data = await getArticle(params.detail);
-  console.log(data);
+  const response = await getArticle(params.detail);
+  const { res, featuredRes } = response;
+  const data = res.data;
   if (!data) {
     return notFound();
   }
@@ -41,7 +47,8 @@ const ArticlePage = async ({ params }: { params: any }) => {
             {data ? (
               <>
                 <ArticleDetail data={data} />
-                <AddComment />
+                <AddComment data={data.id} />
+                <ViewComment comments={data.attributes.comments.data} />
               </>
             ) : (
               <ArticleNotFOund />
@@ -53,7 +60,7 @@ const ArticlePage = async ({ params }: { params: any }) => {
               <RecentEvents />
             </div>
             <div className="mt-10">
-              <TrendingPost />
+              <TrendingPost data={featuredRes.data} />
             </div>
             <div className="mt-10">{/* <PopularTags />   */}</div>
           </div>

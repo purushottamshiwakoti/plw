@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import { Button } from "./ui/button";
 import { Calendar, MessageCircle, User } from "lucide-react";
@@ -5,8 +6,11 @@ import { Article } from "@/types";
 import { AppUrl } from "@/lib/url";
 import parse from "html-react-parser";
 import { format } from "date-fns";
+import { getCookie } from "cookies-next";
 
-export const ArticleDetail = ({ data }: { data: Article }) => {
+export const ArticleDetail = ({ data }: { data: any }) => {
+  const cookie = getCookie("language") ?? "en";
+
   return (
     <div
       // href={"#"}
@@ -32,7 +36,9 @@ export const ArticleDetail = ({ data }: { data: Article }) => {
         <div className="md:flex items-center gap-5 md:space-y-0 space-y-3">
           <div className="flex items-center gap-2">
             <User className="h-5 w-5 text-buttonHoverBg" />
-            <p className="text-muted-foreground font-medium">admin</p>
+            <p className="text-muted-foreground font-medium">
+              {cookie == "en" ? "admin" : "مسؤل"}
+            </p>
           </div>
           <div className="flex items-center gap-2">
             <Calendar className="h-5 w-5 text-buttonHoverBg" />
@@ -42,7 +48,10 @@ export const ArticleDetail = ({ data }: { data: Article }) => {
           </div>
           <div className="flex items-center gap-2">
             <MessageCircle className="h-5 w-5 text-buttonHoverBg" />
-            <p className="text-muted-foreground font-medium">0 Comments</p>
+            <p className="text-muted-foreground font-medium">
+              {data.attributes.comments.data.length}
+              {cookie == "en" ? "Comments" : "تعليقات"}
+            </p>
           </div>
         </div>
         <p className="text-muted-foreground ">

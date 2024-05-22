@@ -5,12 +5,15 @@ import { Input } from "./ui/input";
 import { useState, useEffect } from "react";
 import { Button } from "./ui/button";
 import { usePathname, useRouter } from "next/navigation";
+import { getCookie } from "cookies-next";
 
 export const SearchInput = () => {
   const path = usePathname();
   const router = useRouter();
 
   const [searchText, setSearchText] = useState("");
+  const cookie = getCookie("language") ?? "en";
+  console.log(cookie);
 
   const handleSearch = (e: any) => {
     e.preventDefault();
@@ -33,7 +36,9 @@ export const SearchInput = () => {
       <form action="" onSubmit={handleSearch}>
         <Input
           className=" rounded-none focus-visible:ring-0 focus-visible:inset-0  pr-14      "
-          placeholder="Type here to search..."
+          placeholder={
+            cookie == "ar" ? "اكتب هنا للبحث..." : "Type here to search..."
+          }
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
         />

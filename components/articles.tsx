@@ -40,7 +40,7 @@ export const Articles = ({ data }: { data: any }) => {
       router.push(`${path}?page=${page}&filter=${filter}`);
     }
   };
-
+  console.log(data.data[0].attributes.comments.data.length);
   return (
     <div className="mt-5 ">
       <div className="gap-20">
@@ -90,7 +90,9 @@ export const Articles = ({ data }: { data: any }) => {
                 <div className="md:flex items-center gap-5 space-y-2 md:space-y-0">
                   <div className="flex items-center gap-2">
                     <User className="h-5 w-5 text-buttonHoverBg" />
-                    <p className="text-muted-foreground font-medium">admin</p>
+                    <p className="text-muted-foreground font-medium">
+                      {cookie == "en" ? "admin" : "مسؤل"}
+                    </p>
                   </div>
                   <div className="flex items-center gap-2">
                     <Calendar className="h-5 w-5 text-buttonHoverBg" />
@@ -101,7 +103,8 @@ export const Articles = ({ data }: { data: any }) => {
                   <div className="flex items-center gap-2">
                     <MessageCircle className="h-5 w-5 text-buttonHoverBg" />
                     <p className="text-muted-foreground font-medium">
-                      {item.attributes.comments.length} Comments
+                      {item.attributes.comments.data.length}
+                      {cookie == "en" ? "Comments" : "تعليقات"}
                     </p>
                   </div>
                 </div>
