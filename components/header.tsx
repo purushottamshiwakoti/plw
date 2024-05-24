@@ -11,7 +11,9 @@ import { TopHeader } from "./top-header";
 async function getData() {
   try {
     const res = await apiCall("header", "populate=*");
+    console.log(res);
     const { data } = res;
+    console.log(data);
 
     const title = data.attributes.Title;
     const backgroundColor = data.attributes.BackgroundColor;

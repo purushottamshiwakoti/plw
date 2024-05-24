@@ -8,6 +8,11 @@ const nextConfig = {
         hostname: "93.127.195.143",
         pathname: "**",
       },
+      {
+        protocol: "https",
+        hostname: "cms.instantbackgroundremover.com",
+        pathname: "**",
+      },
     ],
   },
 };
