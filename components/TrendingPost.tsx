@@ -4,6 +4,7 @@ import Image from "next/image";
 import { getCookie } from "cookies-next";
 import { format } from "date-fns";
 import { AppUrl } from "@/lib/url";
+import Link from "next/link";
 
 export const TrendingPost = ({ data }: { data: any }) => {
   const cookie = getCookie("language") ?? "en";
@@ -18,7 +19,7 @@ export const TrendingPost = ({ data }: { data: any }) => {
       <div className="mt-2">
         <div className="mt-5 space-y-3">
           {data.map((item: any, index: number) => (
-            <div key={index}>
+            <Link href={`article/${item.attributes.slug}`} key={index}>
               <div className="flex items-center gap-2">
                 <Image
                   src={`${AppUrl}${item.attributes.Image.data.attributes.formats.medium.url}`}
@@ -40,7 +41,7 @@ export const TrendingPost = ({ data }: { data: any }) => {
                 </div>
               </div>
               <hr className="mt-3" />
-            </div>
+            </Link>
           ))}
         </div>
       </div>

@@ -56,9 +56,7 @@ const ArticlePage = async ({ params }: { params: any }) => {
           </div>
           <div className="lg:relative lg:w-[20%] md:w-[50%] lg:mt-0 mt-8">
             <Categories />
-            <div className="mt-10">
-              <RecentEvents />
-            </div>
+            <div className="mt-10">{/* <RecentEvents /> */}</div>
             <div className="mt-10">
               <TrendingPost data={featuredRes.data} />
             </div>
