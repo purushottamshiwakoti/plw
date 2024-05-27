@@ -47,13 +47,10 @@ async function getPages(
     const promises = categories.map(async (item) => {
       try {
         const response = await apiCall(`pages/${item}`, "populate=*");
-        console.log(response.data.attributes.Title);
         breads.push(response.data.attributes.Title);
-        console.log(breads);
         if (response.error) {
           throw new Error("API call failed");
         }
-        console.log(breads);
       } catch (error) {
         console.error(error);
       }

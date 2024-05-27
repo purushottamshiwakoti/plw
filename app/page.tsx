@@ -47,14 +47,10 @@ async function getData() {
       data.attributes.AboutSFM.Image.media.data.attributes.formats.large.url;
     const aboutSFMImageAlt = data.attributes.AboutSFM.Image.alt;
     const donationTitle = data.attributes.DonationText;
-    console.log(donationTitle);
     const donationDescription = data.attributes.DonationDescription;
-    console.log(donationDescription);
     const donationBanner =
       data.attributes.DonationBanner.data.attributes.formats.thumbnail.url;
-    console.log(donationBanner);
     const donationIcons = data.attributes.DonationIcons;
-    console.log(donationIcons);
     const movementTitle = data.attributes.MovementTitle;
     const movementDescription = data.attributes.MovementDescription;
     const movementIcon = data.attributes.MovementIcon;

@@ -13,7 +13,6 @@ export const SearchInput = () => {
 
   const [searchText, setSearchText] = useState("");
   const cookie = getCookie("language") ?? "en";
-  console.log(cookie);
 
   const handleSearch = (e: any) => {
     e.preventDefault();

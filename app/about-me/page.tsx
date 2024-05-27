@@ -14,11 +14,9 @@ async function getData() {
 
 const About1 = async () => {
   const data = await getData();
-  console.log(data.attributes.Gallery);
   const firstImage = data.attributes.Gallery[0];
   const otherImages = data.attributes.Gallery.slice(1, 3);
-  console.log(firstImage.media.data.attributes.formats.thumbnail.url);
-  console.log(otherImages.length);
+
   return (
     <>
       <section className="overflow-hidden pt-20 pb-12 lg:pt-[120px] lg:pb-[90px] bg-white dark:bg-dark">

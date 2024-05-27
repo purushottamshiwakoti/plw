@@ -34,7 +34,6 @@ export const Donation = ({
   banner,
   showDonationTitle,
 }: DonationProps) => {
-  console.log(description, donations, title, banner, showDonationTitle);
   return (
     <div
       className="  bg-no-repeat bg-center bg-cover  mb-10"
@@ -61,10 +60,7 @@ export const Donation = ({
         <div className=" flex justify-center flex-wrap">
           {donations &&
             donations.map((item, index) => {
-              console.log(
-                `${AppUrl}${item.Icon.media.data.attributes.formats.small?.url}`
-              );
-              console.log(item.Icon.media.data.attributes.formats.small);
+           
               return (
                 <div
                   className="group   hover:-translate-y-5 transition-all duration-500 flex-col lg:my-14 my-5 lg:mx-4 cursor-pointer bg-white/20 rounded-md py-10"

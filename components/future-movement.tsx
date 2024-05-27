@@ -37,7 +37,6 @@ export const FutureMovement = ({
   title,
   icon,
 }: FutureMovementProps) => {
-  console.log(icon);
   return (
     <section className="lg:px-[10rem] px-4 w-full my-20">
       <div className="flex gap-[1px]  items-center justify-center ">

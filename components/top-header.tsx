@@ -9,7 +9,6 @@ import { SmallSocialIcon } from "./small-social-icon";
 import { Button } from "./ui/button";
 
 export const TopHeader = ({ data }: { data: any }) => {
-  console.log(data);
   const { isMenuShown } = useHeaderMenuStore();
   return (
     <div

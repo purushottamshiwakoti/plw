@@ -18,7 +18,6 @@ export const MobileNav = ({ menu }: { menu: any }) => {
   };
 
   const toggleSubMenu = (item: any) => {
-    console.log(item);
     setSubMenu((prevSubMenu) => {
       if (prevSubMenu.includes(item)) {
         return prevSubMenu.filter((subItem) => subItem !== item);
@@ -28,7 +27,6 @@ export const MobileNav = ({ menu }: { menu: any }) => {
     });
   };
   const renderChildren = (menu: any) => {
-    console.log(menu);
     return <div>{}</div>;
   };
 

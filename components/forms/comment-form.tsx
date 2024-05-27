@@ -57,7 +57,6 @@ export const CommentForm = ({ data }: { data: string }) => {
         body: JSON.stringify(formData),
       });
       if (response.ok) {
-        console.log("Form data submitted successfully!");
         toast.success(
           cookie == "en"
             ? "Successfully posted comment"

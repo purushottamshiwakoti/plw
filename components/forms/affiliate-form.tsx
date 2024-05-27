@@ -33,7 +33,6 @@ export const AffiliateForm = () => {
   function onSubmit(values: z.infer<typeof affiliateFormSchema>) {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
-    console.log(values);
   }
   return (
     <Form {...form}>

@@ -40,7 +40,6 @@ export const Articles = ({ data }: { data: any }) => {
       router.push(`${path}?page=${page}&filter=${filter}`);
     }
   };
-  console.log(data.data[0].attributes.comments.data.length);
   return (
     <div className="mt-5 ">
       <div className="gap-20">

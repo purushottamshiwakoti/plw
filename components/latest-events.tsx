@@ -27,7 +27,6 @@ export const LatestEvents = ({ data }: { data: any[] }) => {
   const cookieStore = cookies();
 
   const locale = cookieStore.get("language")?.value ?? "en";
-  console.log(locale);
 
   return (
     <>

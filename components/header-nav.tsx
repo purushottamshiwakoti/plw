@@ -13,12 +13,9 @@ async function getData() {
       apiCall("navbar", "populate=Logo.media"),
       apiCall(`${endpoint}`, "nested&populate=*"),
     ]);
-    console.log(menuData);
     const { data } = res;
-    console.log(data);
 
     const buttonName = data.attributes.ButtonName;
-    console.log(buttonName);
 
     const backgroundColor = data.attributes.BackgroundColor;
 
@@ -27,10 +24,8 @@ async function getData() {
     const buttonLink = data.attributes.ButtonLink;
 
     const menu = menuData.data.attributes.items.data;
-    console.log(menu);
 
     const logo = data.attributes.Logo.media.data.attributes.formats.large.url;
-    console.log(logo);
 
     return {
       buttonName,
@@ -43,7 +38,6 @@ async function getData() {
 
     // Extract banner attributes with proper null/undefined checks
   } catch (error) {
-    console.log("retrieving data:", error);
     return null;
   }
 }
