@@ -200,9 +200,9 @@ export const MenuItem = ({ menu }: { menu: any }) => {
                         {item.attributes.title}
 
                         {dropdown === item.attributes.title ? (
-                          <ChevronDown className="w-3 h-3 ml-[2px]" />
+                          <ChevronUp className="w-3 h-3 ml-[2px]" />
                         ) : (
-                          <ChevronUp className="w-3 h-3 ml-[2px] " />
+                          <ChevronDown className="w-3 h-3 ml-[2px] " />
                         )}
                       </Link>
                     </span>
