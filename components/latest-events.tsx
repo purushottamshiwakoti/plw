@@ -48,7 +48,11 @@ export const LatestEvents = ({ data }: { data: any[] }) => {
                 key={index}
                 className="w-full md:basis-1/2 lg:basis-1/3 shadow-xl border "
               >
-                <div className="space-y-3   " key={index}>
+                <Link
+                  href={`/article/${item.attributes.slug}`}
+                  className="space-y-3   "
+                  key={index}
+                >
                   <div className="relative  -ml-4 h-[200px]">
                     <Image
                       src={`${AppUrl}${item.attributes.Image.data.attributes.formats.medium.url}`}
@@ -105,7 +109,7 @@ export const LatestEvents = ({ data }: { data: any[] }) => {
                       </Button>
                     </div>
                   </div>
-                </div>
+                </Link>
               </CarouselItem>
             ))}
           </CarouselContent>
