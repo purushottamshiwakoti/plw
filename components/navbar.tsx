@@ -53,7 +53,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           // src={logo}
           src={`${AppUrl}${logo}`}
           alt="logo"
-          width={180}
+          width={150}
           height={50}
           priority
         />
