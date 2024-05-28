@@ -20,8 +20,8 @@ const Slider = ({
   }, []); // Run effect only once on component mount
 
   return (
-    <div className="relative overflow-hidden lg:my-0 my-2 ">
-      <div className="flex transition-transform duration-500 ease-in-out transform">
+    <div className="relative overflow-hidden lg:my-0 my-2">
+      <div className="flex transition-transform duration-500 ease-in-out">
         {slides &&
           slides.map((slide, index) => (
             <span
@@ -29,6 +29,9 @@ const Slider = ({
               className={`ml-3 ${
                 index !== currentSlideIndex ? "hidden" : ""
               } max-w-lg line-clamp-1`}
+              style={{
+                transform: `translateX(${100 * (index - currentSlideIndex)}%)`,
+              }}
             >
               {slide.Title}
             </span>

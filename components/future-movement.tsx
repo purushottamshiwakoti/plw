@@ -59,7 +59,7 @@ export const FutureMovement = ({
             <div className="space-y-3 w-full " key={index}>
               <div className="flex items-center gap-10 ">
                 {/* <CircleAlertIcon className="text-blue-500 w-10 h-10" /> */}
-                {item.Icon.media.data.attributes.formats.thumbnail && (
+                {item.Icon && (
                   <Image
                     alt={item.Icon.alt}
                     // src={item.Icon.media.data.attributes.formats.small.url}
