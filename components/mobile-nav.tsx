@@ -38,7 +38,7 @@ export const MobileNav = ({ menu }: { menu: any }) => {
         </Button>
       </SheetTrigger>
       <SheetContent>
-        <ScrollArea>
+        <ScrollArea className="max-h-[100vh]  bg-red-500 overflow-y-auto">
           <div className="flex flex-col space-y-3 mt-10" key={"D"}>
             {menu.map((item: any, index: any) => (
               <div key={index}>
