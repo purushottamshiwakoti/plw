@@ -8,6 +8,7 @@ import Slider from "./slider";
 import { SmallSocialIcon } from "./small-social-icon";
 import { Button } from "./ui/button";
 
+
 export const TopHeader = ({ data }: { data: any }) => {
   const { isMenuShown } = useHeaderMenuStore();
   return (
