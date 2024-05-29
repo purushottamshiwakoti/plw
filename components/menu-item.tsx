@@ -187,6 +187,12 @@ export const MenuItem = ({ menu }: { menu: any }) => {
                           ? toggleMenu(false)
                           : null;
                       }}
+                      onMouseLeave={() => {
+                        // setDropdown(null);
+                        // setHoverMenu(["hello"]);
+                        // toggleMenu(true);
+                        setDropdown(null);
+                      }}
                     >
                       <Link
                         href={item.attributes.url ?? "#"}
