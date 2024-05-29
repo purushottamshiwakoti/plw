@@ -12,13 +12,15 @@ import { SocialIcons } from "@/components/social-icons";
 import { Skeleton } from "@/components/ui/skeleton";
 import { apiCall } from "@/lib/api";
 import { Loader } from "lucide-react";
+import { Metadata } from "next";
+import Head from "next/head";
 
 async function getData() {
   try {
     const [res, featuresRes] = await Promise.all([
       apiCall(
         "home-page",
-        "populate=Banner.BannerImage&populate=Election&populate=Services.Icon.Icon.media&populate=AboutSFM.Image.media&populate=DonationIcons.Icon.media&populate=MovementIcon.Icon.media&populate=Reviews.Image.media&populate=AboutSFM.SocialMedia&populate=DonationBanner&populate=SocialMedia&populate=ConfirmVotes.BackgroundImage&populate=FAQ.Image.media&populate=FAQ.QuestionAnswer"
+        "populate=Banner.BannerImage&populate=Election&populate=Services.Icon.Icon.media&populate=AboutSFM.Image.media&populate=DonationIcons.Icon.media&populate=MovementIcon.Icon.media&populate=Reviews.Image.media&populate=AboutSFM.SocialMedia&populate=DonationBanner&populate=SocialMedia&populate=ConfirmVotes.BackgroundImage&populate=FAQ.Image.media&populate=FAQ.QuestionAnswer&populate=SEO.OgImage"
       ),
       apiCall("articles", "filters[IsFeatured][$eq]=true&populate=*"),
     ]);
@@ -73,6 +75,13 @@ async function getData() {
 
     const bannerImage =
       data.attributes.Banner.BannerImage.data.attributes.formats.thumbnail.url;
+    const metaTitle = data.attributes.SEO.MetaTitle;
+    const metaDescription = data.attributes.SEO.MetaDescription;
+    const ogTitle = data.attributes.SEO.OgTitle;
+    const ogDescription = data.attributes.SEO.OgDescription;
+    const canonicalUrl = data.attributes.SEO.CanonicalUrl;
+    const OgImage =
+      data.attributes.SEO.OgImage.data.attributes.formats.thumbnail.url;
 
     const featuredData = featuresRes.data;
 
@@ -119,83 +128,114 @@ async function getData() {
       faqs,
       showDonationTitle,
       featuredData,
+      metaTitle,
+      metaDescription,
+      ogTitle,
+      ogDescription,
+      OgImage,
+      canonicalUrl,
     };
   } catch (error) {
     // console.log("Error retrieving data:", error);
     return null;
   }
 }
+
+export async function generateMetadata() {
+  // read route params
+
+  // fetch data
+
+  // optionally access and extend (rather than replace) parent metadata
+  const data = await getData();
+
+  return {
+    title: data?.metaTitle,
+    description: data?.metaDescription,
+    // canonical: data?.canonicalUrl,
+    alternates: {
+      canonical: data?.canonicalUrl,
+    },
+    openGraph: {
+      title: data?.ogTitle,
+      description: data?.ogDescription,
+      images: data?.OgImage,
+    },
+  };
+}
+
 export default async function Home() {
   const data = await getData();
   return (
-    <main className="relative">
-      <div>
-        <Banner
-          description={data?.bannerDescription}
-          title={data?.bannerTitle}
-          image={data?.bannerImage}
-          button={data?.bannerButtonName}
-          showInput={data?.showInput}
-        />
-        <div className="-mt-28 z-40 relative">
-          <ElectionTime
-            date={data?.electionDate}
-            description={data?.electionDescription}
-            title={data?.electionTitle}
+    <>
+      <main className="relative">
+        <div>
+          <Banner
+            description={data?.bannerDescription}
+            title={data?.bannerTitle}
+            image={data?.bannerImage}
+            button={data?.bannerButtonName}
+            showInput={data?.showInput}
           />
-        </div>
-        <Services
-          serviceDescription={data?.serviceDescription}
-          serviceIcons={data?.serviceIcons}
-          serviceSubTitle={data?.serviceSubTitle}
-          serviceTitle={data?.serviceTitle}
-        />
-        <Momvement
-          description={data?.aboutSFMDescription}
-          position={data?.aboutSFMPosition}
-          title={data?.aboutSFMTitle}
-          url={data?.aboutSFMSocial}
-          image={data?.aboutSFMImage}
-          imageAlt={data?.aboutSFMImageAlt}
-        />
-        <div className="mt-10">
-          <Donation
-            description={data?.donationDescription}
-            title={data?.donationTitle}
-            donations={data?.donationIcons}
-            banner={data?.donationBanner}
-            showDonationTitle={data?.showDonationTitle}
+          <div className="-mt-28 z-40 relative">
+            <ElectionTime
+              date={data?.electionDate}
+              description={data?.electionDescription}
+              title={data?.electionTitle}
+            />
+          </div>
+          <Services
+            serviceDescription={data?.serviceDescription}
+            serviceIcons={data?.serviceIcons}
+            serviceSubTitle={data?.serviceSubTitle}
+            serviceTitle={data?.serviceTitle}
           />
+          <Momvement
+            description={data?.aboutSFMDescription}
+            position={data?.aboutSFMPosition}
+            title={data?.aboutSFMTitle}
+            url={data?.aboutSFMSocial}
+            image={data?.aboutSFMImage}
+            imageAlt={data?.aboutSFMImageAlt}
+          />
+          <div className="mt-10">
+            <Donation
+              description={data?.donationDescription}
+              title={data?.donationTitle}
+              donations={data?.donationIcons}
+              banner={data?.donationBanner}
+              showDonationTitle={data?.showDonationTitle}
+            />
+          </div>
+          <LatestEvents data={data?.featuredData} />
+          <FutureMovement
+            description={data?.movementTitle}
+            title={data?.movementDescription}
+            icon={data?.movementIcon}
+          />
+          <Saying
+            description={data?.reviewDescription}
+            title={data?.reviewTitle}
+            review={data?.reviews}
+          />
+          <SocialIcons url={data?.socialIcons} />
+          <ConfirmVotes
+            buttonLink={data?.confirmVoteButtonLink}
+            buttonName={data?.confirmVoteButtonName}
+            description={data?.confirmVoteDescription}
+            showButton={data?.confirmVoteShowButton}
+            subtitle={data?.confirmVoteSubtitle}
+            title={data?.confirmVoteTitle}
+            bgImage={data?.confirmVoteBackgroundImage}
+          />
+          <PoliciesAndProgress
+            subTitle={data?.faqSubTitle}
+            title={data?.faqTitle}
+            faq={data?.faqs}
+          />
+          <div className="pb-10"></div>
         </div>
-        <LatestEvents data={data?.featuredData} />
-        <FutureMovement
-          description={data?.movementTitle}
-          title={data?.movementDescription}
-          icon={data?.movementIcon}
-        />
-        <Saying
-          description={data?.reviewDescription}
-          title={data?.reviewTitle}
-          review={data?.reviews}
-        />
-        <SocialIcons url={data?.socialIcons} />
-        <ConfirmVotes
-          buttonLink={data?.confirmVoteButtonLink}
-          buttonName={data?.confirmVoteButtonName}
-          description={data?.confirmVoteDescription}
-          showButton={data?.confirmVoteShowButton}
-          subtitle={data?.confirmVoteSubtitle}
-          title={data?.confirmVoteTitle}
-          bgImage={data?.confirmVoteBackgroundImage}
-        />
-        <PoliciesAndProgress
-          subTitle={data?.faqSubTitle}
-          title={data?.faqTitle}
-          faq={data?.faqs}
-        />
-        <div className="pb-10"></div>
-      </div>
-      {/* <div>
+        {/* <div>
       </div>
       </div>
       <div>
@@ -217,10 +257,11 @@ export default async function Home() {
       <div>
       </div> */}
 
-      <div className="-mt-28 z-40 relative">
-        {/* <ElectionTime date={electionDate} /> */}
-      </div>
-      {/* <Services /> */}
-    </main>
+        <div className="-mt-28 z-40 relative">
+          {/* <ElectionTime date={electionDate} /> */}
+        </div>
+        {/* <Services /> */}
+      </main>
+    </>
   );
 }

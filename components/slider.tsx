@@ -48,7 +48,7 @@ const Slider = ({
         disableOnInteraction: false,
       }}
       modules={[Autoplay]}
-      speed={50000}
+      speed={30000}
     >
       {slides &&
         slides.map((slide, index) => (
