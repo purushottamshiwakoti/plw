@@ -8,12 +8,11 @@ import Slider from "./slider";
 import { SmallSocialIcon } from "./small-social-icon";
 import { Button } from "./ui/button";
 
-
 export const TopHeader = ({ data }: { data: any }) => {
   const { isMenuShown } = useHeaderMenuStore();
   return (
     <div
-      className={` lg:flex items-center justify-between lg:px-[10rem] p-3`}
+      className={` lg:flex items-center justify-between lg:px-[5%] p-3`}
       style={{
         backgroundColor: data?.backgroundColor ?? "#eaeaea",
       }}

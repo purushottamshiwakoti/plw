@@ -38,7 +38,7 @@ export const FutureMovement = ({
   icon,
 }: FutureMovementProps) => {
   return (
-    <section className="lg:px-[10rem] px-4 w-full my-20">
+    <section className="lg:px-[5%] px-4 w-full my-20">
       <div className="flex gap-[1px]  items-center justify-center ">
         <Star fill="#299726" strokeWidth={0} className="w-5 h-5" />
         <Star fill="#299726" strokeWidth={0} className="w-7 h-7" />

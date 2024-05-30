@@ -99,16 +99,16 @@ export default async function RootLayout({
   return (
     <html dir={locale == "ar" ? "rtl" : ""}>
       <head>
-        {/* <Script async src={data?.googleAnalytics} />
-        <Script async src={data?.facebookPexels} /> */}
+        <Script async src={data?.googleAnalytics} />
+        <Script async src={data?.facebookPexels} />
       </head>
       <GoogleTagManager gtmId={data?.googleTagsManager ?? ""} />
       <body className={inter.className}>
         <MantineProvider theme={theme}>
           <Header />
           <HeaderNav />
-          {children}
-          <Footer
+          {/* {children} */}
+          {/* <Footer
             counter={data?.counter}
             logo={data?.logo}
             logoAlt={data?.logoAlt}
@@ -123,7 +123,7 @@ export default async function RootLayout({
             menu={data?.menu}
             menuTitle={data?.menuTitle}
             backgroundColor={data?.backgroundColor}
-          />
+          /> */}
           <TopSctoll />
           <NextTopLoader color="#299726" />
         </MantineProvider>

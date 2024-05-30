@@ -86,7 +86,7 @@ export const MenuItem = ({ menu }: { menu: any }) => {
         >
           {children.map((child: any, childIndex: any) => (
             <div
-              className="  transition duration-300 hover:bg-buttonHoverBg"
+              className="z-50  transition duration-300 hover:bg-buttonHoverBg"
               key={childIndex}
             >
               {child.attributes.children.data.length == 0 ? (
@@ -99,7 +99,7 @@ export const MenuItem = ({ menu }: { menu: any }) => {
                   }}
                 >
                   <p
-                    className="p-3 text-sm text-gray-700 hover:text-white "
+                    className="p-3 z-50 text-sm text-gray-700 hover:text-white "
                     title={child.attributes.title}
                   >
                     {child.attributes.title}
@@ -121,7 +121,7 @@ export const MenuItem = ({ menu }: { menu: any }) => {
                         )
                       );
                     }}
-                    className="relative  w-full "
+                    className="relative z-50  w-full "
                   >
                     <Link
                       href={child.attributes.url}
@@ -246,7 +246,7 @@ export const MenuItem = ({ menu }: { menu: any }) => {
                             (child: any, childIndex: any) =>
                               item.attributes.children.data.length < 4 ? (
                                 <div
-                                  className="  transition  duration-300 hover:bg-buttonHoverBg min-w-[15rem]"
+                                  className="  transition   duration-300 hover:bg-buttonHoverBg min-w-[15rem]"
                                   key={childIndex}
                                 >
                                   {child.attributes.children.data.length ==
@@ -282,7 +282,7 @@ export const MenuItem = ({ menu }: { menu: any }) => {
                                             )
                                           );
                                         }}
-                                        className="relative w-  full"
+                                        className="relative w-full "
                                       >
                                         <Link
                                           href={child.attributes.url}
@@ -313,22 +313,25 @@ export const MenuItem = ({ menu }: { menu: any }) => {
                                 childIndex == 2 && (
                                   <>
                                     <div
-                                      className={`bg-white 
+                                      className={`bg-white
+                                      overflow-hidden
+                                      z-40 
                                       shadow-sm
-                                      flex mx-[10rem] h-[80vh] w-[80vw] 
+                                      flex px-[3rem] h-[90vh] w-[90vw] 
                                    
-                                      overflow-auto ${
-                                        cookie == "ar"
-                                          ? "   -mr-[33vw]"
-                                          : "-ml-[33vw]"
-                                      }`}
+                                     ${
+                                       cookie == "ar"
+                                         ? "   -mr-[40%]"
+                                         : "-ml-[40%]"
+                                     }
+                                      `}
                                       onMouseLeave={() => toggleMenu(true)}
                                     >
-                                      <div className="flex px-5 py-5  justify-between flex-wrap  ">
+                                      <div className="grid grid-cols-4 gap-x-7     flex-wrap  ">
                                         {item.attributes.children.data.map(
                                           (item: any, index: number) => (
                                             <div
-                                              className="  w-[17vw] mt-3 relative "
+                                              className="  w-[17vw] relative "
                                               key={index}
                                             >
                                               <div>
@@ -343,7 +346,7 @@ export const MenuItem = ({ menu }: { menu: any }) => {
                                                 >
                                                   {item.attributes.title}
                                                 </Link>
-                                                <span className="border-2 border-buttonHoverBg absolute w-[30%] left-0 top-7"></span>
+                                                <span className="border-2 border-buttonHoverBg absolute w-[30%] left-0 top-8"></span>
                                                 <hr className="my-2 " />
                                               </div>
                                               <div>
@@ -421,7 +424,7 @@ export const MenuItem = ({ menu }: { menu: any }) => {
                                                                     .attributes
                                                                     .url
                                                                 }
-                                                                className="p-3  text-gray-700   text-sm flex items-center justify-between peer "
+                                                                className="p-2  text-gray-700   text-sm flex items-center justify-between peer "
                                                                 title={
                                                                   child
                                                                     .attributes

@@ -40,7 +40,7 @@ export const LatestEvents = ({ data }: { data: any[] }) => {
           opts={{
             align: "start",
           }}
-          className="w-full mt-4  px-[5rem] xl:px-[10rem]  "
+          className="w-full mt-4  px-[5rem] xl:px-[5%]  "
         >
           <CarouselContent className="gap-3">
             {data &&

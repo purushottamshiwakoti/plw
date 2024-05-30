@@ -79,7 +79,7 @@ export const Footer = ({
           backgroundColor: backgroundColor ?? "#fff",
         }}
       >
-        <div className="lg:px-[10rem] px-4">
+        <div className="lg:px-[5%] px-4">
           <div className=" lg:flex items-center justify-between">
             <Link href={"/"}>
               <Image
@@ -109,7 +109,7 @@ export const Footer = ({
           </div>
         </div>
         <hr className="mt-16 border-[#2B3C51]" />
-        <div className="lg:px-[10rem] px-4 lg:mt-[3rem] mt-4 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-10">
+        <div className="lg:px-[5%] px-4 lg:mt-[3rem] mt-4 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-10">
           {/* about us start  */}
           <div className="space-y-4">
             <h2 className="font-semibold text-xl capitalize">{aboutTitle}</h2>
