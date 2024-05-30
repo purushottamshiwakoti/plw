@@ -46,25 +46,6 @@ export const PoliciesAndProgress = ({
   const [faqData, setFaqData] = useState(faq[0].Title);
   const faqList = faq.filter((item) => item.Title == faqData);
   const [changed, setChanged] = useState(true);
-  const accordionData = [
-    {
-      value: "item-1",
-      question: "Is it accessible?",
-      answer: "Yes. It adheres to the WAI-ARIA design pattern.",
-    },
-    {
-      value: "item-2",
-      question: "Is it styled?",
-      answer:
-        "Yes. It comes with default styles that matches the other components' aesthetic.",
-    },
-    {
-      value: "item-3",
-      question: "Is it animated?",
-      answer:
-        "Yes. It's animated by default, but you can disable it if you prefer.",
-    },
-  ];
 
   useGSAP(() => {
     gsap.fromTo(
@@ -135,8 +116,8 @@ export const PoliciesAndProgress = ({
                   faqList[0]?.Image.media.data.attributes.formats.small.url
                 }
                 alt="hello"
-                width={500}
-                height={500}
+                width={430}
+                height={430}
                 className="object-cover"
               />
             )}

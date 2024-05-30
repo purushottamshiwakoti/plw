@@ -35,7 +35,7 @@ export const Services = ({
   serviceTitle,
 }: ServicesInterface) => {
   return (
-    <section className="lg:px-[10rem] px-3 w-full my-20">
+    <section className="lg:px-[4rem] px-3 w-full my-20">
       <div className="flex justify-center  items-center  ">
         <Star fill="#299726" strokeWidth={0} className="w-5 h-5" />
         <Star fill="#299726" strokeWidth={0} className="w-7 h-7" />

@@ -44,7 +44,7 @@ export const Saying = ({ description, title, review }: SayingProps) => {
 
   return (
     <>
-      <section className="lg:px-[10rem] p-4 w-full my-20">
+      <section className="lg:px-[6rem] p-4 w-full my-20">
         <div className="lg:mt-5 space-y-3">
           <h2 className="text-[#222] text-2xl font-bold text-center">
             {title}
@@ -58,11 +58,86 @@ export const Saying = ({ description, title, review }: SayingProps) => {
             <Star fill="#299726" strokeWidth={0} className="w-5 h-5" />
           </div>
         </div>
-        <div className="mt-10 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-10">
+        <div className="mt-10 flex justify-center flex-wrap gap-3">
           {review &&
             review.map((item, index) => (
               <div
-                className="shadow-xl border-1 w-full flex flex-col p-3 review-card"
+                className="shadow-xl border-1  flex w-[29vw] flex-col p-3 review-card"
+                key={index}
+              >
+                <div className="px-6 py-10 flex flex-col">
+                  <div className="flex items-start justify-start mb-3">
+                    <Quote className="text-[#09274C]" />
+                  </div>
+                  <div
+                    className={`mt-3 ${showFullReview ? "overflow-auto" : ""}`}
+                  >
+                    {showFullReview === item.Review ? (
+                      <>
+                        {parse(item.Review)}
+                        <Button
+                          variant={"link"}
+                          className="p-0"
+                          onClick={handleShowLess}
+                        >
+                          Show Less
+                        </Button>
+                      </>
+                    ) : (
+                      <>
+                        {parse(item.Review.slice(0, 300) + "...")}
+                        <Button
+                          variant={"link"}
+                          className="p-0"
+                          onClick={() => handleReadMore(item.Review)}
+                        >
+                          Read More
+                        </Button>
+                      </>
+                    )}
+                  </div>
+                  <div className="flex items-start justify-end mt-3">
+                    <Quote className="text-[#09274C]" />
+                  </div>
+                </div>
+                <div className="mt-4 flex items-center justify-between">
+                  <div className="flex items-center space-x-3">
+                    <Image
+                      src={`${AppUrl}${item.Image.media.data.attributes.formats.thumbnail.url}`}
+                      width={100}
+                      height={100}
+                      alt={item.Image.alt}
+                      className="rounded-full h-20 w-20 object-cover"
+                    />
+                    <div>
+                      <div className="flex items-center mb-2">
+                        {Array.from(
+                          { length: parseInt(item.Stars) },
+                          (_, index) => (
+                            <Star
+                              key={index}
+                              fill="#299726"
+                              strokeWidth={0}
+                              className="w-5 h-5"
+                            />
+                          )
+                        )}
+                      </div>
+                      <h2 className="text-muted-foreground font-semibold">
+                        {item.Designation}
+                      </h2>
+                      <h4 className="text-buttonBg font-semibold">
+                        {item.Name}
+                      </h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          {review &&
+            review.map((item, index) => (
+              <div
+                className="shadow-xl border-1  flex w-[29vw] flex-col p-3 review-card"
                 key={index}
               >
                 <div className="px-6 py-10 flex flex-col">
