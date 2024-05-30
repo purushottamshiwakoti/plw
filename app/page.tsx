@@ -80,6 +80,7 @@ async function getData() {
       data.attributes.SEO?.OgImage.data.attributes.formats.thumbnail.url ?? "";
 
     const featuredData = featuresRes.data;
+    const showServiceAs = data.attributes.showServiceAs;
 
     return {
       bannerTitle,
@@ -130,6 +131,7 @@ async function getData() {
       ogDescription,
       OgImage,
       canonicalUrl,
+      showServiceAs,
     };
   } catch (error) {
     // console.log("Error retrieving data:", error);
@@ -180,12 +182,13 @@ export default async function Home() {
               title={data?.electionTitle}
             />
           </div>
-          {/* <Services
+          <Services
             serviceDescription={data?.serviceDescription}
             serviceIcons={data?.serviceIcons}
             serviceSubTitle={data?.serviceSubTitle}
             serviceTitle={data?.serviceTitle}
-          /> */}
+            showServiceAs={data?.showServiceAs}
+          />
           {/* <Momvement
             description={data?.aboutSFMDescription}
             position={data?.aboutSFMPosition}
