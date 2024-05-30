@@ -15,6 +15,7 @@ export const MenuItem = ({ menu }: { menu: any }) => {
   const [hoverMenu, setHoverMenu] = useState<any>(["hello"]);
   const [dropdown, setDropdown] = useState<string | null>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const navInRef = useRef<HTMLDivElement>(null);
   const prevY = useRef<any>(null);
 
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -210,7 +211,7 @@ export const MenuItem = ({ menu }: { menu: any }) => {
                       //   // toggleMenu(true);
                       //   setDropdown(null);
                       // }}
-                      // onMouseMove={handleMouseMove}
+                      onMouseMove={handleMouseMove}
                     >
                       <Link
                         href={item.attributes.url ?? "#"}

@@ -173,28 +173,28 @@ export default async function Home() {
             button={data?.bannerButtonName}
             showInput={data?.showInput}
           />
-          <div className="-mt-28 z-40 relative">
+          {/* <div className="-mt-28 z-40 relative">
             <ElectionTime
               date={data?.electionDate}
               description={data?.electionDescription}
               title={data?.electionTitle}
             />
-          </div>
-          <Services
+          </div> */}
+          {/* <Services
             serviceDescription={data?.serviceDescription}
             serviceIcons={data?.serviceIcons}
             serviceSubTitle={data?.serviceSubTitle}
             serviceTitle={data?.serviceTitle}
-          />
-          <Momvement
+          /> */}
+          {/* <Momvement
             description={data?.aboutSFMDescription}
             position={data?.aboutSFMPosition}
             title={data?.aboutSFMTitle}
             url={data?.aboutSFMSocial}
             image={data?.aboutSFMImage}
             imageAlt={data?.aboutSFMImageAlt}
-          />
-          <div className="mt-10">
+          /> */}
+          {/* <div className="mt-10">
             <Donation
               description={data?.donationDescription}
               title={data?.donationTitle}
@@ -202,20 +202,20 @@ export default async function Home() {
               banner={data?.donationBanner}
               showDonationTitle={data?.showDonationTitle}
             />
-          </div>
-          <LatestEvents data={data?.featuredData} />
-          <FutureMovement
+          </div> */}
+          {/* <LatestEvents data={data?.featuredData} /> */}
+          {/* <FutureMovement
             description={data?.movementTitle}
             title={data?.movementDescription}
             icon={data?.movementIcon}
-          />
-          <Saying
+          /> */}
+          {/* <Saying
             description={data?.reviewDescription}
             title={data?.reviewTitle}
             review={data?.reviews}
-          />
-          <SocialIcons url={data?.socialIcons} />
-          <ConfirmVotes
+          /> */}
+          {/* <SocialIcons url={data?.socialIcons} /> */}
+          {/* <ConfirmVotes
             buttonLink={data?.confirmVoteButtonLink}
             buttonName={data?.confirmVoteButtonName}
             description={data?.confirmVoteDescription}
@@ -223,12 +223,12 @@ export default async function Home() {
             subtitle={data?.confirmVoteSubtitle}
             title={data?.confirmVoteTitle}
             bgImage={data?.confirmVoteBackgroundImage}
-          />
-          <PoliciesAndProgress
+          /> */}
+          {/* <PoliciesAndProgress
             subTitle={data?.faqSubTitle}
             title={data?.faqTitle}
             faq={data?.faqs}
-          />
+          /> */}
           <div className="pb-10"></div>
         </div>
         {/* <div>
