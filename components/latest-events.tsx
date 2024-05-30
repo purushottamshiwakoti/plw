@@ -30,7 +30,7 @@ export const LatestEvents = ({ data }: { data: any[] }) => {
 
   return (
     <>
-      <div className="my-10 mt-20 lg:px-[10rem] px-4 ">
+      <div className="my-10 mt-20 px-4 ">
         <div>
           <h2 className="text-[#4F4F4F] text-center font-bold text-3xl mb-10 ">
             {locale == "en" ? "Featured" : "متميز"}
@@ -40,14 +40,14 @@ export const LatestEvents = ({ data }: { data: any[] }) => {
           opts={{
             align: "start",
           }}
-          className="w-full mt-4  px-[12rem]  "
+          className="w-full mt-4  px-[5rem]  "
         >
           <CarouselContent className="gap-6">
             {data &&
               data.map((item, index) => (
                 <CarouselItem
                   key={index}
-                  className="w-full md:basis-1/2 lg:basis-1/3 shadow-xl border "
+                  className="w-full min-w-[20rem]  md:basis-1/2 lg:basis-1/3 shadow-xl border "
                 >
                   <div className="space-y-3   " key={index}>
                     <div className="relative  -ml-4 h-[200px]">
