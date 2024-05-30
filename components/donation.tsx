@@ -2,11 +2,20 @@ import { AppUrl } from "@/lib/url";
 import { PersonStandingIcon, Star } from "lucide-react";
 import Image from "next/image";
 
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+
 interface DonationProps {
   showDonationTitle: boolean;
   title: string;
   banner: string;
   description: string;
+  showDonationAs: string;
   donations: {
     Title: string;
     Description: string;
@@ -33,6 +42,7 @@ export const Donation = ({
   title,
   banner,
   showDonationTitle,
+  showDonationAs,
 }: DonationProps) => {
   return (
     <div
@@ -58,7 +68,8 @@ export const Donation = ({
           </div>
         )}
         <div className=" flex justify-center flex-wrap">
-          {donations &&
+          {showDonationAs == "Grid" ? (
+            donations &&
             donations.map((item, index) => {
               return (
                 <div
@@ -84,7 +95,53 @@ export const Donation = ({
                   </div>
                 </div>
               );
-            })}
+            })
+          ) : (
+            <>
+              {" "}
+              <Carousel
+                opts={{
+                  align: "start",
+                }}
+                className="w-full mt-4  lg:px-[5rem] xl:px-[5%]  "
+              >
+                <CarouselContent className="gap-3">
+                  {donations &&
+                    donations.map((item, index) => (
+                      <div
+                        className="group hover:-translate-y-5 transition-all duration-500 flex-col lg:my-14 my-5 lg:mx-4 cursor-pointer bg-white/20 rounded-md py-10"
+                        key={index}
+                      >
+                        <div className="rounded-md min-w-72 min-h-32 flex flex-col items-center justify-center">
+                          {item.Icon !== null && (
+                            <Image
+                              alt={item.Icon.alt ?? "Image Alt Text"}
+                              src={`${AppUrl}${item.Icon.media.data.attributes.formats.small.url}`}
+                              width={80}
+                              height={80}
+                            />
+                          )}
+                        </div>
+                        <div className="flex flex-col items-center text-white">
+                          <h2 className="font-bold text-3xl">
+                            {item.Description}
+                          </h2>
+                          <p className="text-white mt-2 text-lg line-clamp-5">
+                            {item.Title}
+                          </p>
+                        </div>
+                      </div>
+                    ))}
+                </CarouselContent>
+                <div className="mt-10">
+                  <div className="flex items-center justify-center gap-4">
+                    <CarouselPrevious className="w-12" />
+                    <CarouselNext className="w-12" />
+                  </div>
+                </div>
+              </Carousel>
+            </>
+          )}
         </div>
       </div>
     </div>

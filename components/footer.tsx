@@ -29,6 +29,8 @@ interface FooterProps {
   menuTitle: string | undefined;
   menu: any[];
   backgroundColor: string | undefined;
+  textColor: string;
+  seperatorColor: string;
 }
 
 function AnimationNumber({ n }: { n: string }) {
@@ -70,6 +72,8 @@ export const Footer = ({
   menu,
   menuTitle,
   backgroundColor,
+  textColor,
+  seperatorColor,
 }: FooterProps) => {
   return (
     <>
@@ -81,7 +85,7 @@ export const Footer = ({
       >
         <div className="lg:px-[5%] px-4">
           <div className=" lg:flex items-center justify-between">
-            <Link href={"/"}>
+            <Link href={"/"} className="lg:min-w-[40%] bg-red-500]">
               <Image
                 // src={"/images/logo.svg"}
                 src={`${AppUrl}${logo}`}
@@ -91,12 +95,21 @@ export const Footer = ({
                 priority
               />
             </Link>
-            <div className="lg:flex items-center lg:gap-20 gap-5 grid md:grid-cols-4 grid-cols-2 lg:mt-0 mt-4">
+            <div
+              className="lg:flex items-center lg:gap-20 gap-5 grid md:grid-cols-4 grid-cols-2 lg:mt-0 mt-4
+            lg:overflow-x-auto
+            "
+            >
               {counter &&
                 counter.map((item, index) => {
                   return (
                     <div key={index}>
-                      <h2 className="font-semibold  text-2xl">
+                      <h2
+                        className="font-semibold  text-2xl"
+                        style={{
+                          color: textColor,
+                        }}
+                      >
                         {" "}
                         {item.Description}
                       </h2>
@@ -108,8 +121,18 @@ export const Footer = ({
             </div>
           </div>
         </div>
-        <hr className="mt-16 border-[#2B3C51]" />
-        <div className="lg:px-[5%] px-4 lg:mt-[3rem] mt-4 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-10">
+        <hr
+          className="mt-16 "
+          style={{
+            borderColor: seperatorColor,
+          }}
+        />
+        <div
+          className="lg:px-[5%] px-4 lg:mt-[3rem] mt-4 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-10"
+          style={{
+            color: textColor,
+          }}
+        >
           {/* about us start  */}
           <div className="space-y-4">
             <h2 className="font-semibold text-xl capitalize">{aboutTitle}</h2>
@@ -137,7 +160,12 @@ export const Footer = ({
                       {item.Name}
                     </Link>
                   </div>
-                  <hr className="border-[#2B3C51] mt-2 w-[80%]" />
+                  <hr
+                    className="mt-2 w-[80%]"
+                    style={{
+                      borderColor: seperatorColor,
+                    }}
+                  />
                 </div>
               ))}
           </div>
@@ -170,9 +198,19 @@ export const Footer = ({
             phone={phone}
           />
         </div>
-        <hr className="mt-16 border-[#2B3C51] " />
+        <hr
+          className="mt-16  "
+          style={{
+            borderColor: seperatorColor,
+          }}
+        />
         <div className="mt-10 ">
-          <p className="text-center">
+          <p
+            className="text-center"
+            style={{
+              color: textColor,
+            }}
+          >
             © {new Date().getFullYear()}{" "}
             {/* <span className="text-buttonHoverBg">Politaro</span> - Political */}
             {footerText}

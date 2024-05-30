@@ -106,23 +106,24 @@ export const PoliciesAndProgress = ({
           <hr className=" w-full mt-4   " />
         </div>
 
-        <div className="grid lg:grid-cols-2 grid-cols-1 my-10  opacity-0 faqs pb-20 ">
+        <div className="grid lg:grid-cols-3 grid-cols-1 my-10  opacity-0 faqs pb-20 ">
           <div>
             {faqList[0] && (
-              <Image
-                // src={faqList[0].Image.media.data.attributes.formats.small.url}
-                src={
-                  AppUrl +
-                  faqList[0]?.Image.media.data.attributes.formats.small.url
-                }
-                alt="hello"
-                width={430}
-                height={430}
-                className="object-cover"
-              />
+              <div className="lg:w-[23vw] w-[70vw] h-[20rem] relative">
+                <Image
+                  // src={faqList[0].Image.media.data.attributes.formats.small.url}
+                  src={
+                    AppUrl +
+                    faqList[0]?.Image.media.data.attributes.formats.small.url
+                  }
+                  alt="hello"
+                  fill
+                  className="object-cover"
+                />
+              </div>
             )}
           </div>
-          <div className="lg:mt-0 mt-4">
+          <div className="lg:mt-0 mt-4 col-span-2">
             <Accordion
               type="single"
               collapsible

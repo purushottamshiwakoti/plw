@@ -81,6 +81,7 @@ async function getData() {
 
     const featuredData = featuresRes.data;
     const showServiceAs = data.attributes.showServiceAs;
+    const showDonationAs = data.attributes.showDonationAs;
 
     return {
       bannerTitle,
@@ -132,6 +133,7 @@ async function getData() {
       OgImage,
       canonicalUrl,
       showServiceAs,
+      showDonationAs,
     };
   } catch (error) {
     // console.log("Error retrieving data:", error);
@@ -189,36 +191,37 @@ export default async function Home() {
             serviceTitle={data?.serviceTitle}
             showServiceAs={data?.showServiceAs}
           />
-          {/* <Momvement
+          <Momvement
             description={data?.aboutSFMDescription}
             position={data?.aboutSFMPosition}
             title={data?.aboutSFMTitle}
             url={data?.aboutSFMSocial}
             image={data?.aboutSFMImage}
             imageAlt={data?.aboutSFMImageAlt}
-          /> */}
-          {/* <div className="mt-10">
+          />
+          <div className="mt-10">
             <Donation
               description={data?.donationDescription}
               title={data?.donationTitle}
               donations={data?.donationIcons}
               banner={data?.donationBanner}
               showDonationTitle={data?.showDonationTitle}
+              showDonationAs={data?.showDonationAs}
             />
-          </div> */}
-          {/* <LatestEvents data={data?.featuredData} /> */}
-          {/* <FutureMovement
+          </div>
+          <LatestEvents data={data?.featuredData} />
+          <FutureMovement
             description={data?.movementTitle}
             title={data?.movementDescription}
             icon={data?.movementIcon}
-          /> */}
-          {/* <Saying
+          />
+          <Saying
             description={data?.reviewDescription}
             title={data?.reviewTitle}
             review={data?.reviews}
-          /> */}
-          {/* <SocialIcons url={data?.socialIcons} /> */}
-          {/* <ConfirmVotes
+          />
+          <SocialIcons url={data?.socialIcons} />
+          <ConfirmVotes
             buttonLink={data?.confirmVoteButtonLink}
             buttonName={data?.confirmVoteButtonName}
             description={data?.confirmVoteDescription}
@@ -226,12 +229,12 @@ export default async function Home() {
             subtitle={data?.confirmVoteSubtitle}
             title={data?.confirmVoteTitle}
             bgImage={data?.confirmVoteBackgroundImage}
-          /> */}
-          {/* <PoliciesAndProgress
+          />
+          <PoliciesAndProgress
             subTitle={data?.faqSubTitle}
             title={data?.faqTitle}
             faq={data?.faqs}
-          /> */}
+          />
           <div className="pb-10"></div>
         </div>
         {/* <div>

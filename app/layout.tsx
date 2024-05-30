@@ -46,10 +46,12 @@ async function getData() {
     const aboutTitle = footerData.attributes.AboutTitle;
     const aboutDescription = footerData.attributes.AboutDescription;
     const getInTouchTitle = footerData.attributes.GetInTouchTitle;
-    const footerText = footerData.attributes.FooterText;
+    const footerText = footerData.attributes.CopyrightText;
     const menuTitle = footerData.attributes.MenuTitle;
     const menu = footerData.attributes.FooterMenu;
     const backgroundColor = footerData.attributes.BackgroundColor;
+    const textColor = footerData.attributes.TextColor;
+    const seperatorColor = footerData.attributes.SeperatorColor;
 
     const googleAnalytics = seoData.attributes.GoogleAnalytics;
     const googleTagsManager = seoData.attributes.GoogleTagsManager;
@@ -77,6 +79,8 @@ async function getData() {
       menu,
       backgroundColor,
       appLogo,
+      textColor,
+      seperatorColor,
     };
   } catch (error) {
     console.log(error);
@@ -135,7 +139,7 @@ export default async function RootLayout({
           <Header />
           <HeaderNav />
           {children}
-          {/* <Footer
+          <Footer
             counter={data?.counter}
             logo={data?.logo}
             logoAlt={data?.logoAlt}
@@ -150,7 +154,9 @@ export default async function RootLayout({
             menu={data?.menu}
             menuTitle={data?.menuTitle}
             backgroundColor={data?.backgroundColor}
-          /> */}
+            seperatorColor={data?.seperatorColor}
+            textColor={data?.textColor}
+          />
           <TopSctoll />
           <NextTopLoader color="#299726" />
         </MantineProvider>

@@ -96,7 +96,7 @@ export const Services = ({
             opts={{
               align: "start",
             }}
-            className="w-full mt-4  px-[5rem] xl:px-[5%]  "
+            className="w-full mt-4  lg:px-[5rem] xl:px-[5%]  "
           >
             <CarouselContent className="gap-3">
               {serviceIcons &&
@@ -106,7 +106,7 @@ export const Services = ({
                       className="cursor-pointer group  transition-all hover:-translate-y-5 duration-500"
                       key={index}
                     >
-                      <div className=" bg-[#F4F4F4] group-hover:bg-buttonHoverBg/40 border-1 w-ful lg:w-[170px] h-[160px]  ">
+                      <div className=" bg-[#F4F4F4] group-hover:bg-buttonHoverBg/40 border-1 w-auto lg:w-[170px] h-[160px]  ">
                         <div className="bg-transparent flex items-center justify-center h-full">
                           {item.Icon.media.data !== null && (
                             <Image
