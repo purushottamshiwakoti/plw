@@ -75,13 +75,13 @@ async function getData() {
 
     const bannerImage =
       data.attributes.Banner.BannerImage.data.attributes.formats.thumbnail.url;
-    const metaTitle = data.attributes.SEO.MetaTitle;
-    const metaDescription = data.attributes.SEO.MetaDescription;
-    const ogTitle = data.attributes.SEO?.OgTitle;
-    const ogDescription = data.attributes.SEO?.OgDescription;
-    const canonicalUrl = data.attributes.SEO?.CanonicalUrl;
+    const metaTitle = data.attributes.SEO.MetaTitle ?? "";
+    const metaDescription = data.attributes.SEO.MetaDescription ?? "";
+    const ogTitle = data.attributes.SEO?.OgTitle ?? "";
+    const ogDescription = data.attributes.SEO?.OgDescription ?? "";
+    const canonicalUrl = data.attributes.SEO?.CanonicalUrl ?? "";
     const OgImage =
-      data.attributes.SEO?.OgImage.data.attributes.formats.thumbnail.url;
+      data.attributes.SEO?.OgImage.data.attributes.formats.thumbnail.url ?? "";
 
     const featuredData = featuresRes.data;
 
@@ -207,7 +207,7 @@ export default async function Home() {
               showDonationTitle={data?.showDonationTitle}
             />
           </div>
-          {/* <LatestEvents data={data?.featuredData} /> */}
+          <LatestEvents data={data?.featuredData} />
           <FutureMovement
             description={data?.movementTitle}
             title={data?.movementDescription}

@@ -6,10 +6,38 @@ import parse from "html-react-parser";
 import { AppUrl } from "@/lib/url";
 async function getData() {
   const [res] = await Promise.all([
-    apiCall("about-me", "populate=FeaturedImage.media&populate=Gallery.media"),
+    apiCall(
+      "about-me",
+      "populate=FeaturedImage.media&populate=Gallery.media&populate=SEO.OgImage"
+    ),
   ]);
 
   return res.data;
+}
+
+export async function generateMetadata() {
+  // read route params
+
+  // fetch data
+
+  // optionally access and extend (rather than replace) parent metadata
+  const data = await getData();
+
+  return {
+    title: data.attributes.SEO.MetaTitle ?? "",
+    description: data.attributes.SEO.MetaDescription ?? "",
+    // canonical: data?.canonicalUrl,
+    alternates: {
+      canonical: data.attributes.SEO?.CanonicalUrl ?? "",
+    },
+    openGraph: {
+      title: data.attributes.SEO?.OgTitle ?? "",
+      description: data.attributes.SEO?.OgDescription ?? "",
+      images:
+        data.attributes.SEO?.OgImage?.data?.attributes.formats.thumbnail.url ??
+        "",
+    },
+  };
 }
 
 const About1 = async () => {
@@ -34,15 +62,15 @@ const About1 = async () => {
                           item.media.data.attributes.formats.thumbnail.url
                         }
                         alt={item.alt}
-                        className="  object-contain rounded-2xl"
+                        className="  object-cover rounded-2xl"
                         // width={
                         //   item.media.data.attributes.formats.thumbnail.width
                         // }
                         // height={
                         //   item.media.data.attributes.formats.thumbnail.height
                         // }
-                        width={500}
-                        height={500}
+                        width={100}
+                        height={100}
                       />
                     </div>
                   ))}

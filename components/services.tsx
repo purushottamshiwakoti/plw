@@ -50,7 +50,7 @@ export const Services = ({
           {serviceDescription}
         </p>
       </div>
-      <div className="lg:flex grid grid-cols-2 md:grid-cols-4 items-center lg:gap-3 gap-7   justify-center mt-10 md:px-10 ">
+      <div className="lg:flex lg:flex-wrap  grid grid-cols-2 md:grid-cols-4 items-center lg:gap-8 gap-7   justify-center mt-10 md:px-10 ">
         {serviceIcons &&
           serviceIcons.map((item, index) => {
             return (

@@ -7,10 +7,38 @@ import { AppUrl } from "@/lib/url";
 
 async function getData() {
   const [res] = await Promise.all([
-    apiCall("about-us", "populate=FeaturedImage.media&populate=Gallery.media"),
+    apiCall(
+      "about-us",
+      "populate=FeaturedImage.media&populate=Gallery.media&populate=SEO.OgImage"
+    ),
   ]);
 
   return res.data;
+}
+
+export async function generateMetadata() {
+  // read route params
+
+  // fetch data
+
+  // optionally access and extend (rather than replace) parent metadata
+  const data = await getData();
+
+  return {
+    title: data.attributes.SEO.MetaTitle ?? "",
+    description: data.attributes.SEO.MetaDescription ?? "",
+    // canonical: data?.canonicalUrl,
+    alternates: {
+      canonical: data.attributes.SEO?.CanonicalUrl ?? "",
+    },
+    openGraph: {
+      title: data.attributes.SEO?.OgTitle ?? "",
+      description: data.attributes.SEO?.OgDescription ?? "",
+      images:
+        data.attributes.SEO?.OgImage?.data?.attributes.formats.thumbnail.url ??
+        "",
+    },
+  };
 }
 
 const About1 = async () => {

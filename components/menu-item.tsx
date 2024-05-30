@@ -15,6 +15,8 @@ export const MenuItem = ({ menu }: { menu: any }) => {
   const [hoverMenu, setHoverMenu] = useState<any>(["hello"]);
   const [dropdown, setDropdown] = useState<string | null>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const prevY = useRef<any>(null);
+
   const [scrollPosition, setScrollPosition] = useState(0);
   const handleScroll = () => {
     const position = window.pageYOffset;
@@ -44,6 +46,21 @@ export const MenuItem = ({ menu }: { menu: any }) => {
 
   const handleParentClick = (itemName: string) => {
     setDropdown((prev) => (prev === itemName ? null : itemName));
+  };
+
+  const handleMouseMove = (e: any) => {
+    // Get the previous Y position from the state
+    const currentY = e.clientY;
+    console.log(prevY.current);
+    console.log(currentY);
+
+    if (prevY.current !== null && currentY < prevY.current) {
+      // Mouse is moving upwards
+      setDropdown(null);
+    }
+
+    // Update the previous Y position
+    prevY.current = currentY;
   };
 
   const renderChildren = ({
@@ -187,12 +204,13 @@ export const MenuItem = ({ menu }: { menu: any }) => {
                           ? toggleMenu(false)
                           : null;
                       }}
-                      onMouseLeave={() => {
-                        // setDropdown(null);
-                        // setHoverMenu(["hello"]);
-                        // toggleMenu(true);
-                        setDropdown(null);
-                      }}
+                      // onMouseLeave={() => {
+                      //   // setDropdown(null);
+                      //   // setHoverMenu(["hello"]);
+                      //   // toggleMenu(true);
+                      //   setDropdown(null);
+                      // }}
+                      // onMouseMove={handleMouseMove}
                     >
                       <Link
                         href={item.attributes.url ?? "#"}

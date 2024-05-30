@@ -3,9 +3,34 @@ import React from "react";
 import parse from "html-react-parser";
 import ContactForm from "@/components/forms/contact-form";
 async function getData() {
-  const [res] = await Promise.all([apiCall("contact", "populate=*")]);
+  const [res] = await Promise.all([apiCall("contact", "populate=SEO.OgImage")]);
   console.log(res);
   return res.data;
+}
+
+export async function generateMetadata() {
+  // read route params
+
+  // fetch data
+
+  // optionally access and extend (rather than replace) parent metadata
+  const data = await getData();
+
+  return {
+    title: data.attributes.SEO.MetaTitle ?? "",
+    description: data.attributes.SEO.MetaDescription ?? "",
+    // canonical: data?.canonicalUrl,
+    alternates: {
+      canonical: data.attributes.SEO?.CanonicalUrl ?? "",
+    },
+    openGraph: {
+      title: data.attributes.SEO?.OgTitle ?? "",
+      description: data.attributes.SEO?.OgDescription ?? "",
+      images:
+        data.attributes.SEO?.OgImage?.data?.attributes.formats.thumbnail.url ??
+        "",
+    },
+  };
 }
 
 const Contact = async () => {
