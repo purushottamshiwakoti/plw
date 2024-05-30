@@ -63,7 +63,7 @@ const Slider = ({
           // >
           //   {slide.Title}
           // </span>
-          <SwiperSlide className="text-md" key={index}>
+          <SwiperSlide className="text-md line-clamp-2" key={index}>
             {slide.Title}
           </SwiperSlide>
         ))}

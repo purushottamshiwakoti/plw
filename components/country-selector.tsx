@@ -1,13 +1,23 @@
 "use client";
-import { useState, useEffect } from "react";
+
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { getCookie, setCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { FlagIcon } from "react-flag-kit";
 import { Skeleton } from "./ui/skeleton";
+import { boolean } from "zod";
 
-export const CountrySelector = () => {
+export const CountrySelector = ({ showFlag }: { showFlag: boolean }) => {
   const router = useRouter();
   const [loading, setLoading] = useState(true); // State to manage loading state
-  const [lang, setLang] = useState("en"); // State to store language
+  const [lang, setLang] = useState("en");
 
   useEffect(() => {
     const fetchLanguage = async () => {
@@ -29,17 +39,27 @@ export const CountrySelector = () => {
   return loading ? ( // Display splash screen while loading
     <Skeleton className="w-10 h-10" />
   ) : (
-    <select
-      id="countries"
-      className="w-[5rem] bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600
-      dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-      value={lang}
-      onChange={handleSetLanguage}
+    <Select
+      defaultValue={lang ?? "en"}
+      onValueChange={(val: any) => handleSetLanguage(val)}
     >
-      <option value={"ar"} className="mt-10 ">
-        🇦🇪 Ar
-      </option>
-      <option value="en">🇺🇸 En</option>
-    </select>
+      <SelectTrigger className="w-[80px] text-primary">
+        <SelectValue placeholder="Select " />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectItem value="en">
+          <div className="flex items-center gap-2">
+            {showFlag && <FlagIcon code="US" size={20} />}
+            English
+          </div>
+        </SelectItem>
+        <SelectItem value="ar">
+          <div className="flex items-center gap-2">
+            {showFlag && <FlagIcon code="AE" size={20} />}
+            Arabic
+          </div>
+        </SelectItem>
+      </SelectContent>
+    </Select>
   );
 };

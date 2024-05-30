@@ -26,6 +26,7 @@ async function getData() {
     const menu = menuData.data.attributes.items.data;
 
     const logo = data.attributes.Logo.media.data.attributes.formats.large.url;
+    const showFlag = data.attributes.showFlag;
 
     return {
       buttonName,
@@ -34,6 +35,7 @@ async function getData() {
       menu,
       logo,
       backgroundColor,
+      showFlag,
     };
 
     // Extract banner attributes with proper null/undefined checks
@@ -52,6 +54,7 @@ export const HeaderNav = async () => {
       menu={data?.menu}
       showButton={data?.showButton}
       backgroundColor={data?.backgroundColor}
+      showFlag={data?.showFlag}
     />
   );
 };

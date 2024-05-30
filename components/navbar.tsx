@@ -23,6 +23,7 @@ interface NavbarProps {
   menu: any[];
   logo: string;
   backgroundColor: string;
+  showFlag: boolean;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -33,6 +34,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   menu,
   showButton,
   backgroundColor,
+  showFlag,
 }) => {
   const path = usePathname();
 
@@ -78,7 +80,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         )}
       </div>
       <div className="lg:block hidden">
-        <CountrySelector />
+        <CountrySelector  showFlag={showFlag}/>
       </div>
     </nav>
   );
