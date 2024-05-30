@@ -30,7 +30,7 @@ export const TopHeader = ({ data }: { data: any }) => {
             />
             <span className="font-medium">{data?.title}</span>
           </div>
-          <div className="text-sm lg:flex items-center flex-grow">
+          <div className="text-sm my-3 md:mt-2 lg:mt-0 lg:flex items-center flex-grow">
             <span className="">
               {/* Our new campaign 2020 ready to launch from next week */}
               <Slider slides={data?.newsCampaign} />

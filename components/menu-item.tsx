@@ -313,11 +313,11 @@ export const MenuItem = ({ menu }: { menu: any }) => {
                                 childIndex == 2 && (
                                   <>
                                     <div
-                                      className={`bg-white
+                                      className={`bg-white pl-[5rem]
                                       overflow-hidden
                                       z-40 
                                       shadow-sm
-                                      flex px-[3rem] h-[90vh] w-[90vw] 
+                                      flex px-[3rem] h-[90vh] w-[100vw] 
                                    
                                      ${
                                        cookie == "ar"
@@ -331,13 +331,13 @@ export const MenuItem = ({ menu }: { menu: any }) => {
                                         {item.attributes.children.data.map(
                                           (item: any, index: number) => (
                                             <div
-                                              className="  w-[17vw] relative "
+                                              className=" mt-2 w-[17vw] relative "
                                               key={index}
                                             >
                                               <div>
                                                 <Link
                                                   href={item.attributes.url}
-                                                  className="text-sm font-semibold text-gray-500"
+                                                  className="text-sm  font-semibold text-gray-500"
                                                   onClick={() => {
                                                     setDropdown(null);
                                                     setHoverMenu(["hello"]);
