@@ -33,7 +33,7 @@ export const Banner = ({
 
         <div className="text-white font-[400] mt-[8rem] text-[18px] z-10 ">
           <h3 className="title text-center ">{title}</h3>
-          <h2 className="mt-5 font-[700] lg:text-[50px]  text-2xl lg:leading-normal   lg:px-[22rem] description text-center ">
+          <h2 className="mt-5 font-[700] lg:text-[50px]  text-2xl lg:leading-normal   lg:px-[18rem] description text-center ">
             {description}
           </h2>
           {showInput && (

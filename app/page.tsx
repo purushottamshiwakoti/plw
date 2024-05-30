@@ -173,13 +173,13 @@ export default async function Home() {
             button={data?.bannerButtonName}
             showInput={data?.showInput}
           />
-          {/* <div className="-mt-28 z-40 relative">
+          <div className="-mt-28 z-40 relative">
             <ElectionTime
               date={data?.electionDate}
               description={data?.electionDescription}
               title={data?.electionTitle}
             />
-          </div> */}
+          </div>
           {/* <Services
             serviceDescription={data?.serviceDescription}
             serviceIcons={data?.serviceIcons}

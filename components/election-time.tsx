@@ -47,10 +47,10 @@ export const ElectionTime = ({
   }, []);
 
   return (
-    <div className="xl:mx-[10rem] lg:bg-reg-500 mx-4 mb-10 mt-10">
+    <div className="xl:mx-[5%] lg:bg-reg-500 mx-4 mb-10 mt-10">
       <div className="bg-[#06B37C] text-white lg:flex items-center justify-around lg:p-10 p-2 lg:py-[4rem] rounded-2xl">
         <div className=" ">
-          <h2 className="lg:text-left text-center font-bold lg:text-[25px] text-xl">
+          <h2 className="lg:text-center text-center font-bold lg:text-[25px] text-xl">
             {title}
           </h2>
           <p className="text-center lg:text-[24px] mt-2 text-lg">
