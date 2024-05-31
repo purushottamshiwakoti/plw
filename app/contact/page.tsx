@@ -35,17 +35,16 @@ export async function generateMetadata() {
 
 const Contact = async () => {
   const data = await getData();
-  console.log(data);
   return (
     <>
-      <section className="relative z-10 overflow-hidden bg-white py-20 dark:bg-dark lg:py-[120px]">
+      <section className="relative z-10 overflow-hidden bg-white py-20 dark:bg-dark lg:px-[4%]">
         <div className="container">
           <div className="-mx-4 flex flex-wrap lg:justify-between">
             <div className="w-full px-4 lg:w-1/2 xl:w-6/12">
               <div className="mb-12 max-w-[570px] lg:mb-0">
-                <span className="mb-4 block text-base font-semibold text-primary">
+                <h1 className="mb-4 block text-lg font-semibold text-primary">
                   {data.attributes?.Title}
-                </span>
+                </h1>
                 <div className="mb-10 mt-4">
                   {parse(data.attributes?.Description)}
                 </div>
@@ -143,7 +142,10 @@ const Contact = async () => {
               </div>
             </div>
             {/* here form  */}
-            <ContactForm />
+            <ContactForm
+              dots={data.attributes?.DotsColor}
+              shape={data.attributes?.ShapeColor}
+            />
           </div>
         </div>
       </section>

@@ -26,8 +26,53 @@ export const MobileNav = ({ menu }: { menu: any }) => {
       }
     });
   };
-  const renderChildren = (menu: any) => {
-    return <div>{}</div>;
+
+  const renderChildren = (children: any[]) => {
+    return children.map((childItem: any, index: number) => (
+      <div className="flex flex-col mt-2" key={index}>
+        {childItem.attributes.children.data.length === 0 ? (
+          <DialogClose asChild key={index}>
+            <Link href={childItem.attributes.url ?? "/"}>
+              <span
+                className={cn(
+                  path === childItem.attributes.url
+                    ? "text-buttonHoverBg font-semibold text-base "
+                    : "font-semibold text-base hover:text-buttonHoverBg "
+                )}
+                title={childItem.attributes.title}
+              >
+                {childItem.attributes.title}
+              </span>
+            </Link>
+          </DialogClose>
+        ) : (
+          <>
+            <span
+              className={cn(
+                path === childItem.attributes.url
+                  ? "text-buttonHoverBg font-semibold text-base "
+                  : "font-semibold text-base hover:text-buttonHoverBg "
+              )}
+              title={childItem.attributes.title}
+              onClick={() => toggleSubMenu(childItem.attributes.title)}
+            >
+              <span className="flex items-center">
+                {childItem.attributes.title}
+                {subMenu.includes(childItem.attributes.title) ? (
+                  <ChevronUp className="w-5 h-5 ml-1" />
+                ) : (
+                  <ChevronDown className="w-5 h-5 ml-1" />
+                )}
+              </span>
+            </span>
+            <div>
+              {subMenu.includes(childItem.attributes.title) &&
+                renderChildren(childItem.attributes.children.data)}
+            </div>
+          </>
+        )}
+      </div>
+    ));
   };
 
   return (
@@ -37,150 +82,54 @@ export const MobileNav = ({ menu }: { menu: any }) => {
           <Menu />
         </Button>
       </SheetTrigger>
-      <SheetContent>
-        <ScrollArea className="max-h-[100vh]  bg-red-500 overflow-y-auto">
-          <div className="flex flex-col space-y-3 mt-10" key={"D"}>
-            {menu.map((item: any, index: any) => (
-              <div key={index}>
-                {item.attributes.children.data.length === 0 ? (
-                  <DialogClose asChild>
-                    <Link href={item.attributes.url ?? "/"}>
-                      <span
-                        className={cn(
-                          path === item.attributes.url
-                            ? "text-buttonHoverBg font-semibold text-base "
-                            : "font-semibold text-base hover:text-buttonHoverBg "
-                        )}
-                        title={item.attributes.title}
-                      >
-                        {item.attributes.title}
-                      </span>
-                    </Link>
-                  </DialogClose>
-                ) : (
-                  <>
-                    <div
+      <SheetContent className="overflow-scroll">
+        <div className="flex flex-col space-y-3 mt-4" key={"D"}>
+          {menu.map((item: any, index: any) => (
+            <div key={index}>
+              {item.attributes.children.data.length === 0 ? (
+                <DialogClose asChild>
+                  <Link href={item.attributes.url ?? "/"}>
+                    <span
                       className={cn(
                         path === item.attributes.url
                           ? "text-buttonHoverBg font-semibold text-base "
                           : "font-semibold text-base hover:text-buttonHoverBg "
                       )}
                       title={item.attributes.title}
-                      onClick={() => toggleDropdown(item.attributes.title)}
                     >
-                      <span className="flex items-center">
-                        {item.attributes.title}
-                        {openDropdown === item.attributes.title ? (
-                          <ChevronUp className="w-5 h-5 ml-1" />
-                        ) : (
-                          <ChevronDown className="w-5 h-5 ml-1" />
-                        )}
-                      </span>
-                    </div>
-                    <div>
-                      {openDropdown?.includes(item.attributes.title) &&
-                        item.attributes.children.data.map(
-                          (childItem: any, childIndex: any) => {
-                            return (
-                              <div className="flex flex-col mt-2" key={"sn"}>
-                                {childItem.attributes.children.data.length ==
-                                0 ? (
-                                  <DialogClose asChild key={childIndex}>
-                                    <Link
-                                      href={childItem.attributes.url ?? "/"}
-                                    >
-                                      <span
-                                        className={cn(
-                                          path === childItem.attributes.url
-                                            ? "text-buttonHoverBg font-semibold text-base "
-                                            : "font-semibold text-base hover:text-buttonHoverBg "
-                                        )}
-                                        title={childItem.attributes.title}
-                                      >
-                                        {childItem.attributes.title}
-                                      </span>
-                                    </Link>
-                                  </DialogClose>
-                                ) : (
-                                  <>
-                                    <span
-                                      className={cn(
-                                        path === childItem.attributes.url
-                                          ? "text-buttonHoverBg font-semibold text-base "
-                                          : "font-semibold text-base hover:text-buttonHoverBg "
-                                      )}
-                                      title={childItem.attributes.title}
-                                      onClick={() =>
-                                        toggleSubMenu(
-                                          childItem.attributes.title
-                                        )
-                                      }
-                                    >
-                                      <span className="flex items-center">
-                                        {childItem.attributes.title}
-                                        {subMenu.includes(
-                                          childItem.attributes.title
-                                        ) ? (
-                                          <ChevronUp className="w-5 h-5 ml-1" />
-                                        ) : (
-                                          <ChevronDown className="w-5 h-5 ml-1" />
-                                        )}
-                                      </span>
-                                    </span>
-                                    <div>
-                                      {subMenu.includes(
-                                        childItem.attributes.title
-                                      ) &&
-                                        childItem.attributes.children.data.map(
-                                          (item: any, index: number) => (
-                                            <div key={index}>
-                                              {/* {JSON.stringify(item)} */}
-                                              {item.attributes.children.data
-                                                .length == 0 ? (
-                                                <DialogClose
-                                                  asChild
-                                                  key={childIndex}
-                                                >
-                                                  <Link
-                                                    href={
-                                                      item.attributes.url ?? "/"
-                                                    }
-                                                  >
-                                                    <span
-                                                      className={cn(
-                                                        path ===
-                                                          item.attributes.url
-                                                          ? "text-buttonHoverBg font-semibold text-base "
-                                                          : "font-semibold text-base hover:text-buttonHoverBg "
-                                                      )}
-                                                      title={
-                                                        item.attributes.title
-                                                      }
-                                                    >
-                                                      {item.attributes.title}
-                                                    </span>
-                                                  </Link>
-                                                </DialogClose>
-                                              ) : (
-                                                renderChildren(item)
-                                              )}
-                                            </div>
-                                          )
-                                        )}
-                                    </div>
-                                  </>
-                                )}
-                              </div>
-                            );
-                          }
-                        )}
-                    </div>
-                  </>
-                )}
-              </div>
-            ))}
-          </div>
-        </ScrollArea>
+                      {item.attributes.title}
+                    </span>
+                  </Link>
+                </DialogClose>
+              ) : (
+                <>
+                  <div
+                    className={cn(
+                      path === item.attributes.url
+                        ? "text-buttonHoverBg font-semibold text-base "
+                        : "font-semibold text-base hover:text-buttonHoverBg "
+                    )}
+                    title={item.attributes.title}
+                    onClick={() => toggleDropdown(item.attributes.title)}
+                  >
+                    <span className="flex items-center">
+                      {item.attributes.title}
+                      {openDropdown === item.attributes.title ? (
+                        <ChevronUp className="w-5 h-5 ml-1" />
+                      ) : (
+                        <ChevronDown className="w-5 h-5 ml-1" />
+                      )}
+                    </span>
+                  </div>
+                  <div>
+                    {openDropdown?.includes(item.attributes.title) &&
+                      renderChildren(item.attributes.children.data)}
+                  </div>
+                </>
+              )}
+            </div>
+          ))}
+        </div>
       </SheetContent>
     </Sheet>
   );

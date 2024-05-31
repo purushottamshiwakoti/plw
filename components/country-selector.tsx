@@ -55,7 +55,7 @@ export const CountrySelector = ({ showFlag }: { showFlag: boolean }) => {
         </SelectItem>
         <SelectItem value="ar">
           <div className="flex items-center gap-2">
-            {showFlag && <FlagIcon code="AE" size={20} />}
+            {showFlag && <FlagIcon code="SA" size={20} />}
             Arabic
           </div>
         </SelectItem>

@@ -38,12 +38,12 @@ const ArticlePage = async ({ params }: { params: any }) => {
     return notFound();
   }
   return (
-    <div className="lg:mx-[10rem] mx-4 py-10">
+    <div className="lg:mx-[5%] mx-4 py-10">
       <div>
         {/* <CustomBreadcrumb /> */}
 
         <div className="mt-5 lg:flex   lg:gap-20 ">
-          <div className="relative lg:w-[55%]">
+          <div className="relative lg:w-[150%]">
             {data ? (
               <>
                 <ArticleDetail data={data} />
@@ -54,7 +54,7 @@ const ArticlePage = async ({ params }: { params: any }) => {
               <ArticleNotFOund />
             )}
           </div>
-          <div className="lg:relative lg:w-[20%] md:w-[50%] lg:mt-0 mt-8">
+          <div className="lg:relative md:w-[50%]  lg:mt-0 mt-8">
             <Categories />
             <div className="mt-10">{/* <RecentEvents /> */}</div>
             <div className="mt-10">

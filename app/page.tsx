@@ -82,6 +82,7 @@ async function getData() {
     const featuredData = featuresRes.data;
     const showServiceAs = data.attributes.showServiceAs;
     const showDonationAs = data.attributes.showDonationAs;
+    const movementStarColor = data.attributes.MovementStarColor;
 
     return {
       bannerTitle,
@@ -134,6 +135,7 @@ async function getData() {
       canonicalUrl,
       showServiceAs,
       showDonationAs,
+      movementStarColor,
     };
   } catch (error) {
     // console.log("Error retrieving data:", error);
@@ -198,6 +200,7 @@ export default async function Home() {
             url={data?.aboutSFMSocial}
             image={data?.aboutSFMImage}
             imageAlt={data?.aboutSFMImageAlt}
+            movementStarColor={data?.movementStarColor}
           />
           <div className="mt-10">
             <Donation
@@ -214,6 +217,7 @@ export default async function Home() {
             description={data?.movementTitle}
             title={data?.movementDescription}
             icon={data?.movementIcon}
+            movementStarColor={data?.movementStarColor}
           />
           <Saying
             description={data?.reviewDescription}

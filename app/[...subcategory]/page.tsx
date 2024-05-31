@@ -83,12 +83,12 @@ const CategoryPage = async ({
   }
 
   return (
-    <div className="lg:mx-[10rem] mx-4 py-10">
+    <div className="lg:mx-[5%] mx-4 py-10">
       <div>
         <CustomBreadcrumb breads={breads} />
 
         <div className="mt-5 lg:flex   gap-20  ">
-          <div className="relative lg:w-[55%]">
+          <div className="relative lg:w-[150%]">
             <SearchInput />
             {data.data.length > 0 ? (
               <Articles data={data} />
@@ -96,7 +96,7 @@ const CategoryPage = async ({
               <ArticleNotFOund />
             )}
           </div>
-          <div className="lg:relative md:w-[50%] lg:w-[20%] lg:mt-0 mt-8">
+          <div className="lg:relative md:w-[50%]  lg:mt-0 mt-8">
             <Categories />
             <div className="mt-10">{/* <RecentEvents /> */}</div>
             <div className="mt-10">

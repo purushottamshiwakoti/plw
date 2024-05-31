@@ -10,10 +10,12 @@ import { Button } from "./ui/button";
 import Image from "next/image";
 
 interface FutureMovementProps {
+  movementStarColor: string;
   title: string;
   description: string;
   icon: {
     Title: string;
+    TitleColor: string;
     Description: string;
     Icon: {
       alt: string;
@@ -36,16 +38,29 @@ export const FutureMovement = ({
   description,
   title,
   icon,
+  movementStarColor,
 }: FutureMovementProps) => {
   return (
     <section className="lg:px-[5%] px-4 w-full my-20">
       <div className="flex gap-[1px]  items-center justify-center ">
-        <Star fill="#299726" strokeWidth={0} className="w-5 h-5" />
-        <Star fill="#299726" strokeWidth={0} className="w-7 h-7" />
-        <Star fill="#299726" strokeWidth={0} className="w-5 h-5" />
+        <Star
+          fill={movementStarColor ? movementStarColor : "#299726"}
+          strokeWidth={0}
+          className="w-5 h-5"
+        />
+        <Star
+          fill={movementStarColor ? movementStarColor : "#299726"}
+          strokeWidth={0}
+          className="w-7 h-7"
+        />
+        <Star
+          fill={movementStarColor ? movementStarColor : "#299726"}
+          strokeWidth={0}
+          className="w-5 h-5"
+        />
       </div>
       <div className="mt-5 space-y-3  ">
-        <h2 className="text-[#222] lg:text-2xl text-xl font-bold text-center ">
+        <h2 className=" lg:text-2xl text-xl font-bold text-center  text-[#222]">
           {title}
         </h2>
 
@@ -70,7 +85,14 @@ export const FutureMovement = ({
                 )}
 
                 <div>
-                  <h2 className="text-blue-500 text-xl font-semibold line-clamp-2 flex-1">
+                  <h2
+                    className={`${
+                      item.TitleColor && ` text-[${item.TitleColor}]`
+                    }text-xl font-semibold line-clamp-2 flex-1 text-blue-500`}
+                    style={{
+                      color: item.TitleColor ? item.TitleColor : "blue",
+                    }}
+                  >
                     {item.Title}
                   </h2>
                   <p className="line-clamp-4 mt-1 text-muted-foreground">

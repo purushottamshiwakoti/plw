@@ -211,7 +211,7 @@ export const MenuItem = ({ menu }: { menu: any }) => {
                       //   // toggleMenu(true);
                       //   setDropdown(null);
                       // }}
-                      onMouseMove={handleMouseMove}
+                      // onMouseMove={handleMouseMove}
                     >
                       <Link
                         href={item.attributes.url ?? "#"}
@@ -328,7 +328,7 @@ export const MenuItem = ({ menu }: { menu: any }) => {
                                       `}
                                       onMouseLeave={() => toggleMenu(true)}
                                     >
-                                      <div className="grid grid-cols-4 gap-x-7     flex-wrap  ">
+                                      <div className="grid grid-cols-4 gap-x-7      ">
                                         {item.attributes.children.data.map(
                                           (item: any, index: number) => (
                                             <div

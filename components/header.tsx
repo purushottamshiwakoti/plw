@@ -20,6 +20,7 @@ async function getData() {
     const menu = data.attributes.Menu;
     const newsCampaign = data.attributes.NewsCampaign;
     const socialMedia = data.attributes.SocialMedia;
+    const fontColor = data.attributes.FontColor;
 
     return {
       title,
@@ -29,6 +30,7 @@ async function getData() {
       menu,
       newsCampaign,
       socialMedia,
+      fontColor,
     };
   } catch (error) {
     console.log("Error retrieving data:", error);

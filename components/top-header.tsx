@@ -9,6 +9,7 @@ import { SmallSocialIcon } from "./small-social-icon";
 import { Button } from "./ui/button";
 
 export const TopHeader = ({ data }: { data: any }) => {
+  console.log(data);
   const { isMenuShown } = useHeaderMenuStore();
   return (
     <div
@@ -28,12 +29,19 @@ export const TopHeader = ({ data }: { data: any }) => {
               height={25}
               className="rotate-45"
             />
-            <span className="font-medium">{data?.title}</span>
+            <span
+              className="font-medium"
+              style={{
+                color: data?.fontColor,
+              }}
+            >
+              {data?.title}
+            </span>
           </div>
           <div className="text-sm  md:my-0 md:mt-2 lg:mt-0 lg:flex items-center lg:flex-grow ">
             <span className="">
               {/* Our new campaign 2020 ready to launch from next week */}
-              <Slider slides={data?.newsCampaign} />
+              <Slider slides={data?.newsCampaign} fontColor={data?.fontColor} />
             </span>
           </div>
         </div>

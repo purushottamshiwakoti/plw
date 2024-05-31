@@ -11,6 +11,7 @@ interface MomvementProps {
   description: any;
   image: any;
   imageAlt: string;
+  movementStarColor: string;
   url: {
     id: string;
     Link: string;
@@ -25,6 +26,7 @@ export const Momvement = ({
   url,
   image,
   imageAlt,
+  movementStarColor,
 }: MomvementProps) => {
   return (
     <div className=" bg-[#06B37C] ">

@@ -12,7 +12,9 @@ import {
 
 const Slider = ({
   slides,
+  fontColor,
 }: {
+  fontColor: string;
   slides: {
     id: string;
     Title: string;
@@ -63,7 +65,13 @@ const Slider = ({
           // >
           //   {slide.Title}
           // </span>
-          <SwiperSlide className="text-md line-clamp-2" key={index}>
+          <SwiperSlide
+            className="text-md line-clamp-2"
+            key={index}
+            style={{
+              color: fontColor,
+            }}
+          >
             {slide.Title}
           </SwiperSlide>
         ))}

@@ -80,7 +80,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         )}
       </div>
       <div className="lg:block hidden">
-        <CountrySelector  showFlag={showFlag}/>
+        <CountrySelector showFlag={showFlag} />
       </div>
     </nav>
   );

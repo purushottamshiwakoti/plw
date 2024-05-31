@@ -18,6 +18,7 @@ async function getData() {
     const buttonName = data.attributes.ButtonName;
 
     const backgroundColor = data.attributes.BackgroundColor;
+    const fontColor = data.attributes.FontColor;
 
     const showButton = data.attributes.ShowButton;
 
@@ -36,6 +37,7 @@ async function getData() {
       logo,
       backgroundColor,
       showFlag,
+      fontColor,
     };
 
     // Extract banner attributes with proper null/undefined checks
