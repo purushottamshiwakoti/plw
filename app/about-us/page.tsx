@@ -9,7 +9,7 @@ async function getData() {
   const [res] = await Promise.all([
     apiCall(
       "about-us",
-      "populate=FeaturedImage.media&populate=Gallery.media&populate=SEO.OgImage"
+      "populate=FeaturedImage.media&populate=Gallery.media&populate=SEO.OgImage&populate=AboutIcons.Image.media"
     ),
   ]);
 
@@ -102,6 +102,36 @@ const About1 = async () => {
               </div>
             ))}
           </div>
+        </div>
+      </div>
+      <div className="lg:mx-[10rem] mt-10">
+        <div className="grid md:grid-cols-2 gap-10">
+          {data.attributes.AboutIcons.map((item: any, index: number) => (
+            <div className="" key={index}>
+              <div className="flex items-center gap-5">
+                <Image
+                  width={80}
+                  height={80}
+                  // src="https://i.ibb.co/FhgPJt8/Rectangle-116.png"
+                  src={
+                    AppUrl + item.Image.media.data.attributes.formats.large.url
+                  }
+                  // alt="A group of People"
+                  alt={item.Image.alt}
+                />
+                <h3 className="text-xl lg:text-4xl font-bold leading-9 text-gray-800">
+                  {item.Title}
+                </h3>
+              </div>
+              <div
+                className="max-w-lg mt-2
+            font-normal text-base leading-6 text-gray-600
+            "
+              >
+                {parse(item.Description)}
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>

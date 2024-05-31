@@ -3,12 +3,8 @@ import { ArticleNotFOund } from "@/components/article-not-found";
 import { Articles } from "@/components/articles";
 import { Categories } from "@/components/categories";
 import { CustomBreadcrumb } from "@/components/custom-breadcrum";
-import { PopularTags } from "@/components/popular-tags";
-import { RecentEvents } from "@/components/recent-events";
 import { SearchInput } from "@/components/search-input";
-import { Skeleton } from "@/components/ui/skeleton";
 import { apiCall } from "@/lib/api";
-import { ArrowRight, ChevronRight } from "lucide-react";
 import { notFound } from "next/navigation";
 
 async function getPages(
@@ -19,19 +15,27 @@ async function getPages(
   let breads: string[] = [];
   let paginationPage = page ?? 1;
 
+  const lastSubcategory = subcategory[subcategory.length - 1];
+  console.log(lastSubcategory);
   try {
-    const lastSubcategory = subcategory[subcategory.length - 1];
+    console.log(`pages?filters[slug][$eq]=${lastSubcategory}`);
+
+    const pageData = await apiCall(
+      `pages?filters[slug][$eq]=${lastSubcategory}`,
+      "populate=*"
+    );
+
     let res;
 
     if (filter) {
       res = await apiCall(
         `articles`,
-        `populate=*&filter[pages][slug][$eq]=${lastSubcategory}&pagination[page]=${paginationPage}&pagination[pageSize]=1 &filters[Title][$startsWith]=${filter}`
+        `populate=*&filters[pages][slug][$eq]=${lastSubcategory}&pagination[page]=${paginationPage}&pagination[pageSize]=1 &filters[Title][$startsWith]=${filter}`
       );
     } else {
       res = await apiCall(
         `articles`,
-        `populate=*&filter[pages][slug][$eq]=${lastSubcategory}&pagination[page]=${paginationPage}&pagination[pageSize]=1 `
+        `populate=*&filters[pages][slug][$eq]=${lastSubcategory}&pagination[page]=${paginationPage}&pagination[pageSize]=1 `
       );
     }
     const featuredRes = await apiCall(
@@ -58,6 +62,8 @@ async function getPages(
 
     await Promise.all(promises);
 
+    console.log(res);
+
     return { res, breads, featuredRes }; // Return both res and breads
   } catch (error) {
     console.error(error);
@@ -72,12 +78,15 @@ const CategoryPage = async ({
   params: any;
   searchParams: any;
 }) => {
+  console.log(params);
   const { subcategory } = params;
+  console.log({ subcategory });
   const { page, filter } = searchParams;
   const response = await getPages(subcategory, page, filter);
   const { res, breads, featuredRes } = response;
 
   const data = res;
+  console.log(data);
   if (!data) {
     return notFound();
   }
