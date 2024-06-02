@@ -29,7 +29,7 @@ export const CountrySelector = ({ showFlag }: { showFlag: boolean }) => {
   }, []); // Empty dependency array ensures useEffect runs only once
 
   const handleSetLanguage = (e: any) => {
-    const selectedLanguage = e.target.value;
+    const selectedLanguage = e;
     setCookie("language", selectedLanguage);
     setLang(selectedLanguage);
 
