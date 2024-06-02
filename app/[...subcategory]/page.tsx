@@ -87,9 +87,9 @@ const CategoryPage = async ({
 
   const data = res;
   console.log(data);
-  if (!data) {
-    return notFound();
-  }
+  // if (!data) {
+  //   return notFound();
+  // }
 
   return (
     <div className="lg:mx-[5%] mx-4 py-10">
