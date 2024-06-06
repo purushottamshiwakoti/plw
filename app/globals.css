@@ -7,7 +7,6 @@ body {
   height: 100%;
   box-sizing: border-box;
   overflow-x: hidden;
-  opacity: 0;
 }
 
 @layer base {
