@@ -16,6 +16,7 @@ import "@mantine/core/styles.css";
 import { cookies } from "next/headers";
 import { Toaster } from "sonner";
 import { AppUrl } from "@/lib/url";
+import { Suspense } from "react";
 
 // export const runtime = "edge";
 export const dynamic = "force-dynamic";
@@ -138,7 +139,13 @@ export default async function RootLayout({
         <MantineProvider theme={theme}>
           <Header />
           <HeaderNav />
-          {children}
+          <Suspense
+            fallback={
+              <div className="w-full h-[100vh]  bg-red-500">Loading</div>
+            }
+          >
+            {children}
+          </Suspense>
           <Footer
             counter={data?.counter}
             logo={data?.logo}

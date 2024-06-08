@@ -1,8 +1,22 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import React from "react";
+import { cookies } from "next/headers";
 
 const NotFound = () => {
+  const cookieStore = cookies();
+  const locale = cookieStore.get("language")?.value ?? "en";
+  console.log(locale);
+
+  const paragraph =
+    locale == "en"
+      ? " We're sorry, but it seems like the page you're looking for can't be found."
+      : "عذرًا، ولكن يبدو أنه لا يمكن العثور على الصفحة التي تبحث عنها.";
+  const detail =
+    locale == "en"
+      ? "  Don't worry though, let's help you get back on track! You can use the navigation menu above to explore our site or go back to homepage"
+      : "لكن لا تقلق، دعنا نساعدك على العودة إلى المسار الصحيح! يمكنك استخدام قائمة التنقل أعلاه لاستكشاف موقعنا أو العودة إلى الصفحة الرئيسية";
+
   return (
     <section className="bg-white dark:bg-gray-900">
       <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
@@ -11,13 +25,10 @@ const NotFound = () => {
             404
           </h1>
           <p className="mb-4 text-3xl tracking-tight font-bold text-gray-900 md:text-4xl dark:text-white">
-            We&pos;re sorry, but it seems like the page you&pos;re looking for
-            can&pos;t be found.
+            {paragraph}
           </p>
           <p className="mb-4 text-lg font-light text-gray-500 dark:text-gray-400">
-            Don&pos;t worry though, let&pos;s help you get back on track! You
-            can use the navigation menu above to explore our site or go back to
-            homepage
+            {detail}
           </p>
           <Button
             asChild
@@ -27,7 +38,9 @@ const NotFound = () => {
               href="#"
               className="inline-flex text-white bg-primary-600 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:focus:ring-primary-900 my-4"
             >
-              Back to Homepage
+              {locale == "en"
+                ? "Back to Homepage"
+                : "العودة إلى الصفحة الرئيسية"}
             </Link>
           </Button>
         </div>

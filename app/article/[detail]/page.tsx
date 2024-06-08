@@ -22,8 +22,12 @@ async function getArticle(slug: string) {
       "articles",
       "filters[IsFeatured][$eq]=true&populate=*&pagination[pageSize]=7"
     );
+    const latestRes = await apiCall(
+      "articles",
+      "populate=*&pagination[pageSize]=7&sort=updatedAt:desc"
+    );
     // console.log();
-    return { res, featuredRes };
+    return { res, featuredRes, latestRes };
   } catch (error) {
     console.log(error);
     return notFound();
@@ -32,7 +36,7 @@ async function getArticle(slug: string) {
 
 const ArticlePage = async ({ params }: { params: any }) => {
   const response = await getArticle(params.detail);
-  const { res, featuredRes } = response;
+  const { res, featuredRes, latestRes } = response;
   const data = res.data;
   if (!data) {
     return notFound();
@@ -55,7 +59,7 @@ const ArticlePage = async ({ params }: { params: any }) => {
             )}
           </div>
           <div className="lg:relative md:w-[50%]  lg:mt-0 mt-8">
-            <Categories />
+            <Categories data={latestRes.data} />
             <div className="mt-10">{/* <RecentEvents /> */}</div>
             <div className="mt-10">
               <TrendingPost data={featuredRes.data} />

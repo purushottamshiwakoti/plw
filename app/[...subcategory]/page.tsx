@@ -15,16 +15,25 @@ async function getPages(
   let breads: string[] = [];
   let paginationPage = page ?? 1;
 
+  subcategory = subcategory.filter(
+    (item) =>
+      item !== "google%20anylitics%20code%20here" &&
+      item !== "facebook%20pexels%20code%20here" &&
+      item !== "favicon.ico"
+  );
+
+  console.log(subcategory);
   const lastSubcategory = subcategory[subcategory.length - 1];
-  console.log(lastSubcategory);
+
+  console.log({ lastSubcategory });
+  console.log({ subcategory });
   try {
     console.log(`pages?filters[slug][$eq]=${lastSubcategory}`);
 
-    const pageData = await apiCall(
-      `pages?filters[slug][$eq]=${lastSubcategory}`,
-      "populate=*"
-    );
-
+    const pageData = await apiCall(`pages/${lastSubcategory}`, "populate=*");
+    if (pageData.data == null) {
+      return notFound();
+    }
     let res;
 
     if (filter) {
@@ -44,7 +53,7 @@ async function getPages(
     );
     const latestRes = await apiCall(
       "articles",
-      "populate=*&pagination[pageSize]=7"
+      "populate=*&pagination[pageSize]=7&sort=updatedAt:desc"
     );
     const categories = subcategory;
 
@@ -62,9 +71,9 @@ async function getPages(
 
     await Promise.all(promises);
 
-    console.log(res);
+    console.log(res.data);
 
-    return { res, breads, featuredRes }; // Return both res and breads
+    return { res, breads, featuredRes, latestRes }; // Return both res and breads
   } catch (error) {
     console.error(error);
     throw error; // Re-throw error to be caught by caller if needed
@@ -83,7 +92,7 @@ const CategoryPage = async ({
   console.log({ subcategory });
   const { page, filter } = searchParams;
   const response = await getPages(subcategory, page, filter);
-  const { res, breads, featuredRes } = response;
+  const { res, breads, featuredRes, latestRes } = response;
 
   const data = res;
   console.log(data);
@@ -106,7 +115,7 @@ const CategoryPage = async ({
             )}
           </div>
           <div className="lg:relative md:w-[50%]  lg:mt-0 mt-8">
-            <Categories />
+            <Categories data={latestRes.data} />
             <div className="mt-10">{/* <RecentEvents /> */}</div>
             <div className="mt-10">
               <TrendingPost data={featuredRes.data} />
