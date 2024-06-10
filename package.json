@@ -37,6 +37,7 @@
     "nextjs-toploader": "^1.6.11",
     "react": "^18.2.0",
     "react-dom": "^18",
+    "react-fast-marquee": "^1.6.4",
     "react-flag-kit": "^1.1.1",
     "react-hook-form": "^7.51.3",
     "react-loading-skeleton": "^3.4.0",

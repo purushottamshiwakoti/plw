@@ -1,14 +1,6 @@
 "use client";
-import React, { useState, useEffect } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import {
-  Navigation,
-  Pagination,
-  Scrollbar,
-  A11y,
-  Autoplay,
-} from "swiper/modules";
+import { useState, useEffect } from "react";
+import Marquee from "react-fast-marquee";
 
 const Slider = ({
   slides,
@@ -20,62 +12,41 @@ const Slider = ({
     Title: string;
   }[];
 }) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    // Set an interval to change the slide when the current one finishes scrolling
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % slides.length);
+    }, 5000); // Duration should match the time it takes for one scroll
+
+    return () => clearInterval(interval);
+  }, [slides.length]);
+
   return (
-    // <div className="relative overflow-hidden lg:my-0 my-2">
-    //   <div className="flex transition-transform duration-500 ease-in-out">
-    //     {slides &&
-    //       slides.map((slide, index) => (
-    //         <span
-    //           key={index}
-    //           className={`ml-3 ${
-    //             index !== currentSlideIndex ? "hidden" : ""
-    //           } max-w-lg line-clamp-1`}
-    //           style={{
-    //             transform: `translateX(${100 * (index - currentSlideIndex)}%)`,
-    //           }}
-    //         >
-    //           {slide.Title}
-    //         </span>
-    //       ))}
-    //   </div>
-    // </div>
-    <Swiper
-      slidesPerView={1}
-      onSlideChange={() => console.log("slide change")}
-      onSwiper={(swiper) => console.log(swiper)}
-      className="max-w-4xl"
-      loop={true}
-      autoplay={{
-        delay: 8000,
-        disableOnInteraction: false,
-      }}
-      modules={[Autoplay]}
-      speed={30000}
-    >
-      {slides &&
-        slides.map((slide, index) => (
-          // <span
-          //   key={index}
-          //   className={`ml-3 ${
-          //     index !== currentSlideIndex ? "hidden" : ""
-          //   } max-w-lg line-clamp-1`}
-          //   style={{
-          //     transform: `translateX(${100 * (index - currentSlideIndex)}%)`,
-          //   }}
-          // >
-          //   {slide.Title}
-          // </span>
-          <SwiperSlide
-            className="text-md line-clamp-2"
-            key={index}
-            style={{
-              color: fontColor,
-            }}
-          >
-            {slide.Title}
-          </SwiperSlide>
-        ))}
-    </Swiper>
+    <>
+      {slides && slides.length > 0 && (
+        <Marquee
+          direction="left"
+          key={currentIndex}
+          speed={50} // Adjust the speed as needed
+          gradient={false} // Disable gradient
+        >
+          <div className="mx-10 w-full">
+            <div
+              style={{
+                color: fontColor,
+                whiteSpace: "nowrap",
+                textAlign: "center",
+                width: "100%",
+              }}
+            >
+              {slides[currentIndex].Title}
+            </div>
+          </div>
+        </Marquee>
+      )}
+    </>
   );
 };
 

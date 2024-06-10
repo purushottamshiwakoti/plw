@@ -9,17 +9,19 @@ import { SmallSocialIcon } from "./small-social-icon";
 import { Button } from "./ui/button";
 
 export const TopHeader = ({ data }: { data: any }) => {
-  const { isMenuShown } = useHeaderMenuStore();
   return (
     <div
-      className={` lg:flex items-center justify-between lg:px-[15%] p-4`}
+      className={` lg:flex items-center justify-between  lg:px-[15%] p-4`}
       style={{
         backgroundColor: data?.backgroundColor ?? "#eaeaea",
       }}
     >
       <div>
         <div className="lg:flex items-center  gap-2">
-          <div className="flex items-center gap-2">
+          <div
+            className="flex items-center gap-2"
+            
+          >
             <Image
               // src={data?.icon}
               src={`${AppUrl}${data.icon}`}
@@ -32,12 +34,13 @@ export const TopHeader = ({ data }: { data: any }) => {
               className="font-medium"
               style={{
                 color: data?.fontColor,
+                  backgroundColor: data?.backgroundColor ?? "#eaeaea",
               }}
             >
               {data?.title}
             </span>
           </div>
-          <div className="text-sm  md:my-0 md:mt-2 lg:mt-0 lg:flex items-center lg:flex-grow ">
+          <div className=" ">
             <span className="">
               {/* Our new campaign 2020 ready to launch from next week */}
               <Slider slides={data?.newsCampaign} fontColor={data?.fontColor} />
