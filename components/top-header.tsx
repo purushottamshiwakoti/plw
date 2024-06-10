@@ -9,11 +9,10 @@ import { SmallSocialIcon } from "./small-social-icon";
 import { Button } from "./ui/button";
 
 export const TopHeader = ({ data }: { data: any }) => {
-  console.log(data);
   const { isMenuShown } = useHeaderMenuStore();
   return (
     <div
-      className={` lg:flex items-center justify-between lg:px-[5%] p-3`}
+      className={` lg:flex items-center justify-between lg:px-[15%] p-4`}
       style={{
         backgroundColor: data?.backgroundColor ?? "#eaeaea",
       }}
@@ -56,7 +55,7 @@ export const TopHeader = ({ data }: { data: any }) => {
         </div>
       )}
       <div className="lg:block flex items-start justify-center">
-        <SmallSocialIcon size="20px" url={data?.socialMedia} />
+        <SmallSocialIcon size="1.6rem" url={data?.socialMedia} />
       </div>
     </div>
   );

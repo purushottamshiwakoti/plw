@@ -17,7 +17,6 @@ export const SmallSocialIcon = ({
         url.map((item: any) => (
           <SocialIcon
             url={item.Link}
-            bgColor="#515F71"
             style={{
               width: size,
               height: size,
