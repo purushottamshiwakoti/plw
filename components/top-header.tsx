@@ -1,6 +1,5 @@
 "use client";
 
-import useHeaderMenuStore from "@/hooks/use-toogle-header";
 import { AppUrl } from "@/lib/url";
 import Image from "next/image";
 import Link from "next/link";
@@ -16,37 +15,27 @@ export const TopHeader = ({ data }: { data: any }) => {
         backgroundColor: data?.backgroundColor ?? "#eaeaea",
       }}
     >
-      <div>
-        <div className="lg:flex items-center  gap-2">
-          <div
-            className="flex items-center gap-2"
-            
-          >
-            <Image
-              // src={data?.icon}
-              src={`${AppUrl}${data.icon}`}
-              alt={data?.iconAlt}
-              width={25}
-              height={25}
-              className="rotate-45"
-            />
-            <span
-              className="font-medium"
-              style={{
-                color: data?.fontColor,
-                  backgroundColor: data?.backgroundColor ?? "#eaeaea",
-              }}
-            >
-              {data?.title}
-            </span>
-          </div>
-          <div className=" ">
-            <span className="">
-              {/* Our new campaign 2020 ready to launch from next week */}
-              <Slider slides={data?.newsCampaign} fontColor={data?.fontColor} />
-            </span>
-          </div>
+      <div className="flex items-center gap-2">
+        <Image
+          // src={data?.icon}
+          src={`${AppUrl}${data.icon}`}
+          alt={data?.iconAlt}
+          width={18}
+          height={18}
+          className="rotate-45"
+        />
+        <div
+          className="font-medium text-base   z-10 "
+          style={{
+            color: data?.fontColor,
+            backgroundColor: data?.backgroundColor ?? "#eaeaea",
+          }}
+        >
+          {data?.title}
         </div>
+      </div>
+      <div className="  w-full">
+        <Slider slides={data?.newsCampaign} fontColor={data?.fontColor} />
       </div>
       {data?.menu && (
         <div>
@@ -57,9 +46,7 @@ export const TopHeader = ({ data }: { data: any }) => {
           ))}
         </div>
       )}
-      <div className="lg:block flex items-start justify-center">
-        <SmallSocialIcon size="1.6rem" url={data?.socialMedia} />
-      </div>
+      <SmallSocialIcon size="1.6rem" url={data?.socialMedia} />
     </div>
   );
 };

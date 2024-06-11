@@ -102,7 +102,6 @@ export async function generateMetadata() {
 
   // optionally access and extend (rather than replace) parent metadata
   const data = await getData();
-  console.log(AppUrl + data?.appLogo);
 
   return {
     title: "Sfturem",
@@ -138,15 +137,15 @@ export default async function RootLayout({
       <body className={inter.className}>
         <MantineProvider theme={theme}>
           <Header />
-          <HeaderNav />
+          {/* <HeaderNav /> */}
           <Suspense
             fallback={
               <div className="w-full h-[100vh]  bg-red-500">Loading</div>
             }
           >
-            {children}
+            {/* {children} */}
           </Suspense>
-          <Footer
+          {/* <Footer
             counter={data?.counter}
             logo={data?.logo}
             logoAlt={data?.logoAlt}
@@ -163,7 +162,7 @@ export default async function RootLayout({
             backgroundColor={data?.backgroundColor}
             seperatorColor={data?.seperatorColor}
             textColor={data?.textColor}
-          />
+          /> */}
           <TopSctoll />
           <NextTopLoader color="#299726" />
         </MantineProvider>

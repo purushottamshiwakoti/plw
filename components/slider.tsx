@@ -15,13 +15,9 @@ const Slider = ({
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
-    // Set an interval to change the slide when the current one finishes scrolling
-    const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % slides.length);
-    }, 5000); // Duration should match the time it takes for one scroll
-
-    return () => clearInterval(interval);
-  }, [slides.length]);
+    // Reset the index when the slides change
+    setCurrentIndex(0);
+  }, [slides]);
 
   return (
     <>
@@ -29,16 +25,17 @@ const Slider = ({
         <Marquee
           direction="left"
           key={currentIndex}
-          speed={50} // Adjust the speed as needed
+          speed={30} // Adjust the speed as needed
           gradient={false} // Disable gradient
+          onCycleComplete={() =>
+            setCurrentIndex((prevIndex) => (prevIndex + 1) % slides.length)
+          }
         >
-          <div className="mx-10 w-full">
+          <div className="mx-10 ">
             <div
+              className="flex items-center justify-end text-sm"
               style={{
                 color: fontColor,
-                whiteSpace: "nowrap",
-                textAlign: "center",
-                width: "100%",
               }}
             >
               {slides[currentIndex].Title}
