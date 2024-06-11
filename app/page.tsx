@@ -69,8 +69,7 @@ async function getData() {
     const faqs = data.attributes.FAQ;
     const showDonationTitle = data.attributes.ShowDonationTitle;
 
-    const bannerImage =
-      data.attributes.Banner.BannerImage.data.attributes.formats.thumbnail.url;
+    const bannerImage = data.attributes.Banner.BannerImage.data.attributes.url;
     const metaTitle = data.attributes.SEO.MetaTitle ?? "";
     const metaDescription = data.attributes.SEO.MetaDescription ?? "";
     const ogTitle = data.attributes.SEO?.OgTitle ?? "";
@@ -138,7 +137,7 @@ async function getData() {
       movementStarColor,
     };
   } catch (error) {
-    // console.log("Error retrieving data:", error);
+    console.log("Error retrieving data:", error);
     return null;
   }
 }

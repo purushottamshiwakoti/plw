@@ -137,7 +137,7 @@ export default async function RootLayout({
       <body className={inter.className}>
         <MantineProvider theme={theme}>
           <Header />
-          <HeaderNav />
+          {/* <HeaderNav /> */}
           <Suspense
             fallback={
               <div className="w-full h-[100vh]  bg-red-500">Loading</div>
