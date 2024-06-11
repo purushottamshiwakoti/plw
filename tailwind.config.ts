@@ -18,6 +18,10 @@ const config = {
       },
     },
     extend: {
+      boxShadow: {
+        custom: "0px 10px 21.25px 3.75px rgba(0, 0, 0, 0.06)",
+      },
+
       colors: {
         navBg: "#302E2F",
         buttonBg: "#E23E4E",
