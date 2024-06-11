@@ -22,7 +22,12 @@ export const MenuItem = ({ menu }: { menu: any }) => {
       >
         <div className="px-2 py-3 hover:bg-[#F05555] hover:text-white transition-all duration-500">
           {i.attributes.url !== "" ? (
-            <Link href={i.attributes.url} key={index} className="">
+            <Link
+              href={i.attributes.url}
+              onClick={() => setShowSubmenu(null)}
+              key={index}
+              className=""
+            >
               {i.attributes.title}
             </Link>
           ) : (
@@ -51,12 +56,17 @@ export const MenuItem = ({ menu }: { menu: any }) => {
   const renderSubMenu = (i: any, index: number) => {
     return (
       <div
-        className="relative"
+        className="relative z-40"
         onMouseEnter={() => handleMouseEnter(i.attributes.title)}
       >
         <div className="px-2 py-3 hover:bg-[#F05555] hover:text-white transition-all duration-500">
           {i.attributes.url !== "" ? (
-            <Link href={i.attributes.url} key={index} className="">
+            <Link
+              href={i.attributes.url}
+              key={index}
+              className=""
+              onClick={() => setShowSubmenu(null)}
+            >
               {i.attributes.title}
             </Link>
           ) : (
@@ -90,6 +100,7 @@ export const MenuItem = ({ menu }: { menu: any }) => {
             <Link
               href={item.attributes.url}
               key={index}
+              onClick={() => setShowSubmenu(null)}
               className="font-semibold underline-animate transition-all cursor-pointer"
             >
               {item.attributes.title}
@@ -144,20 +155,137 @@ export const MenuItem = ({ menu }: { menu: any }) => {
               </div>
             )
           ) : item.attributes.url !== "" ? (
-            <Link
-              href={item.attributes.url}
-              key={index}
-              className="font-semibold underline-animate transition-all cursor-pointer"
-            >
-              {item.attributes.title}
-            </Link>
+            <div>
+              <Link
+                href={item.attributes.url}
+                key={index}
+                className="font-semibold underline-animate transition-all cursor-pointer"
+                onMouseEnter={() => setShowSubmenu(item.attributes.title)}
+                onClick={() => setShowSubmenu(null)}
+              >
+                {item.attributes.title}
+              </Link>
+              {showSubmenu == item.attributes.title && (
+                <div className="absolute top-[5rem] grid grid-cols-4 w-[75%] rounded-sm mx-[14%] bg-white -left-10 border-t-4 border-[#567869]">
+                  {item.attributes.children.data.map((i: any, idx: number) => {
+                    return (
+                      <>
+                        <div className="px-5">
+                          {i.attributes.url !== "" ? (
+                            <>
+                              <Link
+                                href={i.attributes.url}
+                                key={index}
+                                className="underline-animate transition-all cursor-pointer"
+                                onClick={() => setShowSubmenu(null)}
+                              >
+                                {i.attributes.title}
+                              </Link>
+                              {i.attributes.children.data.length > 0 ? (
+                                <div>
+                                  {i.attributes.children.data.map(
+                                    (it: any, index: number) => (
+                                      <div
+                                        className="px-2 py-3 hover:bg-[#F05555] hover:text-white transition-all duration-500"
+                                        key={index}
+                                      >
+                                        {it.attributes.url !== "" ? (
+                                          <div className="relative">
+                                            <Link
+                                              href={it.attributes.url}
+                                              key={index}
+                                              className=""
+                                              onMouseEnter={() =>
+                                                setSubmenu([
+                                                  it.attributes.title,
+                                                ])
+                                              }
+                                              onClick={() =>
+                                                setShowSubmenu(null)
+                                              }
+                                            >
+                                              {it.attributes.title}
+                                            </Link>
+                                            {submenu.includes(
+                                              it.attributes.title
+                                            ) &&
+                                            it.attributes.children.data.length >
+                                              0 ? (
+                                              <div className="bg-red-500 absolute w-[14rem] -top-2  right-0">
+                                                {it.attributes.children.data.map(
+                                                  (item: any, idx: number) => {
+                                                    // return renderSubMenu(
+                                                    //   item,
+                                                    //   idx
+                                                    // );
+                                                    return (
+                                                      <>
+                                                        <div>hello</div>
+                                                      </>
+                                                    );
+                                                  }
+                                                )}
+                                              </div>
+                                            ) : null}
+                                          </div>
+                                        ) : (
+                                          <li
+                                            key={index}
+                                            className=""
+                                            onMouseEnter={() =>
+                                              handleMouseEnter(
+                                                it.attributes.title
+                                              )
+                                            }
+                                          >
+                                            {it.attributes.title}
+                                          </li>
+                                        )}
+                                      </div>
+                                    )
+                                  )}
+                                </div>
+                              ) : null}
+                            </>
+                          ) : (
+                            <li
+                              key={index}
+                              className="underline-animate transition-all cursor-pointer"
+                              onMouseEnter={() =>
+                                setSubmenu([i.attributes.title])
+                              }
+                            >
+                              {i.attributes.title}
+                            </li>
+                          )}
+                        </div>
+                      </>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
           ) : (
-            <li
-              key={index}
-              className="font-semibold underline-animate transition-all cursor-pointer"
-            >
-              {item.attributes.title}
-            </li>
+            <div>
+              <li
+                key={index}
+                className="font-semibold underline-animate transition-all cursor-pointer"
+                onMouseEnter={() => setShowSubmenu(item.attributes.title)}
+              >
+                {item.attributes.title}
+              </li>
+              {showSubmenu == item.attributes.title && (
+                <div className="absolute top-[3.3rem] w-[14rem] bg-white -left-10 border-t-4 border-[#567869]">
+                  {item.attributes.children.data.map((i: any, idx: number) => {
+                    return renderFirstMenu(
+                      i,
+                      idx,
+                      item.attributes.children.data.length
+                    );
+                  })}
+                </div>
+              )}
+            </div>
           );
         })}
       </ul>
