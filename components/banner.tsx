@@ -26,12 +26,12 @@ export const Banner = ({
           backgroundImage: `url(${AppUrl}${image})`,
         }}
       >
-        <div className="absolute bg-black opacity-70 h-[85vh] w-full   z-10 " />
+        <div className="absolute bg-black opacity-50 h-[85vh] w-full   z-10 " />
         {/* <Navbar className="bg-transparent z-20 mt-10" /> */}
 
         <div className=" flex items-center  flex-col text-white z-10 h-full mt-[12%]">
           <h3 className="title  text-[20px] ">{title}</h3>
-          <h2 className="mt-[17px] text-[74px] px-[25%] leading-[84px] font-bold   ">
+          <h2 className="mt-[17px] text-[74px] text-center px-32 block leading-[84px] font-bold   ">
             {description}
           </h2>
           {showInput && (

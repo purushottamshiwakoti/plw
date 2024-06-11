@@ -47,13 +47,13 @@ export const ElectionTime = ({
   }, []);
 
   return (
-    <div className="xl:mx-[5%] lg:bg-reg-500 mx-4 mb-10 mt-10">
-      <div className="bg-[#06B37C] text-white lg:flex items-center justify-around lg:p-10 p-2 lg:py-[4rem] rounded-2xl">
+    <div className="xl:mx-[14%]  mx-4 mb-10 mt-10">
+      <div className="bg-[#255bb8] text-white lg:flex items-center p-20 rounded-[15px]">
         <div className=" ">
-          <h2 className="lg:text-center text-center font-bold lg:text-[25px] text-xl">
+          <h2 className="lg:text-center text-center font-bold lg:text-[34px] text-xl">
             {title}
           </h2>
-          <p className="text-center lg:text-[24px] mt-2 text-lg">
+          <p className="text-center lg:text-[18px] tracking-[0.2em] mt-[10px] text-lg">
             {description}
           </p>
         </div>
@@ -64,7 +64,7 @@ export const ElectionTime = ({
               <h3 className="font-bold lg:text-[40px] text-xl ">
                 {timeRemaining.days}
               </h3>
-              <p>Days</p>
+              <p className="pt-3">Days</p>
             </div>
             <div>
               <Separator
@@ -80,7 +80,7 @@ export const ElectionTime = ({
               <h3 className="font-bold lg:text-[40px] text-xl">
                 {timeRemaining.hours}
               </h3>
-              <p>Hours</p>
+              <p className="pt-3">Hours</p>
             </div>
             <div>
               <Separator
@@ -96,7 +96,7 @@ export const ElectionTime = ({
               <h3 className="font-bold lg:text-[40px] text-xl">
                 {timeRemaining.minutes}
               </h3>
-              <p>Mins</p>
+              <p className="pt-3">Mins</p>
             </div>
             <div>
               <Separator
@@ -112,7 +112,7 @@ export const ElectionTime = ({
               <h3 className="font-bold lg:text-[40px] text-xl">
                 {timeRemaining.seconds}
               </h3>
-              <p>Secs</p>
+              <p className="pt-3">Secs</p>
             </div>
           </div>
         </div>
