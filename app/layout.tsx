@@ -145,7 +145,7 @@ export default async function RootLayout({
           >
             {children}
           </Suspense>
-          {/* <Footer
+          <Footer
             counter={data?.counter}
             logo={data?.logo}
             logoAlt={data?.logoAlt}
@@ -162,7 +162,7 @@ export default async function RootLayout({
             backgroundColor={data?.backgroundColor}
             seperatorColor={data?.seperatorColor}
             textColor={data?.textColor}
-          /> */}
+          />
           <TopSctoll />
           <NextTopLoader color="#299726" />
         </MantineProvider>

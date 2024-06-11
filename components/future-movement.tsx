@@ -41,25 +41,13 @@ export const FutureMovement = ({
   movementStarColor,
 }: FutureMovementProps) => {
   return (
-    <section className="lg:px-[5%] px-4 w-full my-20">
-      <div className="flex gap-[1px]  items-center justify-center ">
-        <Star
-          fill={movementStarColor ? movementStarColor : "#299726"}
-          strokeWidth={0}
-          className="w-5 h-5"
-        />
-        <Star
-          fill={movementStarColor ? movementStarColor : "#299726"}
-          strokeWidth={0}
-          className="w-7 h-7"
-        />
-        <Star
-          fill={movementStarColor ? movementStarColor : "#299726"}
-          strokeWidth={0}
-          className="w-5 h-5"
-        />
+    <section className="lg:px-[14%] px-4 w-full my-20">
+      <div className="flex justify-center  items-center  ">
+        <Star fill="#F05555" strokeWidth={0} className="w-4 h-4" />
+        <Star fill="#F05555" strokeWidth={0} className="w-6 -mt-3 h-6" />
+        <Star fill="#F05555" strokeWidth={0} className="w-4 h-4" />
       </div>
-      <div className="mt-5 space-y-3  ">
+      {/* <div className="mt-5 space-y-3  ">
         <h2 className=" lg:text-2xl text-xl font-bold text-center  text-[#222]">
           {title}
         </h2>
@@ -67,8 +55,21 @@ export const FutureMovement = ({
         <p className="text-center text-[#666] lg:mx-[14rem] mt-3">
           {description}
         </p>
+      </div> */}
+      <div className="mt-5 space-y-3  ">
+        {/* <h2 className="text-[#222] text-center text-[16px] ">{serviceTitle}</h2> */}
+        <p className="  font-[600] lg:text-[50px] md:text-3xl text-2xl text-center text-[#222] pt-2">
+          {title}
+        </p>
+        <p className="text-center text-[#666] lg:mx-[14rem] text-[16px] pt-5  ">
+          {description}
+        </p>
       </div>
-      <div className="mt-10 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-10">
+      <div
+        className="mt-10 
+      gap-y-20
+       grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-10"
+      >
         {icon &&
           icon.map((item, index) => (
             <div className="space-y-3 w-full " key={index}>

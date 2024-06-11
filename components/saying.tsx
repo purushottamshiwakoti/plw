@@ -44,18 +44,27 @@ export const Saying = ({ description, title, review }: SayingProps) => {
 
   return (
     <>
-      <section className="lg:px-[6rem] p-4 w-full my-20">
+      <section className="lg:px-[14%] p-4 w-full my-20">
         <div className="lg:mt-5 space-y-3">
-          <h2 className="text-[#222] text-2xl font-bold text-center">
+          {/* <h2 className="text-[#222] text-2xl font-bold text-center">
             {title}
           </h2>
           <p className="text-center text-[#666] lg:mx-[14rem] mt-3">
             {description}
-          </p>
-          <div className="flex gap-[1px] items-center justify-center">
-            <Star fill="#299726" strokeWidth={0} className="w-5 h-5" />
-            <Star fill="#299726" strokeWidth={0} className="w-7 h-7" />
-            <Star fill="#299726" strokeWidth={0} className="w-5 h-5" />
+          </p> */}
+          <div className="flex justify-center  items-center  ">
+            <Star fill="#F05555" strokeWidth={0} className="w-4 h-4" />
+            <Star fill="#F05555" strokeWidth={0} className="w-6 -mt-3 h-6" />
+            <Star fill="#F05555" strokeWidth={0} className="w-4 h-4" />
+          </div>
+          <div className="mt-5 space-y-3  ">
+            {/* <h2 className="text-[#222] text-center text-[16px] ">{serviceTitle}</h2> */}
+            <p className="  font-[600] lg:text-[30px] md:text-3xl text-2xl text-center text-[#222] pt-2">
+              {title}
+            </p>
+            <p className="text-center text-[#666] lg:mx-[14rem] text-[16px] pt-5 ">
+              {description}
+            </p>
           </div>
         </div>
         <div className="mt-10 lg:flex lg:justify-center grid md:grid-cols-2 grid-cols-1 flex-wrap lg:gap-3">

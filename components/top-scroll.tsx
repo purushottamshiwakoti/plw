@@ -40,7 +40,7 @@ export const TopSctoll = () => {
       {isVisible && (
         <button
           onClick={scrollToTop}
-          className="fixed bottom-10 right-10 bg-buttonHoverBg text-white rounded-full w-12 h-12 flex items-center justify-center shadow-lg z-10"
+          className="fixed bottom-10 right-10 bg-[#F05555] text-white rounded-full w-12 h-12 flex items-center justify-center shadow-lg z-10"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"

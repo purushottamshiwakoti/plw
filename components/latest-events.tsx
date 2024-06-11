@@ -9,7 +9,7 @@ import { removeImage } from "@/lib/remove-img";
 import { AppUrl } from "@/lib/url";
 import { format } from "date-fns";
 import parse from "html-react-parser";
-import { Calendar, User } from "lucide-react";
+import { Calendar, Star, User } from "lucide-react";
 import { cookies } from "next/headers";
 import Image from "next/image";
 import Link from "next/link";
@@ -23,8 +23,13 @@ export const LatestEvents = ({ data }: { data: any[] }) => {
   return (
     <>
       <div className=" px-4 lg:px-[14%] bg-[#F4F4F4] py-20 ">
+        <div className="flex justify-center  items-center  ">
+          <Star fill="#F05555" strokeWidth={0} className="w-4 h-4" />
+          <Star fill="#F05555" strokeWidth={0} className="w-6 -mt-3 h-6" />
+          <Star fill="#F05555" strokeWidth={0} className="w-4 h-4" />
+        </div>
         <div>
-          <h2 className="text-[#4F4F4F] text-center font-bold text-3xl mb-10 ">
+          <h2 className="font-[600] lg:text-[50px] md:text-3xl text-2xl text-center text-[#222] pt-4 pb-5">
             {locale == "en" ? "Featured" : "متميز"}
           </h2>
         </div>
@@ -34,7 +39,7 @@ export const LatestEvents = ({ data }: { data: any[] }) => {
           }}
           className=" mt-4    "
         >
-          <CarouselContent className="gap-[2rem] w-[22vw] ">
+          <CarouselContent className="gap-[2rem] w-[32%] ">
             {data &&
               data.map((item, index) => (
                 <CarouselItem key={index} className=" bg-white  shadow-custom">
@@ -57,7 +62,7 @@ export const LatestEvents = ({ data }: { data: any[] }) => {
                         </div>
                       </div>
                       <div className="px-[35px]  py-10 -ml-4">
-                        <h2 className="text-[#222] font-bold text-[24px] flex-1 line-clamp-1">
+                        <h2 className="text-[#222] font-bold text-[20px] flex-1 line-clamp-1">
                           {item.attributes.Title}
                         </h2>
                         <div className="flex items-center justify-between mt-[15px] text-[#666]">
