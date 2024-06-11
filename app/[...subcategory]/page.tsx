@@ -101,7 +101,7 @@ const CategoryPage = async ({
   // }
 
   return (
-    <div className="lg:mx-[5%] mx-4 py-10">
+    <div className="lg:mx-[14%] mx-4 py-10">
       <div>
         <CustomBreadcrumb breads={breads} />
 

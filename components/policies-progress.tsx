@@ -59,7 +59,7 @@ export const PoliciesAndProgress = ({
 
   return (
     <>
-      <div className="lg:px-[5%] px-3  lg:mt-[5rem] mt-3 lg:mb-10 mb-4">
+      <div className="lg:px-[14%] px-3  lg:mt-[5rem] mt-3 lg:mb-10 mb-4">
         <div className="  flex flex-col items-center justify-center">
           <div className="flex gap-[1px]  items-center justify-center ">
             <Star fill="#299726" strokeWidth={0} className="w-5 h-5" />
@@ -134,7 +134,9 @@ export const PoliciesAndProgress = ({
                 faqList[0]?.QuestionAnswer.map((item, index) => {
                   return (
                     <AccordionItem value={index.toLocaleString()} key={index}>
-                      <AccordionTrigger>{item.Question}</AccordionTrigger>
+                      <AccordionTrigger className="font-semibold">
+                        {item.Question}
+                      </AccordionTrigger>
                       <AccordionContent>{item.Answer}</AccordionContent>
                     </AccordionItem>
                   );

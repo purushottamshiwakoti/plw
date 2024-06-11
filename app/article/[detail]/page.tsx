@@ -42,7 +42,7 @@ const ArticlePage = async ({ params }: { params: any }) => {
     return notFound();
   }
   return (
-    <div className="lg:mx-[5%] mx-4 py-10">
+    <div className="lg:mx-[14%] mx-4 py-10">
       <div>
         {/* <CustomBreadcrumb /> */}
 

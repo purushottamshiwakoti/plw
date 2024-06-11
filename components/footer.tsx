@@ -83,7 +83,7 @@ export const Footer = ({
           backgroundColor: backgroundColor ?? "#fff",
         }}
       >
-        <div className="lg:px-[5%] px-4">
+        <div className="lg:px-[14%] px-4">
           <div className=" lg:flex items-center justify-between">
             <Link href={"/"} className="lg:min-w-[40%] bg-red-500]">
               <Image
@@ -128,7 +128,7 @@ export const Footer = ({
           }}
         />
         <div
-          className="lg:px-[5%] px-4 lg:mt-[3rem] mt-4 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-10"
+          className="lg:px-[14%] px-4 lg:mt-[3rem] mt-4 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-10"
           style={{
             color: textColor,
           }}
