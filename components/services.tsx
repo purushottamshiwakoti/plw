@@ -128,10 +128,10 @@ export const Services = ({
                   );
                 })}
             </CarouselContent>
-            <div className="mt-10">
+            <div className="mt-[4rem]">
               <div className="flex items-center justify-center gap-4">
-                <CarouselPrevious className="w-12" />
-                <CarouselNext className="w-12" />
+                <CarouselPrevious className="w-12 border-[#222] rounded-[2px] border-[2px] text-[#222] text-3xl" />
+                <CarouselNext className="w-12 border-[#222] rounded-[2px] border-[2px] text-[#222] text-3xl" />
               </div>
             </div>
           </Carousel>

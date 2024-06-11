@@ -29,7 +29,7 @@ export const Momvement = ({
   movementStarColor,
 }: MomvementProps) => {
   return (
-    <div className=" bg-[#06B37C] ">
+    <div className="  ">
       <div className="lg:flex ">
         <div className="lg:p-10 p-2 md:p-5">
           <Image
@@ -41,16 +41,16 @@ export const Momvement = ({
             className="rounded-2xl shadow-lg"
           />
         </div>
-        <div className="lg:p-20 p-2 md:p-5 text-white space-y-3 lg:w-[60%]">
-          <h3 className="font-bold text-2xl">{title}</h3>
-          <p className="text-sm  text-white/90 font-semibold">{position}</p>
-          <hr className="border-2 border-[#E23E4E] w-[20%]  bg-[#E23E4E] h-1" />
-          <div className="font-semibold  pt-4 p">
+        <div className="lg:p-20 p-2 md:p-5  space-y-3 lg:w-[60%]">
+          <h3 className="font-semibold text-xl text-[#222]">{title}</h3>
+          <p className="   text-[#222]">{position}</p>
+          <hr className="border-2 border-[#666] w-[20%]  bg-[#666] h-1" />
+          <div className="text-[#666] text-justify font-[16px] pt-4 p">
             {/* {description} */}
             <BlocksRenderer content={description} />
           </div>
-          <div className="flex items-center justify-center">
-            <SmallSocialIcon size="30px" url={url} />
+          <div className="flex items-center justify-center pt-10">
+            <SmallSocialIcon size="40px" url={url} />
           </div>
         </div>
       </div>
