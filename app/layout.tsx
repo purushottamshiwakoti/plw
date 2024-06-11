@@ -143,7 +143,7 @@ export default async function RootLayout({
               <div className="w-full h-[100vh]  bg-red-500">Loading</div>
             }
           >
-            {/* {children} */}
+            {children}
           </Suspense>
           {/* <Footer
             counter={data?.counter}
