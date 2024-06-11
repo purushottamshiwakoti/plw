@@ -10,7 +10,7 @@ import { Button } from "./ui/button";
 export const TopHeader = ({ data }: { data: any }) => {
   return (
     <div
-      className={` lg:flex items-center justify-between  lg:px-[15%] p-4`}
+      className={` lg:flex items-center justify-between  lg:px-[10%] p-4`}
       style={{
         backgroundColor: data?.backgroundColor ?? "#eaeaea",
       }}

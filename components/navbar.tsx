@@ -43,7 +43,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   return (
     <nav
       className={cn(
-        " border-b border-t bg-[#CAD3C8] h-20 flex items-center justify-between lg:px-[5%] px-4 sticky w-full top-0 z-50",
+        " border-b border-t  h-20 flex items-center justify-between lg:px-[10%] px-4 sticky w-full top-0 z-50",
         className
       )}
       style={{
