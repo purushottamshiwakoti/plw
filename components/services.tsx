@@ -44,23 +44,23 @@ export const Services = ({
   showServiceAs,
 }: ServicesInterface) => {
   return (
-    <section className="lg:px-[5%] px-3 w-full my-20">
+    <section className="lg:px-[14%] px-3 w-full mt-[10rem] mb-[5rem]">
       <div className="flex justify-center  items-center  ">
-        <Star fill="#299726" strokeWidth={0} className="w-5 h-5" />
-        <Star fill="#299726" strokeWidth={0} className="w-7 h-7" />
-        <Star fill="#299726" strokeWidth={0} className="w-5 h-5" />
+        <Star fill="#F05555" strokeWidth={0} className="w-4 h-4" />
+        <Star fill="#F05555" strokeWidth={0} className="w-6 -mt-3 h-6" />
+        <Star fill="#F05555" strokeWidth={0} className="w-4 h-4" />
       </div>
       <div className="mt-5 space-y-3  ">
-        <h2 className="text-[#222] text-center ">{serviceTitle}</h2>
-        <p className="  font-[600] lg:text-[50px] md:text-3xl text-2xl text-center text-buttonHoverBg">
+        <h2 className="text-[#222] text-center text-[16px] ">{serviceTitle}</h2>
+        <p className="  font-[600] lg:text-[50px] md:text-3xl text-2xl text-center text-[#222] pt-2">
           {serviceSubTitle}
         </p>
-        <p className="text-center text-[#666] lg:mx-[14rem]  mt-3">
+        <p className="text-center text-[#666] lg:mx-[14rem] text-[16px] py-10  ">
           {serviceDescription}
         </p>
       </div>
       {showServiceAs == "Grid" ? (
-        <div className="lg:flex lg:flex-wrap  grid grid-cols-2 md:grid-cols-4 items-center lg:gap-8 gap-7   justify-center mt-10 md:px-10 ">
+        <div className="lg:flex lg:flex-wrap   grid grid-cols-2 md:grid-cols-4 items-center lg:gap-8 gap-7   justify-center mt-10 md:px-10 ">
           {serviceIcons &&
             serviceIcons.map((item, index) => {
               return (
@@ -68,7 +68,7 @@ export const Services = ({
                   className="cursor-pointer group  transition-all hover:-translate-y-5 duration-500"
                   key={index}
                 >
-                  <div className=" bg-[#F4F4F4] group-hover:bg-buttonHoverBg/40 border-1 w-ful lg:w-[170px] h-[160px]  ">
+                  <div className=" bg-[#F4F4F4] group-hover:bg-buttonHoverBg/40 border-1 w-ful  lg:w-[190px] h-[180px]  ">
                     <div className="bg-transparent flex items-center justify-center h-full">
                       {item.Icon.media.data !== null && (
                         <Image
@@ -106,7 +106,7 @@ export const Services = ({
                       className="cursor-pointer group  transition-all hover:-translate-y-5 duration-500"
                       key={index}
                     >
-                      <div className=" bg-[#F4F4F4] group-hover:bg-buttonHoverBg/40 border-1 w-auto lg:w-[170px] h-[160px]  ">
+                      <div className=" bg-[#F4F4F4] group-hover:bg-buttonHoverBg/40 border-1 w-auto lg:w-[190px] h-[180px]  ">
                         <div className="bg-transparent flex items-center justify-center h-full">
                           {item.Icon.media.data !== null && (
                             <Image
