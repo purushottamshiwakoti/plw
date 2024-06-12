@@ -56,7 +56,7 @@ export const MenuItem = ({ menu }: { menu: any }) => {
   const renderSubMenu = (i: any, index: number) => {
     return (
       <div
-        className="relative z-40"
+        className="relative "
         onMouseEnter={() => handleMouseEnter(i.attributes.title)}
       >
         <div className="px-2 py-3 hover:bg-[#F05555] hover:text-white transition-all duration-500">
@@ -170,7 +170,7 @@ export const MenuItem = ({ menu }: { menu: any }) => {
                   {item.attributes.children.data.map((i: any, idx: number) => {
                     return (
                       <>
-                        <div className="px-5">
+                        <div className="px-5 pt-3">
                           {i.attributes.url !== "" ? (
                             <>
                               <Link
@@ -180,6 +180,7 @@ export const MenuItem = ({ menu }: { menu: any }) => {
                                 onClick={() => setShowSubmenu(null)}
                               >
                                 {i.attributes.title}
+                                <hr className="mt-2 w-[60%]" />
                               </Link>
                               {i.attributes.children.data.length > 0 ? (
                                 <div>
@@ -211,17 +212,12 @@ export const MenuItem = ({ menu }: { menu: any }) => {
                                             ) &&
                                             it.attributes.children.data.length >
                                               0 ? (
-                                              <div className="bg-red-500 absolute w-[14rem] -top-2  right-0">
+                                              <div className=" absolute  -top-3  -right-[14.5rem] z-30 p-4 border">
                                                 {it.attributes.children.data.map(
                                                   (item: any, idx: number) => {
-                                                    // return renderSubMenu(
-                                                    //   item,
-                                                    //   idx
-                                                    // );
-                                                    return (
-                                                      <>
-                                                        <div>hello</div>
-                                                      </>
+                                                    return renderSubMenu(
+                                                      item,
+                                                      idx
                                                     );
                                                   }
                                                 )}
