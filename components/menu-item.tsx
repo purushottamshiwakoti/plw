@@ -101,6 +101,7 @@ export const MenuItem = ({ menu }: { menu: any }) => {
               href={item.attributes.url}
               key={index}
               onClick={() => setShowSubmenu(null)}
+              onMouseEnter={() => setShowSubmenu(null)}
               className="font-semibold underline-animate transition-all cursor-pointer"
             >
               {item.attributes.title}
