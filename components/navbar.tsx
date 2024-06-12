@@ -1,9 +1,8 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ChevronDown, ChevronRight, ChevronUp, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { navBar } from "@/lib/nav";
@@ -14,6 +13,7 @@ import { AppUrl } from "@/lib/url";
 import { MenuItem } from "./menu-item";
 import { CountrySelector } from "./country-selector";
 import { MobileNav } from "./mobile-nav";
+import { gsap } from "gsap";
 
 interface NavbarProps {
   className?: string;
@@ -37,22 +37,50 @@ export const Navbar: React.FC<NavbarProps> = ({
   showFlag,
 }) => {
   const path = usePathname();
+  const navRef = useRef<HTMLDivElement | null>(null);
+  const [isVisible, setIsVisible] = useState(false);
 
-  // const menuItem = hasEmptyChildren(menu);
+  useEffect(() => {
+    const navElement = navRef.current;
+
+    const showAnim = gsap.fromTo(
+      navElement,
+      { y: -100, opacity: 0, display: "none" },
+      { y: 0, opacity: 1, display: "flex", duration: 0.5, paused: true }
+    );
+
+    const handleScroll = () => {
+      if (window.scrollY > 500) {
+        showAnim.play();
+        setIsVisible(true);
+      } else {
+        showAnim.reverse();
+        setIsVisible(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
     <nav
+      ref={navRef}
       className={cn(
-        " border-b border-t  h-20 flex items-center justify-between lg:px-[14%] px-4 sticky w-full top-0 z-50",
-        className
+        "border-b border-t hidden h-20 items-center justify-between lg:px-[14%] px-4 sticky w-full top-0 z-50",
+        className,
+        { "bg-white": isVisible } // Apply the background color only when visible
       )}
       style={{
-        backgroundColor: backgroundColor ?? "#fff",
+        backgroundColor: isVisible ? backgroundColor ?? "#fff" : "transparent", // Dynamic background color
+        opacity: 0, // Set initial opacity to 0
       }}
     >
       <Link href="/">
         <Image
-          // src={logo}
           src={`${AppUrl}${logo}`}
           alt="logo"
           width={150}
@@ -72,7 +100,7 @@ export const Navbar: React.FC<NavbarProps> = ({
       <div className="lg:block hidden">
         {showButton && (
           <Button
-            className="bg-buttonHoverBg rounded-[5px] p-[25px] w-[9rem] hover:bg-buttonHoverBg/80  text-[15px] font-[700]"
+            className="bg-buttonHoverBg rounded-[5px] p-[25px] w-[9rem] hover:bg-buttonHoverBg/80 text-[15px] font-[700]"
             asChild
           >
             <Link href={buttonLink ?? "/"}>{buttonName}</Link>
