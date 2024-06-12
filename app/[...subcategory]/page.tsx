@@ -5,7 +5,9 @@ import { Categories } from "@/components/categories";
 import { CustomBreadcrumb } from "@/components/custom-breadcrum";
 import { SearchInput } from "@/components/search-input";
 import { apiCall } from "@/lib/api";
+import { Loader, LoaderCircle } from "lucide-react";
 import { notFound } from "next/navigation";
+import { Suspense } from "react";
 
 async function getPages(
   subcategory: string[],
@@ -87,7 +89,6 @@ const CategoryPage = async ({
   params: any;
   searchParams: any;
 }) => {
-  console.log(params);
   const { subcategory } = params;
   console.log({ subcategory });
   const { page, filter } = searchParams;
@@ -128,4 +129,17 @@ const CategoryPage = async ({
   );
 };
 
-export default CategoryPage;
+export const Spinner = (
+  <div className="w-full h-[100vh] flex items-center justify-center">
+    <LoaderCircle className="animate-spin" />
+  </div>
+);
+
+const page = ({ params, searchParams }: { params: any; searchParams: any }) => {
+  return (
+    <Suspense fallback={Spinner}>
+      <CategoryPage params={params} searchParams={searchParams} />
+    </Suspense>
+  );
+};
+export default page;

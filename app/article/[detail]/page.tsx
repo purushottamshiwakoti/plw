@@ -1,3 +1,4 @@
+import { Spinner } from "@/app/[...subcategory]/page";
 import { TrendingPost } from "@/components/TrendingPost";
 import { AddComment } from "@/components/add-comment";
 import { ArticleDetail } from "@/components/article-detail";
@@ -14,6 +15,7 @@ import { apiCall } from "@/lib/api";
 import { getDate } from "date-fns";
 import { ChevronRight } from "lucide-react";
 import { notFound } from "next/navigation";
+import { Suspense } from "react";
 
 async function getArticle(slug: string) {
   try {
@@ -72,4 +74,11 @@ const ArticlePage = async ({ params }: { params: any }) => {
   );
 };
 
-export default ArticlePage;
+const page = ({ params }: { params: any }) => {
+  return (
+    <Suspense fallback={Spinner}>
+      <ArticlePage params={params} />
+    </Suspense>
+  );
+};
+export default page;

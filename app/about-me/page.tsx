@@ -1,9 +1,10 @@
 import { apiCall } from "@/lib/api";
 import Image from "next/image";
-import React from "react";
+import React, { Suspense } from "react";
 
 import parse from "html-react-parser";
 import { AppUrl } from "@/lib/url";
+import { Spinner } from "../[...subcategory]/page";
 async function getData() {
   const [res] = await Promise.all([
     apiCall(
@@ -691,4 +692,11 @@ const About1 = async () => {
   );
 };
 
-export default About1;
+const page = () => {
+  return (
+    <Suspense fallback={Spinner}>
+      <About1 />
+    </Suspense>
+  );
+};
+export default page;

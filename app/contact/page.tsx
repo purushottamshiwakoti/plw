@@ -1,7 +1,8 @@
 import { apiCall } from "@/lib/api";
-import React from "react";
+import React, { Suspense } from "react";
 import parse from "html-react-parser";
 import ContactForm from "@/components/forms/contact-form";
+import { Spinner } from "../[...subcategory]/page";
 async function getData() {
   const [res] = await Promise.all([apiCall("contact", "populate=SEO.OgImage")]);
   console.log(res);
@@ -153,4 +154,11 @@ const Contact = async () => {
   );
 };
 
-export default Contact;
+const page = () => {
+  return (
+    <Suspense fallback={Spinner}>
+      <Contact />
+    </Suspense>
+  );
+};
+export default page;
