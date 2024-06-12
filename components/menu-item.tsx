@@ -94,7 +94,7 @@ export const MenuItem = ({ menu }: { menu: any }) => {
 
   return (
     <div>
-      <ul className="flex items-center gap-10">
+      <ul className="flex items-center gap-10 ">
         {menu.map((item: any, index: number) => {
           return item.attributes.children.data.length == 0 ? (
             <Link
@@ -117,8 +117,15 @@ export const MenuItem = ({ menu }: { menu: any }) => {
                 >
                   {item.attributes.title}
                 </Link>
+
                 {showSubmenu == item.attributes.title && (
-                  <div className="absolute top-[3.3rem] w-[14rem] bg-white -left-10 border-t-4 border-[#567869]">
+                  <div
+                    className="absolute top-[3.3rem] w-[14rem] bg-white -left-10 border-t-4 border-[#567869]"
+                    onMouseLeave={() => {
+                      setShowSubmenu(null);
+                      setSubmenu([]);
+                    }}
+                  >
                     {item.attributes.children.data.map(
                       (i: any, idx: number) => {
                         return renderFirstMenu(
@@ -140,19 +147,27 @@ export const MenuItem = ({ menu }: { menu: any }) => {
                 >
                   {item.attributes.title}
                 </li>
-                {showSubmenu == item.attributes.title && (
-                  <div className="absolute top-[3.3rem] w-[14rem] bg-white -left-10 border-t-4 border-[#567869]">
-                    {item.attributes.children.data.map(
-                      (i: any, idx: number) => {
-                        return renderFirstMenu(
-                          i,
-                          idx,
-                          item.attributes.children.data.length
-                        );
-                      }
-                    )}
-                  </div>
-                )}
+                <div>
+                  {showSubmenu == item.attributes.title && (
+                    <div
+                      className="absolute top-[3.3rem] w-[14rem] bg-white -left-10 border-t-4 border-[#567869]"
+                      onMouseLeave={() => {
+                        setShowSubmenu(null);
+                        setSubmenu([]);
+                      }}
+                    >
+                      {item.attributes.children.data.map(
+                        (i: any, idx: number) => {
+                          return renderFirstMenu(
+                            i,
+                            idx,
+                            item.attributes.children.data.length
+                          );
+                        }
+                      )}
+                    </div>
+                  )}
+                </div>
               </div>
             )
           ) : item.attributes.url !== "" ? (
@@ -167,7 +182,13 @@ export const MenuItem = ({ menu }: { menu: any }) => {
                 {item.attributes.title}
               </Link>
               {showSubmenu == item.attributes.title && (
-                <div className="absolute top-[5rem] grid grid-cols-4 w-[75%] rounded-sm mx-[14%] bg-white -left-10 border-t-4 border-[#567869]">
+                <div
+                  className="absolute top-[5rem] grid grid-cols-4 w-[75%] rounded-sm mx-[14%] bg-white -left-10 border-t-4 border-[#567869]"
+                  onMouseLeave={() => {
+                    setShowSubmenu(null);
+                    setSubmenu([]);
+                  }}
+                >
                   {item.attributes.children.data.map((i: any, idx: number) => {
                     return (
                       <>
@@ -272,7 +293,13 @@ export const MenuItem = ({ menu }: { menu: any }) => {
                 {item.attributes.title}
               </li>
               {showSubmenu == item.attributes.title && (
-                <div className="absolute top-[3.3rem] w-[14rem] bg-white -left-10 border-t-4 border-[#567869]">
+                <div
+                  className="absolute top-[3.3rem] w-[14rem] bg-white -left-10 border-t-4 border-[#567869]"
+                  onMouseLeave={() => {
+                    setShowSubmenu(null);
+                    setSubmenu([]);
+                  }}
+                >
                   {item.attributes.children.data.map((i: any, idx: number) => {
                     return renderFirstMenu(
                       i,
