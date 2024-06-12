@@ -219,11 +219,11 @@ export const MenuItem = ({ menu, white }: { menu: any; white?: boolean }) => {
                                   {i.attributes.children.data.map(
                                     (it: any, index: number) => (
                                       <div
-                                        className="px-2 py-3 hover:bg-[#F05555] hover:text-white transition-all duration-500"
+                                        className="px-2 py-3   hover:bg-[#F05555] hover:text-white transition-all duration-500"
                                         key={index}
                                       >
                                         {it.attributes.url !== "" ? (
-                                          <div className="relative">
+                                          <div className=" relative">
                                             <Link
                                               href={it.attributes.url}
                                               key={index}
@@ -244,7 +244,7 @@ export const MenuItem = ({ menu, white }: { menu: any; white?: boolean }) => {
                                             ) &&
                                             it.attributes.children.data.length >
                                               0 ? (
-                                              <div className=" absolute  -top-3  -right-[14.5rem] z-30 p-4 border">
+                                              <div className=" absolute  text-primary bg-white   top-10 left-20 z-50  border">
                                                 {it.attributes.children.data.map(
                                                   (item: any, idx: number) => {
                                                     return renderSubMenu(
