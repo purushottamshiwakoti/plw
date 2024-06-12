@@ -38,9 +38,14 @@ export const Navbar: React.FC<NavbarProps> = ({
 }) => {
   const path = usePathname();
   const navRef = useRef<HTMLDivElement | null>(null);
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(path !== "/");
 
   useEffect(() => {
+    if (path !== "/") {
+      setIsVisible(true);
+      return;
+    }
+
     const navElement = navRef.current;
 
     const showAnim = gsap.fromTo(
@@ -64,7 +69,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [path]);
 
   return (
     <nav

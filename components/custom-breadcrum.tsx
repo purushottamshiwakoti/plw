@@ -30,7 +30,8 @@ export const CustomBreadcrumb = ({ breads }: { breads: any[] }) => {
         <BreadcrumbSeparator />
         {components.length > 0 && (
           <>
-            {components.map((item, index) => (
+            {components.map((item, index) => 
+            (
               <React.Fragment key={index}>
                 <BreadcrumbItem>
                   <BreadcrumbLink
