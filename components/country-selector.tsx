@@ -64,7 +64,8 @@ export const CountrySelector: React.FC<CountrySelectorProps> = ({
     <Skeleton className="w-10 h-10" />
   ) : (
     <Select
-      className="w-24 z-40"
+      contentEditable={false}
+      className="w-24 z-40 cursor-pointer"
       value={lang}
       onChange={handleSetLanguage}
       data={[

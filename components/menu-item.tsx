@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 
-export const MenuItem = ({ menu }: { menu: any }) => {
+export const MenuItem = ({ menu, white }: { menu: any; white?: boolean }) => {
   const [showSubmenu, setShowSubmenu] = useState<null | string>(null);
   const [submenu, setSubmenu] = useState<string[]>([]);
 
@@ -20,7 +20,7 @@ export const MenuItem = ({ menu }: { menu: any }) => {
         className="relative"
         onMouseEnter={() => setSubmenu([i.attributes.title])}
       >
-        <div className="px-2 py-3 hover:bg-[#F05555] hover:text-white transition-all duration-500">
+        <div className="px-2 py-3 hover:bg-[#F05555]  hover:text-white transition-all duration-500">
           {i.attributes.url !== "" ? (
             <Link
               href={i.attributes.url}
@@ -94,7 +94,7 @@ export const MenuItem = ({ menu }: { menu: any }) => {
 
   return (
     <div>
-      <ul className="flex items-center gap-10 ">
+      <ul className="flex items-center gap-10  ">
         {menu.map((item: any, index: number) => {
           return item.attributes.children.data.length == 0 ? (
             <Link
@@ -102,7 +102,9 @@ export const MenuItem = ({ menu }: { menu: any }) => {
               key={index}
               onClick={() => setShowSubmenu(null)}
               onMouseEnter={() => setShowSubmenu(null)}
-              className="font-semibold underline-animate transition-all cursor-pointer"
+              className={`font-semibold underline-animate transition-all cursor-pointer ${
+                white ? "text-white" : ""
+              }`}
             >
               {item.attributes.title}
             </Link>
@@ -112,7 +114,9 @@ export const MenuItem = ({ menu }: { menu: any }) => {
                 <Link
                   href={item.attributes.url}
                   key={index}
-                  className="font-semibold underline-animate transition-all cursor-pointer"
+                  className={`font-semibold underline-animate transition-all cursor-pointer ${
+                    white ? "text-white" : ""
+                  }`}
                   onMouseEnter={() => setShowSubmenu(item.attributes.title)}
                 >
                   {item.attributes.title}
@@ -142,7 +146,9 @@ export const MenuItem = ({ menu }: { menu: any }) => {
               <div className="relative">
                 <li
                   key={index}
-                  className="font-semibold underline-animate transition-all cursor-pointer"
+                  className={`font-semibold underline-animate transition-all cursor-pointer ${
+                    white ? "text-white" : ""
+                  }`}
                   onMouseEnter={() => setShowSubmenu(item.attributes.title)}
                 >
                   {item.attributes.title}
@@ -175,7 +181,9 @@ export const MenuItem = ({ menu }: { menu: any }) => {
               <Link
                 href={item.attributes.url}
                 key={index}
-                className="font-semibold underline-animate transition-all cursor-pointer"
+                className={`font-semibold underline-animate transition-all cursor-pointer ${
+                  white ? "text-white" : ""
+                }`}
                 onMouseEnter={() => setShowSubmenu(item.attributes.title)}
                 onClick={() => setShowSubmenu(null)}
               >

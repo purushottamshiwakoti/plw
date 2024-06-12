@@ -50,7 +50,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     );
 
     const handleScroll = () => {
-      if (window.scrollY > 500) {
+      if (window.scrollY > 300) {
         showAnim.play();
         setIsVisible(true);
       } else {

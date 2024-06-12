@@ -12,15 +12,23 @@ import { SocialIcons } from "@/components/social-icons";
 import { apiCall } from "@/lib/api";
 import { Suspense } from "react";
 import { Spinner } from "./[...subcategory]/page";
+import { cookies } from "next/headers";
 
 async function getData() {
+  const cookieStore = cookies();
+
+  const locale = cookieStore.get("language")?.value ?? "en";
+  const endpoint = locale === "en" ? "menus/1" : "menus/3";
+
   try {
-    const [res, featuresRes] = await Promise.all([
+    const [res, featuresRes, menuData, nav] = await Promise.all([
       apiCall(
         "home-page",
         "populate=Banner.BannerImage&populate=Election&populate=Services.Icon.Icon.media&populate=AboutSFM.Image.media&populate=DonationIcons.Icon.media&populate=MovementIcon.Icon.media&populate=Reviews.Image.media&populate=AboutSFM.SocialMedia&populate=DonationBanner&populate=SocialMedia&populate=ConfirmVotes.BackgroundImage&populate=FAQ.Image.media&populate=FAQ.QuestionAnswer&populate=SEO.OgImage"
       ),
       apiCall("articles", "filters[IsFeatured][$eq]=true&populate=*"),
+      apiCall(`${endpoint}`, "nested&populate=*"),
+      apiCall("navbar", "populate=Logo.media"),
     ]);
 
     const { data } = res;
@@ -85,6 +93,32 @@ async function getData() {
     const showDonationAs = data.attributes.showDonationAs;
     const movementStarColor = data.attributes.MovementStarColor;
 
+    // nav
+    const buttonName = nav.data.attributes.ButtonName;
+
+    const backgroundColor = nav.data.attributes.BackgroundColor;
+    const fontColor = nav.data.attributes.FontColor;
+
+    const showButton = nav.data.attributes.ShowButton;
+
+    const buttonLink = nav.data.attributes.ButtonLink;
+
+    const menu = menuData.data.attributes.items.data;
+
+    const logo =
+      nav.data.attributes.Logo.media.data.attributes.formats.large.url;
+    const showFlag = nav.data.attributes.showFlag;
+
+    console.log(
+      buttonName,
+      backgroundColor,
+      fontColor,
+      showButton,
+      buttonLink,
+      menu,
+      logo
+    );
+
     return {
       bannerTitle,
       bannerDescription,
@@ -137,6 +171,13 @@ async function getData() {
       showServiceAs,
       showDonationAs,
       movementStarColor,
+      buttonName,
+      backgroundColor,
+      fontColor,
+      showButton,
+      buttonLink,
+      menu,
+      logo,
     };
   } catch (error) {
     console.log("Error retrieving data:", error);
@@ -179,8 +220,15 @@ async function Home() {
             image={data?.bannerImage}
             button={data?.bannerButtonName}
             showInput={data?.showInput}
+            logo={data?.logo}
+            buttonLink={data?.buttonLink}
+            buttonName={data?.buttonName}
+            menu={data?.menu}
+            showButton={data?.showButton}
+            backgroundColor={data?.backgroundColor}
+            showFlag={false}
           />
-          <div className="-mt-28 z-40 relative">
+          <div className="-mt-28 z-20 relative">
             <ElectionTime
               date={data?.electionDate}
               description={data?.electionDescription}
