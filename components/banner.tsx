@@ -41,7 +41,7 @@ export const Banner = ({
           backgroundImage: `url(${AppUrl}${image})`,
         }}
       >
-        <div className="absolute bg-black opacity-50 lg:h-[85vh] h-[50vh] w-full   z-10 " />
+        <div className="absolute bg-black opacity-75 lg:h-[85vh] h-[50vh] w-full   z-10 " />
         {/* <Navbar className="bg-transparent z-20 mt-10" /> */}
         <div className="mt-5 z-40">
           <BannerNav

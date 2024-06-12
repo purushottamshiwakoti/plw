@@ -19,6 +19,7 @@ export const MenuItem = ({ menu, white }: { menu: any; white?: boolean }) => {
       <div
         className="relative"
         onMouseEnter={() => setSubmenu([i.attributes.title])}
+        onMouseLeave={() => setSubmenu([])}
       >
         <div className="px-2 py-3 hover:bg-[#F05555]  hover:text-white transition-all duration-500">
           {i.attributes.url !== "" ? (
