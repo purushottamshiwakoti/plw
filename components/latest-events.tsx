@@ -37,10 +37,10 @@ export const LatestEvents = ({ data }: { data: any[] }) => {
           opts={{
             align: "start",
             loop: true,
-          }}  
+          }}
           className=" mt-4    "
         >
-          <CarouselContent className="gap-[2rem] w-[32%] ">
+          <CarouselContent className="gap-[2rem] lg:w-[35%] md:w-[50%] ">
             {data &&
               data.map((item, index) => (
                 <CarouselItem key={index} className=" bg-white  shadow-custom">

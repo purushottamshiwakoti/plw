@@ -206,7 +206,7 @@ export const Footer = ({
         />
         <div className="mt-10 ">
           <p
-            className="text-center"
+            className="text-center "
             style={{
               color: textColor,
             }}

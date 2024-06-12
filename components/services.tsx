@@ -44,7 +44,7 @@ export const Services = ({
   showServiceAs,
 }: ServicesInterface) => {
   return (
-    <section className="lg:px-[14%] px-3 w-full mt-[10rem] mb-[5rem]">
+    <section className="lg:px-[14%] px-3 w-full lg:-mt-[4rem]  mt-16 mb-[5rem]">
       <div className="flex justify-center  items-center  ">
         <Star fill="#F05555" strokeWidth={0} className="w-4 h-4" />
         <Star fill="#F05555" strokeWidth={0} className="w-6 -mt-3 h-6" />
@@ -106,7 +106,7 @@ export const Services = ({
                       className="cursor-pointer group  transition-all hover:-translate-y-5 duration-500"
                       key={index}
                     >
-                      <div className=" bg-[#F4F4F4] group-hover:bg-buttonHoverBg/40 border-1 w-auto lg:w-[190px] h-[180px]  ">
+                      <div className=" bg-[#F4F4F4] group-hover:bg-buttonHoverBg/40 border-1  w-[190px] h-[180px]  ">
                         <div className="bg-transparent flex items-center justify-center h-full">
                           {item.Icon.media.data !== null && (
                             <Image
