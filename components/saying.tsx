@@ -68,7 +68,7 @@ export const Saying = ({ description, title, review }: SayingProps) => {
       </div>
 
       <Carousel
-        opts={{ align: "start" }}
+        opts={{ align: "center" }}
         className="w-full pt-8 lg:px-[5rem] xl:px-[5%]"
       >
         <CarouselContent className="gap-[2rem] lg:w-[35%] md:w-[50%] ">
