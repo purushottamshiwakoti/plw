@@ -7,6 +7,7 @@ import { ChevronDown, ChevronUp, Menu } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import { CountrySelector } from "./country-selector";
 
 export const MobileNav = ({ menu }: { menu: any }) => {
   const path = usePathname();
@@ -129,6 +130,7 @@ export const MobileNav = ({ menu }: { menu: any }) => {
               )}
             </div>
           ))}
+          <CountrySelector showFlag={false} />
         </div>
       </SheetContent>
     </Sheet>

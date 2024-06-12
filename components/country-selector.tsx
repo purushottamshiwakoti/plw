@@ -36,10 +36,9 @@ export const CountrySelector: React.FC<CountrySelectorProps> = ({
     fetchLanguage();
   }, []);
 
-  console.log({ loading });
-
   const handleSetLanguage = (value: string | null) => {
     if (value) {
+      console.log(value);
       setCookie("language", value);
       setLang(value);
       router.refresh();
@@ -65,7 +64,7 @@ export const CountrySelector: React.FC<CountrySelectorProps> = ({
     <Skeleton className="w-10 h-10" />
   ) : (
     <Select
-      className="w-24"
+      className="w-24 z-40"
       value={lang}
       onChange={handleSetLanguage}
       data={[
