@@ -30,20 +30,27 @@ export const CustomBreadcrumb = ({ breads }: { breads: any[] }) => {
         <BreadcrumbSeparator />
         {components.length > 0 && (
           <>
-            {components.map((item, index) => 
-            (
-              <React.Fragment key={index}>
-                <BreadcrumbItem>
-                  <BreadcrumbLink
-                    href={`/${components.slice(0, index + 1).join("/")}`}
-                    className="capitalize"
-                  >
-                    {String(item).replaceAll("-", " ")}
-                  </BreadcrumbLink>
-                </BreadcrumbItem>
-                <BreadcrumbSeparator />
-              </React.Fragment>
-            ))}
+            {components.map((item, index) => {
+              console.log(item);
+              return (
+                <React.Fragment key={index}>
+                  <BreadcrumbItem>
+                    <BreadcrumbLink
+                      href={`/${components
+                        .slice(0, index + 1)
+                        .map((component) =>
+                          component.toLowerCase().replace(/ /g, "-")
+                        )
+                        .join("/")}`}
+                      className="capitalize"
+                    >
+                      {String(item).replaceAll("-", " ")}
+                    </BreadcrumbLink>
+                  </BreadcrumbItem>
+                  <BreadcrumbSeparator />
+                </React.Fragment>
+              );
+            })}
           </>
         )}
         <BreadcrumbItem>
