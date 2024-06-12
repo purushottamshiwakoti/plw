@@ -36,7 +36,8 @@ export const LatestEvents = ({ data }: { data: any[] }) => {
         <Carousel
           opts={{
             align: "start",
-          }}
+            loop: true,
+          }}  
           className=" mt-4    "
         >
           <CarouselContent className="gap-[2rem] w-[32%] ">

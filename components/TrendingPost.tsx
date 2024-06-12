@@ -19,7 +19,7 @@ export const TrendingPost = ({ data }: { data: any }) => {
       <div className="mt-2">
         <div className="mt-5 space-y-3">
           {data.map((item: any, index: number) => (
-            <Link href={`article/${item.attributes.slug}`} key={index}>
+            <Link href={`/article/${item.attributes.slug}`} key={index}>
               <div className="flex items-center gap-2">
                 <Image
                   src={`${AppUrl}${item.attributes.Image.data.attributes.formats.medium.url}`}

@@ -5,7 +5,7 @@ import { Categories } from "@/components/categories";
 import { CustomBreadcrumb } from "@/components/custom-breadcrum";
 import { SearchInput } from "@/components/search-input";
 import { apiCall } from "@/lib/api";
-import { Loader, LoaderCircle } from "lucide-react";
+import { LoaderCircle } from "lucide-react";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 
@@ -24,15 +24,13 @@ async function getPages(
       item !== "favicon.ico"
   );
 
-  console.log(subcategory);
   const lastSubcategory = subcategory[subcategory.length - 1];
 
-  console.log({ lastSubcategory });
-  console.log({ subcategory });
   try {
-    console.log(`pages?filters[slug][$eq]=${lastSubcategory}`);
-
-    const pageData = await apiCall(`pages/${lastSubcategory}`, "populate=*");
+    const pageData = await apiCall(
+      `pages`,
+      `filters[slug][$eq]=${lastSubcategory}&populate=SEO.OgImage`
+    );
     if (pageData.data == null) {
       return notFound();
     }
@@ -73,13 +71,43 @@ async function getPages(
 
     await Promise.all(promises);
 
-    console.log(res.data);
-
-    return { res, breads, featuredRes, latestRes }; // Return both res and breads
+    return { res, breads, featuredRes, latestRes, pageData }; // Return both res and breads
   } catch (error) {
     console.error(error);
     throw error; // Re-throw error to be caught by caller if needed
   }
+}
+
+export async function generateMetadata({
+  params,
+  searchParams,
+}: {
+  params: any;
+  searchParams: any;
+}) {
+  // read route params
+
+  // fetch data
+
+  const { subcategory } = params;
+  const { page, filter } = searchParams;
+  // optionally access and extend (rather than replace) parent metadata
+  const response = await getPages(subcategory, page, filter);
+  const { res, breads, featuredRes, latestRes, pageData } = response;
+
+  return {
+    title: pageData.data[0].attributes?.SEO?.MetaTitle ?? "Sfturem",
+    description: pageData.data[0].attributes?.SEO?.MetaDescription,
+    // canonical: data?.canonicalUrl,
+    alternates: {
+      canonical: pageData.data[0].attributes?.SEO?.CanonicalUrl,
+    },
+    openGraph: {
+      title: pageData.data[0].attributes?.SEO?.OgTitle,
+      description: pageData.data[0].attributes?.SEO?.OgDescription,
+      images: pageData.data[0].attributes?.SEO?.OgImage,
+    },
+  };
 }
 
 const CategoryPage = async ({
@@ -90,13 +118,12 @@ const CategoryPage = async ({
   searchParams: any;
 }) => {
   const { subcategory } = params;
-  console.log({ subcategory });
   const { page, filter } = searchParams;
   const response = await getPages(subcategory, page, filter);
-  const { res, breads, featuredRes, latestRes } = response;
+  const { res, breads, featuredRes, latestRes, pageData } = response;
+  console.log(pageData.data[0].attributes?.SEO?.MetaTitle);
 
   const data = res;
-  console.log(data);
   // if (!data) {
   //   return notFound();
   // }

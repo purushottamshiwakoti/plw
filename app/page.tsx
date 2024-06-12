@@ -10,6 +10,8 @@ import { Saying } from "@/components/saying";
 import { Services } from "@/components/services";
 import { SocialIcons } from "@/components/social-icons";
 import { apiCall } from "@/lib/api";
+import { Suspense } from "react";
+import { Spinner } from "./[...subcategory]/page";
 
 async function getData() {
   try {
@@ -165,7 +167,7 @@ export async function generateMetadata() {
   };
 }
 
-export default async function Home() {
+async function Home() {
   const data = await getData();
   return (
     <>
@@ -270,3 +272,12 @@ export default async function Home() {
     </>
   );
 }
+
+const page = () => {
+  return (
+    <Suspense fallback={Spinner}>
+      <Home />
+    </Suspense>
+  );
+};
+export default page;

@@ -5,6 +5,13 @@ import parse from "html-react-parser";
 import Image from "next/image";
 import { AppUrl } from "@/lib/url";
 import { Star, Quote } from "lucide-react";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 interface SayingProps {
   title: string;
@@ -43,108 +50,96 @@ export const Saying = ({ description, title, review }: SayingProps) => {
   };
 
   return (
-    <>
-      <section className="lg:px-[14%] p-4 w-full my-20">
-        <div className="lg:mt-5 space-y-3">
-          {/* <h2 className="text-[#222] text-2xl font-bold text-center">
+    <section className="lg:px-[14%] p-4 w-full my-20">
+      <div className="lg:mt-5 space-y-3 text-center">
+        <div className="flex justify-center items-center space-x-1">
+          <Star fill="#F05555" strokeWidth={0} className="w-4 h-4" />
+          <Star fill="#F05555" strokeWidth={0} className="w-6 -mt-2 h-6" />
+          <Star fill="#F05555" strokeWidth={0} className="w-4 h-4" />
+        </div>
+        <div className="mt-5 space-y-3">
+          <h2 className="text-[#222] font-semibold lg:text-[30px] text-2xl">
             {title}
           </h2>
-          <p className="text-center text-[#666] lg:mx-[14rem] mt-3">
+          <p className="text-[#666] lg:mx-[14rem] text-[16px] pt-5">
             {description}
-          </p> */}
-          <div className="flex justify-center  items-center  ">
-            <Star fill="#F05555" strokeWidth={0} className="w-4 h-4" />
-            <Star fill="#F05555" strokeWidth={0} className="w-6 -mt-3 h-6" />
-            <Star fill="#F05555" strokeWidth={0} className="w-4 h-4" />
-          </div>
-          <div className="mt-5 space-y-3  ">
-            {/* <h2 className="text-[#222] text-center text-[16px] ">{serviceTitle}</h2> */}
-            <p className="  font-[600] lg:text-[30px] md:text-3xl text-2xl text-center text-[#222] pt-2">
-              {title}
-            </p>
-            <p className="text-center text-[#666] lg:mx-[14rem] text-[16px] pt-5 ">
-              {description}
-            </p>
-          </div>
+          </p>
         </div>
-        <div className="mt-10 lg:flex lg:justify-center grid md:grid-cols-2 grid-cols-1 flex-wrap lg:gap-3">
-          {review &&
-            review.map((item, index) => (
-              <div
-                className="shadow-xl border-1  flex lg:w-[29vw] flex-col lg:p-3 review-card"
-                key={index}
-              >
-                <div className="px-6 py-10 flex flex-col">
-                  <div className="flex items-start justify-start mb-3">
-                    <Quote className="text-[#09274C]" />
-                  </div>
-                  <div
-                    className={`mt-3 ${showFullReview ? "overflow-auto" : ""}`}
-                  >
-                    {showFullReview === item.Review ? (
-                      <>
-                        {parse(item.Review)}
-                        <Button
-                          variant={"link"}
-                          className="p-0"
-                          onClick={handleShowLess}
-                        >
-                          Show Less
-                        </Button>
-                      </>
-                    ) : (
-                      <>
-                        {parse(item.Review.slice(0, 300) + "...")}
-                        <Button
-                          variant={"link"}
-                          className="p-0"
-                          onClick={() => handleReadMore(item.Review)}
-                        >
-                          Read More
-                        </Button>
-                      </>
-                    )}
-                  </div>
-                  <div className="flex items-start justify-end mt-3">
-                    <Quote className="text-[#09274C]" />
-                  </div>
+      </div>
+
+      <Carousel
+        opts={{ align: "start" }}
+        className="w-full pt-8 lg:px-[5rem] xl:px-[5%]"
+      >
+        <CarouselContent className="gap-[2rem] w-[35%] ">
+          {review.map((item, index) => (
+            <CarouselItem
+              key={index}
+              className="border shadow-custom p-6 rounded-lg"
+            >
+              <div className="flex flex-col items-start">
+                <Quote className="text-[#09274C] mb-3" />
+                <div
+                  className={` text-[#666] tracking-wide ${
+                    showFullReview == item.Review ? "" : "line-clamp-5"
+                  } `}
+                >
+                  {parse(item.Review)}
                 </div>
-                <div className="mt-4 flex items-center justify-between">
-                  <div className="flex items-center space-x-3">
-                    <Image
-                      src={`${AppUrl}${item.Image.media.data.attributes.formats.thumbnail.url}`}
-                      width={100}
-                      height={100}
-                      alt={item.Image.alt}
-                      className="rounded-full h-20 w-20 object-cover"
-                    />
-                    <div>
-                      <div className="flex items-center mb-2">
-                        {Array.from(
-                          { length: parseInt(item.Stars) },
-                          (_, index) => (
-                            <Star
-                              key={index}
-                              fill="#299726"
-                              strokeWidth={0}
-                              className="w-5 h-5"
-                            />
-                          )
-                        )}
-                      </div>
-                      <h2 className="text-muted-foreground font-semibold">
-                        {item.Designation}
-                      </h2>
-                      <h4 className="text-buttonBg font-semibold">
-                        {item.Name}
-                      </h4>
+                <div className="">
+                  {showFullReview != item.Review ? (
+                    <Button
+                      variant={"link"}
+                      className="flex items-start justify-start mt-1 p-0"
+                      onClick={() => handleReadMore(item.Review)}
+                    >
+                      Read More
+                    </Button>
+                  ) : (
+                    <Button
+                      variant={"link"}
+                      className="flex items-start justify-start mt-1 p-0"
+                      onClick={() => handleShowLess()}
+                    >
+                      Read Less
+                    </Button>
+                  )}
+                </div>
+                <div className="flex items-center mt-4">
+                  <Image
+                    src={`${AppUrl}${item.Image.media.data.attributes.formats.thumbnail.url}`}
+                    width={100}
+                    height={100}
+                    alt={item.Image.alt}
+                    className="rounded-full h-20 w-20 object-cover mr-4"
+                  />
+                  <div>
+                    <div className="flex items-center mb-2">
+                      {Array.from(
+                        { length: parseInt(item.Stars) },
+                        (_, index) => (
+                          <Star
+                            key={index}
+                            fill="#299726"
+                            strokeWidth={0}
+                            className="w-5 h-5"
+                          />
+                        )
+                      )}
                     </div>
+                    <h4 className="font-semibold text-[#222]">{item.Name}</h4>
+                    <p className="text-muted-foreground">{item.Designation}</p>
                   </div>
                 </div>
               </div>
-            ))}
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+        <div className="mt-8 flex justify-center gap-4">
+          <CarouselPrevious className="w-12 border-[#222] rounded-[2px] border-[2px] text-[#222] text-3xl" />
+          <CarouselNext className="w-12 border-[#222] rounded-[2px] border-[2px] text-[#222] text-3xl" />
         </div>
-      </section>
-    </>
+      </Carousel>
+    </section>
   );
 };

@@ -19,7 +19,7 @@ import { Suspense } from "react";
 
 async function getArticle(slug: string) {
   try {
-    const res = await apiCall(`articles/${slug}`, "populate=*");
+    const res = await apiCall(`articles/${slug}`, "populate=SEO.OgImage");
     const featuredRes = await apiCall(
       "articles",
       "filters[IsFeatured][$eq]=true&populate=*&pagination[pageSize]=7"
@@ -36,6 +36,35 @@ async function getArticle(slug: string) {
   }
 }
 
+export async function generateMetadata({
+  params,
+  searchParams,
+}: {
+  params: any;
+  searchParams: any;
+}) {
+  // read route params
+
+  // fetch data
+  const response = await getArticle(params.detail);
+  const { res } = response;
+  const data = res.data;
+  console.log(data.attributes.SEO);
+
+  return {
+    title: data.attributes?.SEO?.MetaTitle ?? "Sfturem",
+    description: data.attributes?.SEO?.MetaDescription,
+    // canonical: data?.canonicalUrl,
+    alternates: {
+      canonical: data.attributes?.SEO?.CanonicalUrl,
+    },
+    openGraph: {
+      title: data.attributes?.SEO?.OgTitle,
+      description: data.attributes?.SEO?.OgDescription,
+      images: data.attributes?.SEO?.OgImage,
+    },
+  };
+}
 const ArticlePage = async ({ params }: { params: any }) => {
   const response = await getArticle(params.detail);
   const { res, featuredRes, latestRes } = response;
