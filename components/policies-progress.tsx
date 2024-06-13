@@ -7,7 +7,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { AppUrl } from "@/lib/url";
@@ -72,9 +72,9 @@ export const PoliciesAndProgress = ({
 
   return (
     <>
-      <div className="lg:px-[14%] px-3  lg:mt-[5rem] mt-3 lg:mb-10 mb-4">
-        <div className="  flex flex-col items-center justify-center">
-          <div className="flex gap-[1px]  items-center justify-center ">
+      <div className="lg:px-[14%] px-3 lg:mt-[5rem] mt-3 lg:mb-10 mb-4">
+        <div className="flex flex-col items-center justify-center">
+          <div className="flex gap-[1px] items-center justify-center">
             <Star
               fill={faqStarColor ?? "red"}
               strokeWidth={0}
@@ -98,10 +98,10 @@ export const PoliciesAndProgress = ({
             {subTitle}
           </h2>
         </div>
-        <div className="mt-10 overflow-x-auto w-full ">
-          <div className="flex items-center  gap-[54px]  ">
+        <div className="mt-10 overflow-x-auto w-full">
+          <div className="flex items-center gap-[54px]">
             {faq.map((item, index) => (
-              <div className="relative group " key={index}>
+              <div className="relative group" key={index}>
                 <h2
                   style={{
                     fontSize: "1.125rem", // text-lg equivalent
@@ -109,7 +109,6 @@ export const PoliciesAndProgress = ({
                     cursor: "pointer",
                     flex: 1,
                     whiteSpace: "nowrap",
-                    color: faqData === item.Title ? faqActiveColor : "#305e95",
                     color: isHovered
                       ? faqActiveColor
                       : faqData === item.Title
@@ -122,30 +121,23 @@ export const PoliciesAndProgress = ({
                   }}
                   onMouseEnter={handleMouseEnter}
                   onMouseLeave={handleMouseLeave}
-                  key={index}
                 >
                   {item.Title}
-                </h2>{" "}
-                {/* Use flex container to hold hr and arrows */}
+                </h2>
                 <hr
                   className={
                     faqData == item.Title
-                      ? "w-[150%] -left-[25%] opacity-100   -bottom-[17px] absolute border border-" +
-                        faqActiveColor +
-                        " flex-nowrap"
-                      : "w-[150%] -left-[25%] opacity-0 group-hover:opacity-100   -bottom-[17px] absolute flex-nowrap border border-" +
-                        faqActiveColor
+                      ? `w-[150%] -left-[25%] opacity-100 -bottom-[17px] absolute border border-${faqActiveColor} flex-nowrap`
+                      : `w-[150%] -left-[25%] opacity-0 group-hover:opacity-100 -bottom-[17px] absolute flex-nowrap border border-${faqActiveColor}`
                   }
                 />
-                {/* First horizontal line */}
-                {/* Second horizontal line */}
               </div>
             ))}
           </div>
-          <hr className=" w-full mt-4   " />
+          <hr className="w-full mt-4" />
         </div>
 
-        <div className="grid lg:grid-cols-3 grid-cols-1 my-10   opacity-0 faqs pb-20 ">
+        <div className="grid lg:grid-cols-3 grid-cols-1 my-10 opacity-0 faqs pb-20">
           <div>
             {faqList[0] && (
               <div className="lg:w-[23vw] w-[70vw] h-[20rem] relative">
@@ -155,7 +147,7 @@ export const PoliciesAndProgress = ({
                     AppUrl +
                     faqList[0]?.Image.media.data.attributes.formats.small.url
                   }
-                  alt="hello"
+                  alt={faqList[0]?.Image.alt}
                   fill
                   className="object-cover"
                 />
