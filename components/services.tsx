@@ -10,6 +10,9 @@ import {
 } from "@/components/ui/carousel";
 
 interface ServicesInterface {
+  servicesBackgroundColor: string;
+  servicesStarColor: string;
+  showServicesStar: boolean;
   serviceTitle: string;
   serviceSubTitle: string;
   serviceDescription: string;
@@ -42,14 +45,28 @@ export const Services = ({
   serviceSubTitle,
   serviceTitle,
   showServiceAs,
+  servicesStarColor,
+  showServicesStar,
+  servicesBackgroundColor,
 }: ServicesInterface) => {
   return (
-    <section className="lg:px-[14%] px-3 w-full lg:-mt-[4rem]  mt-16 mb-[5rem]">
-      <div className="flex justify-center  items-center  ">
-        <Star fill="#F05555" strokeWidth={0} className="w-4 h-4" />
-        <Star fill="#F05555" strokeWidth={0} className="w-6 -mt-3 h-6" />
-        <Star fill="#F05555" strokeWidth={0} className="w-4 h-4" />
-      </div>
+    <section
+      className="lg:px-[14%] pb-1  px-3 w-full lg:-mt-[4rem]  pt-12 mb-[5rem]"
+      style={{
+        backgroundColor: servicesBackgroundColor,
+      }}
+    >
+      {showServicesStar && (
+        <div className="flex justify-center  items-center  ">
+          <Star fill={servicesStarColor} strokeWidth={0} className="w-4 h-4" />
+          <Star
+            fill={servicesStarColor}
+            strokeWidth={0}
+            className="w-6 -mt-3 h-6"
+          />
+          <Star fill={servicesStarColor} strokeWidth={0} className="w-4 h-4" />
+        </div>
+      )}
       <div className="mt-5 space-y-3  ">
         <h2 className="text-[#222] text-center text-[16px] ">{serviceTitle}</h2>
         <p className="  font-[600] lg:text-[50px] md:text-3xl text-2xl text-center text-[#222] pt-2">

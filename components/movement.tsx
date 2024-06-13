@@ -6,6 +6,7 @@ import {
 } from "@strapi/blocks-react-renderer";
 
 interface MomvementProps {
+  aboutSFMBackgroungColor: string;
   title: string;
   position: string;
   description: any;
@@ -27,9 +28,15 @@ export const Momvement = ({
   image,
   imageAlt,
   movementStarColor,
+  aboutSFMBackgroungColor,
 }: MomvementProps) => {
   return (
-    <div className="  ">
+    <div
+      className="  "
+      style={{
+        backgroundColor: aboutSFMBackgroungColor,
+      }}
+    >
       <div className="lg:flex ">
         <div className="lg:p-10 p-2 md:p-5">
           <Image

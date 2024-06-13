@@ -44,11 +44,16 @@ async function getData() {
     const showElection = data.attributes.Election.ShowElection;
     const electionDate = data.attributes.Election.ElectionDate;
     const serviceTitle = data.attributes.Services.Title;
+    const servicesStarColor = data.attributes.ServicesStarColor;
+    const servicesBackgroundColor = data.attributes.ServicesBackgroundColor;
+    const showServicesStar = data.attributes.ShowServicesStar;
     const serviceSubTitle = data.attributes.Services.SubTitle;
     const serviceDescription = data.attributes.Services.Description;
     const serviceIcons = data.attributes.Services.Icon;
+
     const socialIcons = data.attributes.SocialMedia;
     const aboutSFMTitle = data.attributes.AboutSFM.Title;
+    const aboutSFMBackgroungColor = data.attributes.AboutSFMBackgroungColor;
     const aboutSFMSocial = data.attributes.AboutSFM.SocialMedia;
     const aboutSFMPosition = data.attributes.AboutSFM.Position;
     const aboutSFMDescription = data.attributes.AboutSFM.Description;
@@ -57,9 +62,9 @@ async function getData() {
     const aboutSFMImageAlt = data.attributes.AboutSFM.Image.alt;
     const donationTitle = data.attributes.DonationText;
     const donationDescription = data.attributes.DonationDescription;
-    const donationBanner =
-      data.attributes.DonationBanner.data.attributes.formats.thumbnail.url;
+    const donationBanner = "";
     const donationIcons = data.attributes.DonationIcons;
+    // const donationIcons = data.attributes.DonationIcons;
     const movementTitle = data.attributes.MovementTitle;
     const movementDescription = data.attributes.MovementDescription;
     const movementIcon = data.attributes.MovementIcon;
@@ -109,16 +114,6 @@ async function getData() {
     const logo =
       nav.data.attributes.Logo.media.data.attributes.formats.large.url;
     const showFlag = nav.data.attributes.showFlag;
-
-    console.log(
-      buttonName,
-      backgroundColor,
-      fontColor,
-      showButton,
-      buttonLink,
-      menu,
-      logo
-    );
 
     return {
       bannerTitle,
@@ -180,6 +175,11 @@ async function getData() {
       menu,
       logo,
       electionBackground,
+      servicesStarColor,
+      showServicesStar,
+      showFlag,
+      servicesBackgroundColor,
+      aboutSFMBackgroungColor,
     };
   } catch (error) {
     console.log("Error retrieving data:", error);
@@ -245,6 +245,9 @@ async function Home() {
             serviceSubTitle={data?.serviceSubTitle}
             serviceTitle={data?.serviceTitle}
             showServiceAs={data?.showServiceAs}
+            servicesStarColor={data?.servicesStarColor}
+            showServicesStar={data?.showServicesStar}
+            servicesBackgroundColor={data?.servicesBackgroundColor}
           />
           <Momvement
             description={data?.aboutSFMDescription}
@@ -254,6 +257,7 @@ async function Home() {
             image={data?.aboutSFMImage}
             imageAlt={data?.aboutSFMImageAlt}
             movementStarColor={data?.movementStarColor}
+            aboutSFMBackgroungColor={data?.aboutSFMBackgroungColor}
           />
           <div className="mt-10">
             <Donation

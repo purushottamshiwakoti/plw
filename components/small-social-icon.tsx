@@ -24,7 +24,6 @@ export const SmallSocialIcon = ({
             }}
             target="_blank"
             key={item.id}
-            bgColor="#212121"
           />
         ))}
     </div>
