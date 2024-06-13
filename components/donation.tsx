@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/carousel";
 
 interface DonationProps {
+  donationBackgroundColor: string;
   showDonationTitle: boolean;
   title: string;
   banner: string;
@@ -43,13 +44,17 @@ export const Donation = ({
   banner,
   showDonationTitle,
   showDonationAs,
+  donationBackgroundColor,
 }: DonationProps) => {
   return (
     <div
-      className="  bg-no-repeat bg-center bg-cover  "
       // style={{
       //   backgroundImage: `url(${AppUrl}${banner})`,
       // }}
+
+      style={{
+        backgroundColor: donationBackgroundColor,
+      }}
     >
       <div className="bg- p-10">
         {showDonationTitle && (

@@ -64,7 +64,7 @@ async function getData() {
     const donationDescription = data.attributes.DonationDescription;
     const donationBanner = "";
     const donationIcons = data.attributes.DonationIcons;
-    // const donationIcons = data.attributes.DonationIcons;
+    const donationBackgroundColor = data.attributes.DonationBackgroundColor;
     const movementTitle = data.attributes.MovementTitle;
     const movementDescription = data.attributes.MovementDescription;
     const movementIcon = data.attributes.MovementIcon;
@@ -180,6 +180,7 @@ async function getData() {
       showFlag,
       servicesBackgroundColor,
       aboutSFMBackgroungColor,
+      donationBackgroundColor,
     };
   } catch (error) {
     console.log("Error retrieving data:", error);
@@ -264,9 +265,10 @@ async function Home() {
               description={data?.donationDescription}
               title={data?.donationTitle}
               donations={data?.donationIcons}
-              banner={data?.donationBanner}
+              banner={data?.donationBanner as string}
               showDonationTitle={data?.showDonationTitle}
               showDonationAs={data?.showDonationAs}
+              donationBackgroundColor={data?.donationBackgroundColor}
             />
           </div>
           <LatestEvents data={data?.featuredData} />
