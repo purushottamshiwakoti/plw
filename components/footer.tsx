@@ -97,7 +97,7 @@ export const Footer = ({
             </Link>
             <div
               className="lg:flex items-center lg:gap-20 gap-5 grid md:grid-cols-4 grid-cols-2 lg:mt-0 mt-4
-            lg:overflow-x-auto
+            lg:overflow-auto
             "
             >
               {counter &&

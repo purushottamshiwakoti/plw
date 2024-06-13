@@ -39,6 +39,7 @@ async function getData() {
     const showInput = data.attributes.Banner.ShowInput;
     const bannerButtonName = data.attributes.Banner.ButtonName;
     const electionTitle = data.attributes.Election.Title;
+    const electionBackground = data.attributes.Election.BackgroundColor;
     const electionDescription = data.attributes.Election.Description;
     const showElection = data.attributes.Election.ShowElection;
     const electionDate = data.attributes.Election.ElectionDate;
@@ -178,6 +179,7 @@ async function getData() {
       buttonLink,
       menu,
       logo,
+      electionBackground,
     };
   } catch (error) {
     console.log("Error retrieving data:", error);
@@ -210,6 +212,7 @@ export async function generateMetadata() {
 
 async function Home() {
   const data = await getData();
+  console.log(data?.electionBackground);
   return (
     <>
       <main className="relative">
@@ -233,6 +236,7 @@ async function Home() {
               date={data?.electionDate}
               description={data?.electionDescription}
               title={data?.electionTitle}
+              backgroundColor={data?.electionBackground}
             />
           </div>
           <Services

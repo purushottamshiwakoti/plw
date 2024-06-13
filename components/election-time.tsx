@@ -7,10 +7,12 @@ export const ElectionTime = ({
   date,
   title,
   description,
+  backgroundColor,
 }: {
   date: Date;
   title: string;
   description: string;
+  backgroundColor: string;
 }) => {
   const [timeRemaining, setTimeRemaining] = useState({
     days: 0,
@@ -48,9 +50,14 @@ export const ElectionTime = ({
 
   return (
     <div className="xl:mx-[14%]  mx-4  lg:h-[50vh] mt-10">
-      <div className="bg-[#255bb8] text-white lg:flex items-center lg:p-20 p-4 rounded-[15px]">
+      <div
+        className=" text-white lg:flex items-center lg:p-20 p-4 rounded-[15px]"
+        style={{
+          backgroundColor: backgroundColor,
+        }}
+      >
         <div className=" ">
-          <h2 className=" lg:text-start  text-center  font-bold lg:text-[34px] text-xl">
+          <h2 className=" text-center  font-bold lg:text-[24px] text-xl">
             {title}
           </h2>
           <p className=" lg:text-[18px] lg:text-start text-center tracking-[0.2em] mt-[10px] text-lg">
@@ -68,7 +75,7 @@ export const ElectionTime = ({
             </div>
             <div>
               <Separator
-                className="bg-zinc-300/20 lg:ml-0 ml-5 "
+                className="bg-zinc-300/20  -ml-3 "
                 orientation="vertical"
               />
             </div>
@@ -84,7 +91,7 @@ export const ElectionTime = ({
             </div>
             <div>
               <Separator
-                className="bg-zinc-300/20 lg:ml-0 ml-5 "
+                className="bg-zinc-300/20 -ml-3 "
                 orientation="vertical"
               />
             </div>
@@ -100,7 +107,7 @@ export const ElectionTime = ({
             </div>
             <div>
               <Separator
-                className="bg-zinc-300/20 lg:ml-0 ml-5 "
+                className="bg-zinc-300/20 -ml-3 "
                 orientation="vertical"
               />
             </div>

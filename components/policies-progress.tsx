@@ -106,7 +106,7 @@ export const PoliciesAndProgress = ({
           <hr className=" w-full mt-4   " />
         </div>
 
-        <div className="grid lg:grid-cols-3 grid-cols-1 my-10  opacity-0 faqs pb-20 ">
+        <div className="grid lg:grid-cols-3 grid-cols-1 my-10   opacity-0 faqs pb-20 ">
           <div>
             {faqList[0] && (
               <div className="lg:w-[23vw] w-[70vw] h-[20rem] relative">
@@ -123,7 +123,7 @@ export const PoliciesAndProgress = ({
               </div>
             )}
           </div>
-          <div className="lg:mt-0 mt-4 col-span-2">
+          <div className="lg:mt-0 mt-4 lg:ml-12 col-span-2">
             <Accordion
               type="single"
               collapsible

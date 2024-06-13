@@ -69,13 +69,13 @@ export const Donation = ({
             </div>
           </div>
         )}
-        <div className=" flex justify-center lg:px-[5%] flex-wrap">
+        <div className=" flex justify-center lg:px-[4%] flex-wrap mt-10">
           {showDonationAs == "Grid" ? (
             donations &&
             donations.map((item, index) => {
               return (
                 <div
-                  className="group    hover:-translate-y-5 border transition-all duration-500 flex-col lg:my-14 my-5 lg:mx-4 cursor-pointer bg-white/20 rounded-md py-10"
+                  className="group    hover:-translate-y-5 border transition-all duration-500 flex-col  my-5 lg:mx-4 cursor-pointer bg-white/20 rounded-md py-10"
                   key={index}
                 >
                   <div className="  rounded-md  min-w-72 min-h-32 flex flex-col items-center justify-center">
