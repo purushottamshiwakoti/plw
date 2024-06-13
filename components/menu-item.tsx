@@ -244,7 +244,7 @@ export const MenuItem = ({ menu, white }: { menu: any; white?: boolean }) => {
                                             ) &&
                                             it.attributes.children.data.length >
                                               0 ? (
-                                              <div className=" absolute  text-primary bg-white   top-10 left-20 z-50  border">
+                                              <div className=" absolute  text-primary bg-white  w-[14rem]  top-10 left-20 z-50  border">
                                                 {it.attributes.children.data.map(
                                                   (item: any, idx: number) => {
                                                     return renderSubMenu(
