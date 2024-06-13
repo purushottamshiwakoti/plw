@@ -5,11 +5,13 @@ export const ContactList = ({
   email,
   phone,
   location,
+  iconColor,
 }: {
   title: string | undefined;
   email: string | undefined;
   phone: string | undefined;
   location: string | undefined;
+  iconColor: string;
 }) => {
   return (
     <>
@@ -18,19 +20,32 @@ export const ContactList = ({
         <div className="text-sm">
           <div className="space-y-4">
             <div className="flex items-center gap-2">
-              <Phone className="text-buttonHoverBg" />
+              <Phone
+                style={{
+                  color: iconColor,
+                }}
+              />
               <a href={`tel:${phone}`} className="font-semibold ">
                 {phone}
               </a>
             </div>
             <div className="flex items-center gap-2">
-              <Mail className="text-buttonHoverBg" />
+              <Mail
+                style={{
+                  color: iconColor,
+                }}
+              />
               <a href={`mailto:${email}`} className="font-semibold ">
                 {email}
               </a>
             </div>
             <div className="flex items-center gap-2">
-              <Locate className="text-buttonHoverBg w-auto h-auto" />
+              <Locate
+                className=" w-auto h-auto"
+                style={{
+                  color: iconColor,
+                }}
+              />
               {/* <a
                 // href="https://maps.google.com?q=143+Ringer+House,+NY+58920+United+States"
                 className="font-normal "

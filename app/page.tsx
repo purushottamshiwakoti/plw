@@ -70,6 +70,7 @@ async function getData() {
     const movementIcon = data.attributes.MovementIcon;
     const reviewTitle = data.attributes.ReviewTitle;
     const reviewDescription = data.attributes.ReviewDescription;
+    const reviewStarColor = data.attributes.ReviewStarColor;
     const reviews = data.attributes.Reviews;
     const confirmVoteTitle = data.attributes.ConfirmVotes.Title;
     const confirmVoteSubtitle = data.attributes.ConfirmVotes.Subtitle;
@@ -80,8 +81,14 @@ async function getData() {
     const confirmVoteBackgroundImage =
       data.attributes.ConfirmVotes.BackgroundImage.data.attributes.formats
         .thumbnail.url;
+    const confirmVoteBackgroundColor =
+      data.attributes.ConfirmVotes.BackgroundColor;
+    const confirmVoteStarColor = data.attributes.ConfirmVotes.StarColor;
+    const confirmVoteButtonColor = data.attributes.ConfirmVotes.ButtonColor;
     const faqTitle = data.attributes.FAQTitle;
     const faqSubTitle = data.attributes.FAQSubTitle;
+    const faqStarColor = data.attributes.FaqStarColor;
+    const faqActiveColor = data.attributes.FaqActiveColor;
     const faqs = data.attributes.FAQ;
     const showDonationTitle = data.attributes.ShowDonationTitle;
 
@@ -99,6 +106,12 @@ async function getData() {
     const showDonationAs = data.attributes.showDonationAs;
     const movementStarColor = data.attributes.MovementStarColor;
 
+    const featuredTitle = data.attributes.FeaturedTitle;
+    const featuredDescription = data.attributes.FeaturedDescription;
+    const showFeaturedStar = data.attributes.ShowFeaturedStar;
+    const featuredStarColor = data.attributes.FeaturedStarColor;
+
+    const featuredBackgroundColor = data.attributes.FeaturedBackgroundColor;
     // nav
     const buttonName = nav.data.attributes.ButtonName;
 
@@ -181,6 +194,17 @@ async function getData() {
       servicesBackgroundColor,
       aboutSFMBackgroungColor,
       donationBackgroundColor,
+      featuredTitle,
+      featuredDescription,
+      showFeaturedStar,
+      featuredBackgroundColor,
+      featuredStarColor,
+      reviewStarColor,
+      confirmVoteBackgroundColor,
+      confirmVoteStarColor,
+      confirmVoteButtonColor,
+      faqStarColor,
+      faqActiveColor,
     };
   } catch (error) {
     console.log("Error retrieving data:", error);
@@ -271,7 +295,14 @@ async function Home() {
               donationBackgroundColor={data?.donationBackgroundColor}
             />
           </div>
-          <LatestEvents data={data?.featuredData} />
+          <LatestEvents
+            data={data?.featuredData}
+            featuredBackgroundColor={data?.featuredBackgroundColor}
+            featuredDescription={data?.featuredDescription}
+            featuredStarColor={data?.featuredStarColor}
+            featuredTitle={data?.featuredTitle}
+            showFeaturedStar={data?.showFeaturedStar}
+          />
           <FutureMovement
             description={data?.movementTitle}
             title={data?.movementDescription}
@@ -282,6 +313,7 @@ async function Home() {
             description={data?.reviewDescription}
             title={data?.reviewTitle}
             review={data?.reviews}
+            reviewStarColor={data?.reviewStarColor}
           />
           <SocialIcons url={data?.socialIcons} />
           <ConfirmVotes
@@ -292,11 +324,17 @@ async function Home() {
             subtitle={data?.confirmVoteSubtitle}
             title={data?.confirmVoteTitle}
             bgImage={data?.confirmVoteBackgroundImage}
+            confirmVoteBackgroundColor={data?.confirmVoteBackgroundColor}
+            confirmVoteButtonColor={data?.confirmVoteButtonColor}
+            confirmVoteStarColor={data?.confirmVoteStarColor}
+            reviewStarColor={data?.reviewStarColor}
           />
           <PoliciesAndProgress
             subTitle={data?.faqSubTitle}
             title={data?.faqTitle}
             faq={data?.faqs}
+            faqStarColor={data?.faqStarColor}
+            faqActiveColor={data?.faqActiveColor}
           />
           <div className="pb-10"></div>
         </div>

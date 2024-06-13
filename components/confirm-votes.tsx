@@ -11,6 +11,10 @@ interface ConfirmVotesProps {
   buttonName: string;
   buttonLink: string;
   bgImage: string;
+  reviewStarColor: string;
+  confirmVoteBackgroundColor: string;
+  confirmVoteStarColor: string;
+  confirmVoteButtonColor: string;
 }
 
 export const ConfirmVotes = ({
@@ -21,6 +25,10 @@ export const ConfirmVotes = ({
   buttonName,
   buttonLink,
   bgImage,
+  confirmVoteBackgroundColor,
+  confirmVoteButtonColor,
+  confirmVoteStarColor,
+  reviewStarColor,
 }: ConfirmVotesProps) => {
   return (
     <>
@@ -34,11 +42,28 @@ export const ConfirmVotes = ({
           backgroundImage: `url(${AppUrl}${bgImage})`,
         }}
       >
-        <div className="bg-primary/90 lg:p-10 p-4 lg:py-[7rem] flex flex-col items-center justify-center">
+        <div
+          className=" lg:p-10 p-4 lg:py-[7rem] flex flex-col items-center justify-center"
+          style={{
+            backgroundColor: `${confirmVoteBackgroundColor}E6`, // Assuming confirmVoteBackgroundColor is a hex color code
+          }}
+        >
           <div className="flex gap-[1px]  items-center justify-center ">
-            <Star fill="#299726" strokeWidth={0} className="w-5 h-5" />
-            <Star fill="#299726" strokeWidth={0} className="w-7 h-7" />
-            <Star fill="#299726" strokeWidth={0} className="w-5 h-5" />
+            <Star
+              fill={confirmVoteStarColor}
+              strokeWidth={0}
+              className="w-5 h-5"
+            />
+            <Star
+              fill={confirmVoteStarColor}
+              strokeWidth={0}
+              className="w-7 h-7"
+            />
+            <Star
+              fill={confirmVoteStarColor}
+              strokeWidth={0}
+              className="w-5 h-5"
+            />
           </div>
 
           <p className="text-white mt-2">{title}</p>
@@ -52,8 +77,11 @@ export const ConfirmVotes = ({
           {showButton && (
             <div className="mt-10">
               <Button
-                className="bg-buttonHoverBg  rounded-[5px] p-[25px] w-[9rem] hover:bg-white hover:text-black uppercase text-[15px] font-[700]"
+                className=" rounded-[5px] p-[25px] w-[9rem]   uppercase text-[15px] font-[700]"
                 asChild
+                style={{
+                  backgroundColor: confirmVoteButtonColor,
+                }}
               >
                 <Link href={buttonLink}>{buttonName}</Link>
               </Button>

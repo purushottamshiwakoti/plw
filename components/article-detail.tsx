@@ -16,6 +16,9 @@ export const ArticleDetail = ({ data }: { data: any }) => {
       // href={"#"}
       className=" pb-5  group cursor-pointer "
     >
+      <h3 className="text-[#323031] font-bold text-2xl my-4">
+        {data.attributes.Title}
+      </h3>
       <div className="w-full h-[25rem] overflow-hidden relative">
         <Image
           src={`${AppUrl}${data.attributes.Image.data.attributes.formats.medium.url}`}
@@ -30,9 +33,6 @@ export const ArticleDetail = ({ data }: { data: any }) => {
         </div>
       </div>
       <div className="space-y-5 mt-10">
-        <h3 className="text-[#323031] font-bold text-2xl">
-          {data.attributes.Title}
-        </h3>
         <div className="md:flex items-center gap-5 md:space-y-0 space-y-3">
           <div className="flex items-center gap-2">
             <User className="h-5 w-5 text-buttonHoverBg" />

@@ -12,35 +12,27 @@ const Slider = ({
     Title: string;
   }[];
 }) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  useEffect(() => {
-    // Reset the index when the slides change
-    setCurrentIndex(0);
-  }, [slides]);
-
   return (
     <>
       {slides && slides.length > 0 && (
         <Marquee
           direction="left"
-          key={currentIndex}
           speed={30} // Adjust the speed as needed
           gradient={false} // Disable gradient
-          onCycleComplete={() =>
-            setCurrentIndex((prevIndex) => (prevIndex + 1) % slides.length)
-          }
+          className="flex items-center space-x-4"
         >
-          <div className="mx-10 ">
+          {slides.map((slide, index) => (
             <div
-              className="flex items-center justify-end text-sm"
+              key={slide.id}
+              className="flex items-center text-sm "
               style={{
                 color: fontColor,
               }}
             >
-              {slides[currentIndex].Title}
+              <span>{slide.Title}</span>
+              {index < slides.length - 1 && <span className="mx-2">|</span>}
             </div>
-          </div>
+          ))}
         </Marquee>
       )}
     </>

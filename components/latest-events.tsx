@@ -15,23 +15,62 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "./ui/button";
 
-export const LatestEvents = ({ data }: { data: any[] }) => {
+export const LatestEvents = ({
+  data,
+  featuredTitle,
+  featuredDescription,
+  showFeaturedStar,
+  featuredBackgroundColor,
+  featuredStarColor,
+}: {
+  data: any[];
+  featuredTitle: string;
+  featuredDescription: string;
+  showFeaturedStar: boolean;
+  featuredBackgroundColor: string;
+  featuredStarColor: string;
+}) => {
   const cookieStore = cookies();
 
   const locale = cookieStore.get("language")?.value ?? "en";
 
   return (
     <>
-      <div className=" px-4 lg:px-[14%] bg-[#F4F4F4] py-20 ">
-        <div className="flex justify-center  items-center  ">
-          <Star fill="#F05555" strokeWidth={0} className="w-4 h-4" />
-          <Star fill="#F05555" strokeWidth={0} className="w-6 -mt-3 h-6" />
-          <Star fill="#F05555" strokeWidth={0} className="w-4 h-4" />
-        </div>
-        <div>
-          <h2 className="font-[600] lg:text-[50px] md:text-3xl text-2xl text-center text-[#222] pt-4 pb-5">
-            {locale == "en" ? "Featured" : "متميز"}
-          </h2>
+      <div
+        className=" px-4 lg:px-[14%]  py-20 "
+        style={{
+          backgroundColor: featuredBackgroundColor,
+        }}
+      >
+        {showFeaturedStar && (
+          <div className="flex justify-center  items-center  ">
+            <Star
+              fill={featuredStarColor}
+              strokeWidth={0}
+              className="w-4 h-4"
+            />
+            <Star
+              fill={featuredStarColor}
+              strokeWidth={0}
+              className="w-6 -mt-3 h-6"
+            />
+            <Star
+              fill={featuredStarColor}
+              strokeWidth={0}
+              className="w-4 h-4"
+            />
+          </div>
+        )}
+        <div className="mt-5 space-y-3  ">
+          {/* <h2 className="text-[#222] text-center text-[16px] ">
+            {serviceTitle}
+          </h2> */}
+          <p className="  font-[600] lg:text-[50px] md:text-3xl text-2xl text-center text-[#222] pt-2">
+            {featuredTitle}
+          </p>
+          <p className="text-center text-[#666] lg:mx-[14rem] text-[16px] py-10  ">
+            {featuredDescription}
+          </p>
         </div>
         <Carousel
           opts={{

@@ -31,6 +31,9 @@ interface FooterProps {
   backgroundColor: string | undefined;
   textColor: string;
   seperatorColor: string;
+  iconColor: string;
+  counterText: string;
+  counterBackgroundColor: string;
 }
 
 function AnimationNumber({ n }: { n: string }) {
@@ -74,105 +77,110 @@ export const Footer = ({
   backgroundColor,
   textColor,
   seperatorColor,
+  counterBackgroundColor,
+  counterText,
+  iconColor,
 }: FooterProps) => {
   return (
     <>
-      <div
-        className=" text-muted-foreground pt-[5rem] pb-10  "
-        style={{
-          backgroundColor: backgroundColor ?? "#fff",
-        }}
-      >
-        <div className="lg:px-[14%] px-4">
-          <div className=" lg:flex items-center justify-between">
-            <Link href={"/"} className="lg:min-w-[40%] bg-red-500]">
-              <Image
-                // src={"/images/logo.svg"}
-                src={`${AppUrl}${logo}`}
-                alt={logoAlt}
-                width={180}
-                height={50}
-                priority
-              />
-            </Link>
-            <div
-              className="lg:flex items-center lg:gap-20 gap-5 grid md:grid-cols-4 grid-cols-2 lg:mt-0 mt-4
-            lg:overflow-auto
-            "
-            >
-              {counter &&
-                counter.map((item, index) => {
-                  return (
-                    <div key={index}>
-                      <h2
-                        className="font-semibold  text-2xl"
-                        style={{
-                          color: textColor,
-                        }}
-                      >
-                        {" "}
-                        {item.Description}
-                      </h2>
-                      {/* <AnimationNumber n={item.Description} /> */}
-                      <p className="text-sm mt-1">{item.Title}</p>
-                    </div>
-                  );
-                })}
-            </div>
-          </div>
-        </div>
-        <hr
-          className="mt-16 "
-          style={{
-            borderColor: seperatorColor,
-          }}
-        />
+      <div className=" text-muted-foreground pt-[5rem] pb-10   ">
         <div
-          className="lg:px-[14%] px-4 lg:mt-[3rem] mt-4 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-10"
           style={{
-            color: textColor,
+            backgroundColor: counterBackgroundColor,
+            color: counterText,
           }}
         >
-          {/* about us start  */}
-          <div className="space-y-4">
-            <h2 className="font-semibold text-xl capitalize">{aboutTitle}</h2>
-            <p className="text-sm">{aboutDescription}</p>
-            <div className="gid ">
-              <SmallSocialIcon size="30px" url={socialMedia} />
+          <div className="lg:px-[14%] ">
+            <div className=" lg:flex items-center justify-between">
+              <Link href={"/"} className="lg:min-w-[40%] bg-red-500]">
+                <Image
+                  // src={"/images/logo.svg"}
+                  src={`${AppUrl}${logo}`}
+                  alt={logoAlt}
+                  width={180}
+                  height={50}
+                  priority
+                />
+              </Link>
+              <div
+                className="lg:flex items-center lg:gap-20 gap-5 grid md:grid-cols-4 grid-cols-2 lg:mt-0 mt-4
+            "
+              >
+                {counter &&
+                  counter.map((item, index) => {
+                    return (
+                      <div key={index}>
+                        <h2
+                          className="font-semibold  text-2xl"
+                          style={{
+                            color: counterText,
+                          }}
+                        >
+                          {" "}
+                          {item.Description}
+                        </h2>
+                        {/* <AnimationNumber n={item.Description} /> */}
+                        <p className="text-sm mt-1">{item.Title}</p>
+                      </div>
+                    );
+                  })}
+              </div>
             </div>
           </div>
-          {/* about us end */}
-          {/* party start  */}
-          <div className="space-y-4">
-            <h2 className="font-semibold text-xl capitalize">{menuTitle}</h2>
-            {menu &&
-              menu.map((item, index) => (
-                <div key={index}>
-                  <div className="cursor-pointer group flex items-center ">
-                    <div className="flex gap-0 opacity-0 group-hover:opacity-100 transition-all duration-300 ">
-                      <ChevronRight className="w-3 h-3" />
-                      <ChevronRight className="w-3 h-3 -ml-4" />
+          <hr
+            className="mt-16 "
+            style={{
+              borderColor: seperatorColor,
+            }}
+          />
+        </div>
+        <div
+          style={{
+            color: textColor,
+            backgroundColor: backgroundColor,
+          }}
+        >
+          <div className="lg:px-[14%] px-4 lg:pt-[3rem] pt-4 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-10">
+            {/* about us start  */}
+            <div className="space-y-4">
+              <h2 className="font-semibold text-xl capitalize">{aboutTitle}</h2>
+              <p className="text-sm">{aboutDescription}</p>
+              <div className="gid ">
+                <SmallSocialIcon size="30px" url={socialMedia} />
+              </div>
+            </div>
+            {/* about us end */}
+            {/* party start  */}
+            <div className="space-y-4">
+              <h2 className="font-semibold text-xl capitalize">{menuTitle}</h2>
+              {menu &&
+                menu.map((item, index) => (
+                  <div key={index}>
+                    <div className="cursor-pointer group flex items-center ">
+                      <div className="flex gap-0 opacity-0 group-hover:opacity-100 transition-all duration-300 ">
+                        <ChevronRight className="w-3 h-3" />
+                        <ChevronRight className="w-3 h-3 -ml-4" />
+                      </div>
+                      <Link
+                        href={item.Link}
+                        className="group-hover:ml-4 group-hover:text-buttonHoverBg text-sm transition-all duration-500"
+                      >
+                        {item.Name}
+                      </Link>
                     </div>
-                    <Link
-                      href={item.Link}
-                      className="group-hover:ml-4 group-hover:text-buttonHoverBg text-sm transition-all duration-500"
-                    >
-                      {item.Name}
-                    </Link>
+                    <hr
+                      className="mt-2 w-[80%]"
+                      style={{
+                        borderColor: seperatorColor,
+                      }}
+                    />
                   </div>
-                  <hr
-                    className="mt-2 w-[80%]"
-                    style={{
-                      borderColor: seperatorColor,
-                    }}
-                  />
-                </div>
-              ))}
-          </div>
-          {/* party end */}
+                ))}
+            </div>
+            {/* party end */}
 
-          {/* useful links start  */}
-          {/* <div className="space-y-4">
+            {/* useful links start  */}
+            {/* <div className="space-y-4">
             <h2 className="font-semibold text-xl capitalize">Useful Links</h2>
             {Array.from({ length: 5 }, (_, index) => (
               <div key={index}>
@@ -189,21 +197,23 @@ export const Footer = ({
               </div>
             ))}
           </div> */}
-          {/* useful links end */}
+            {/* useful links end */}
 
-          <ContactList
-            title={getInTouchTitle}
-            email={email}
-            location={location}
-            phone={phone}
+            <ContactList
+              title={getInTouchTitle}
+              email={email}
+              location={location}
+              phone={phone}
+              iconColor={iconColor}
+            />
+          </div>
+          <hr
+            className="mt-16  "
+            style={{
+              borderColor: seperatorColor,
+            }}
           />
         </div>
-        <hr
-          className="mt-16  "
-          style={{
-            borderColor: seperatorColor,
-          }}
-        />
         <div className="mt-10 ">
           <p
             className="text-center "

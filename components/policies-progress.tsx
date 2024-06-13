@@ -14,7 +14,9 @@ import { AppUrl } from "@/lib/url";
 
 interface PoliciesAndProgressProps {
   title: string;
+  faqStarColor: string;
   subTitle: string;
+  faqActiveColor: string;
   faq: {
     Title: string;
     QuestionAnswer: {
@@ -42,10 +44,21 @@ export const PoliciesAndProgress = ({
   subTitle,
   title,
   faq,
+  faqStarColor,
+  faqActiveColor,
 }: PoliciesAndProgressProps) => {
   const [faqData, setFaqData] = useState(faq[0].Title);
   const faqList = faq.filter((item) => item.Title == faqData);
   const [changed, setChanged] = useState(true);
+  const [isHovered, setIsHovered] = useState(false);
+
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  };
 
   useGSAP(() => {
     gsap.fromTo(
@@ -62,9 +75,21 @@ export const PoliciesAndProgress = ({
       <div className="lg:px-[14%] px-3  lg:mt-[5rem] mt-3 lg:mb-10 mb-4">
         <div className="  flex flex-col items-center justify-center">
           <div className="flex gap-[1px]  items-center justify-center ">
-            <Star fill="#299726" strokeWidth={0} className="w-5 h-5" />
-            <Star fill="#299726" strokeWidth={0} className="w-7 h-7" />
-            <Star fill="#299726" strokeWidth={0} className="w-5 h-5" />
+            <Star
+              fill={faqStarColor ?? "red"}
+              strokeWidth={0}
+              className="w-5 h-5"
+            />
+            <Star
+              fill={faqStarColor ?? "red"}
+              strokeWidth={0}
+              className="w-7 h-7"
+            />
+            <Star
+              fill={faqStarColor ?? "red"}
+              strokeWidth={0}
+              className="w-5 h-5"
+            />
           </div>
 
           <p className="text-primary mt-2">{title}</p>
@@ -78,14 +103,25 @@ export const PoliciesAndProgress = ({
             {faq.map((item, index) => (
               <div className="relative group " key={index}>
                 <h2
-                  className={
-                    faqData == item.Title
-                      ? "text-lg font-bold  hover:text-buttonHoverBg text-buttonHoverBg  cursor-pointer flex-1 whitespace-nowrap "
-                      : "text-lg font-bold text-[#305e95] hover:text-buttonHoverBg  cursor-pointer flex-1 whitespace-nowrap "
-                  }
-                  onClick={() => {
-                    setFaqData(item.Title), setChanged(true);
+                  style={{
+                    fontSize: "1.125rem", // text-lg equivalent
+                    fontWeight: "bold",
+                    cursor: "pointer",
+                    flex: 1,
+                    whiteSpace: "nowrap",
+                    color: faqData === item.Title ? faqActiveColor : "#305e95",
+                    color: isHovered
+                      ? faqActiveColor
+                      : faqData === item.Title
+                      ? faqActiveColor
+                      : "#305e95",
                   }}
+                  onClick={() => {
+                    setFaqData(item.Title);
+                    setChanged(true);
+                  }}
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
                   key={index}
                 >
                   {item.Title}
@@ -94,8 +130,11 @@ export const PoliciesAndProgress = ({
                 <hr
                   className={
                     faqData == item.Title
-                      ? "w-[150%] -left-[25%] opacity-100   -bottom-[17px] absolute border-buttonHoverBg flex-nowrap"
-                      : "w-[150%] -left-[25%] opacity-0 group-hover:opacity-100   -bottom-[17px] absolute flex-nowrap border-buttonHoverBg"
+                      ? "w-[150%] -left-[25%] opacity-100   -bottom-[17px] absolute border border-" +
+                        faqActiveColor +
+                        " flex-nowrap"
+                      : "w-[150%] -left-[25%] opacity-0 group-hover:opacity-100   -bottom-[17px] absolute flex-nowrap border border-" +
+                        faqActiveColor
                   }
                 />
                 {/* First horizontal line */}
@@ -134,7 +173,10 @@ export const PoliciesAndProgress = ({
                 faqList[0]?.QuestionAnswer.map((item, index) => {
                   return (
                     <AccordionItem value={index.toLocaleString()} key={index}>
-                      <AccordionTrigger className="font-semibold">
+                      <AccordionTrigger
+                        activeColor={faqActiveColor}
+                        className="font-semibold"
+                      >
                         {item.Question}
                       </AccordionTrigger>
                       <AccordionContent>{item.Answer}</AccordionContent>

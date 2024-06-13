@@ -43,9 +43,13 @@ export const FutureMovement = ({
   return (
     <section className="lg:px-[14%] px-4 w-full my-20">
       <div className="flex justify-center  items-center  ">
-        <Star fill="#F05555" strokeWidth={0} className="w-4 h-4" />
-        <Star fill="#F05555" strokeWidth={0} className="w-6 -mt-3 h-6" />
-        <Star fill="#F05555" strokeWidth={0} className="w-4 h-4" />
+        <Star fill={movementStarColor} strokeWidth={0} className="w-4 h-4" />
+        <Star
+          fill={movementStarColor}
+          strokeWidth={0}
+          className="w-6 -mt-3 h-6"
+        />
+        <Star fill={movementStarColor} strokeWidth={0} className="w-4 h-4" />
       </div>
       {/* <div className="mt-5 space-y-3  ">
         <h2 className=" lg:text-2xl text-xl font-bold text-center  text-[#222]">

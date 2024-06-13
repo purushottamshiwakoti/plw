@@ -53,6 +53,9 @@ async function getData() {
     const backgroundColor = footerData.attributes.BackgroundColor;
     const textColor = footerData.attributes.TextColor;
     const seperatorColor = footerData.attributes.SeperatorColor;
+    const iconColor = footerData.attributes.IconColor;
+    const counterText = footerData.attributes.CounterText;
+    const counterBackgroundColor = footerData.attributes.CounterBackgroundColor;
 
     const googleAnalytics = seoData.attributes.GoogleAnalytics;
     const googleTagsManager = seoData.attributes.GoogleTagsManager;
@@ -82,6 +85,9 @@ async function getData() {
       appLogo,
       textColor,
       seperatorColor,
+      iconColor,
+      counterText,
+      counterBackgroundColor,
     };
   } catch (error) {
     console.log(error);
@@ -162,6 +168,9 @@ export default async function RootLayout({
             backgroundColor={data?.backgroundColor}
             seperatorColor={data?.seperatorColor}
             textColor={data?.textColor}
+            counterBackgroundColor={data?.counterBackgroundColor}
+            counterText={data?.counterText}
+            iconColor={data?.iconColor}
           />
           <TopSctoll />
           <NextTopLoader color="#299726" />

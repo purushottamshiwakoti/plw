@@ -7,13 +7,14 @@ import { ChevronDown, Plus, Minus } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 let Accordion = AccordionPrimitive.Root;
+
 const AccordionItem = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Item>,
   React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Item>
 >(({ className, ...props }, ref) => (
   <AccordionPrimitive.Item
     ref={ref}
-    className={cn("border-b data-[state=open]:border-buttonHoverBg", className)}
+    className={cn("border-b", className)}
     {...props}
   />
 ));
@@ -21,20 +22,29 @@ AccordionItem.displayName = "AccordionItem";
 
 const AccordionTrigger = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Trigger>,
-  React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Trigger>
->(({ className, children, ...props }, ref) => (
+  React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Trigger> & {
+    activeColor: string;
+  }
+>(({ className, children, activeColor, ...props }, ref) => (
   <AccordionPrimitive.Header className="flex">
     <AccordionPrimitive.Trigger
       ref={ref}
       className={cn(
-        "flex flex-1 items-center data-[state=closed]:text-buttonHoverBg justify-between py-4 font-medium transition-all hover:underline group ",
+        `flex flex-1 items-center justify-between py-4 font-medium transition-all hover:underline group`,
         className
       )}
+      style={{
+        color: activeColor,
+      }}
       {...props}
     >
       {children}
-      <Plus className="h-4 w-4 shrink-0 text-buttonHoverBg transition-transform duration-200 group-data-[state=open]:hidden" />
-      <Minus className="h-4 w-4 shrink-0 transition-transform duration-200 group-data-[state=closed]:hidden" />
+      <Plus
+        className={`h-4 w-4 shrink-0 transition-transform duration-200 group-data-[state=open]:hidden text-${activeColor}`}
+      />
+      <Minus
+        className={`h-4 w-4 shrink-0 transition-transform duration-200 group-data-[state=closed]:hidden text-${activeColor}`}
+      />
     </AccordionPrimitive.Trigger>
   </AccordionPrimitive.Header>
 ));
