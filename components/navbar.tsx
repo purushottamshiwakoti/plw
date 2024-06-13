@@ -1,19 +1,16 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { Button } from "@/components/ui/button";
+import { AppUrl } from "@/lib/url";
+import { cn } from "@/lib/utils";
+import { gsap } from "gsap";
 import Image from "next/image";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
-import { navBar } from "@/lib/nav";
-import { Separator } from "@/components/ui/separator";
-import { SearchDialog } from "./dialog/search-dialog";
 import { usePathname } from "next/navigation";
-import { AppUrl } from "@/lib/url";
-import { MenuItem } from "./menu-item";
+import { useEffect, useRef, useState } from "react";
 import { CountrySelector } from "./country-selector";
+import { MenuItem } from "./menu-item";
 import { MobileNav } from "./mobile-nav";
-import { gsap } from "gsap";
 
 interface NavbarProps {
   className?: string;
@@ -41,33 +38,24 @@ export const Navbar: React.FC<NavbarProps> = ({
   const [isVisible, setIsVisible] = useState(path !== "/");
 
   useEffect(() => {
-    if (path !== "/") {
-      setIsVisible(true);
-      return;
-    }
-
-    const navElement = navRef.current;
-
-    const showAnim = gsap.fromTo(
-      navElement,
-      { y: -100, opacity: 0, display: "none" },
-      { y: 0, opacity: 1, display: "flex", duration: 0.5, paused: true }
-    );
-
     const handleScroll = () => {
-      if (window.scrollY > 300) {
-        showAnim.play();
+      if (path === "/" && window.scrollY > 300) {
         setIsVisible(true);
-      } else {
-        showAnim.reverse();
+      } else if (path === "/" && window.scrollY <= 300) {
         setIsVisible(false);
       }
     };
 
-    window.addEventListener("scroll", handleScroll);
+    if (path !== "/") {
+      setIsVisible(true);
+    } else {
+      window.addEventListener("scroll", handleScroll);
+    }
 
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      if (path === "/") {
+        window.removeEventListener("scroll", handleScroll);
+      }
     };
   }, [path]);
 
@@ -75,13 +63,14 @@ export const Navbar: React.FC<NavbarProps> = ({
     <nav
       ref={navRef}
       className={cn(
-        "border-b border-t hidden h-20 items-center justify-between lg:px-[14%] px-4 sticky w-full top-0 z-50",
+        "border-b border-t h-20 items-center justify-between lg:px-[14%] px-4 sticky w-full top-0 z-50",
         className,
-        { "bg-white": isVisible } // Apply the background color only when visible
+        { hidden: path === "/" && !isVisible }
       )}
       style={{
-        backgroundColor: isVisible ? backgroundColor ?? "#fff" : "transparent", // Dynamic background color
-        opacity: 0, // Set initial opacity to 0
+        backgroundColor: isVisible ? backgroundColor ?? "#fff" : "transparent",
+        opacity: isVisible ? 1 : 0,
+        display: isVisible ? "flex" : "none",
       }}
     >
       <Link href="/">
